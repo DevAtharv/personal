@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atharv - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+        /* Instagram Card Styles */
+        .insta-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 400px;
+            margin: 0 auto;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .insta-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-orange);
+            box-shadow: 0 10px 40px rgba(255, 107, 53, 0.15);
+        }
+
+        .insta-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .insta-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3px; /* Border width */
+        }
+
+        .insta-avatar span {
+            width: 100%;
+            height: 100%;
+            background: #000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .insta-info {
+            text-align: left;
+        }
+
+        .insta-handle {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 0.2rem;
+        }
+
+        .insta-stats {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        .insta-stats strong {
+            color: var(--accent-orange);
+        }
+
+        .insta-bio {
+            text-align: left;
+            margin-bottom: 2rem;
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            padding-left: 0.5rem;
+            border-left: 2px solid rgba(255, 107, 53, 0.3);
+        }
+
+        .insta-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            width: 100%;
+            padding: 1rem;
+            background: var(--text-light);
+            color: #000;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .insta-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .insta-btn:hover {
+            background: var(--accent-orange);
+            color: #fff;
+        }
+        :root {
+            --accent-orange: #ff6b35;
+            --bg-dark: #000000;
+            --text-light: #ffffff;
+            --text-gray: #a0a0a0;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 107, 53, 0.1);
+            height: 80px;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-light);
+            letter-spacing: -0.05em;
+        }
+
+        .logo span {
+            color: var(--accent-orange);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-orange);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text-light);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* --- UPDATED SECTIONS --- */
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* Aligns content to the top */
+            align-items: center;
+            padding-top: 80px; /* Pushes content below the navbar */
+            position: relative;
+        }
+
+        /* --- UPDATED IMAGE STYLES --- */
+        .portfolio-image {
+            width: 100%; /* Forces image to fill the screen width */
+            height: auto; /* Lets the height grow naturally */
+            display: block;
+            /* No max-height limitation anymore */
+        }
+
+        /* Editing Section */
+        #editing {
+            display: block;
+            min-height: 100vh;
+            padding: 100px 0 50px;
+        }
+
+        .editing-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .editing-hero {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 3rem 0;
+            border-bottom: 1px solid rgba(255, 107, 53, 0.2);
+        }
+
+        .editing-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff 0%, var(--accent-orange) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .editing-hero p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .admin-section {
+            background: rgba(255, 107, 53, 0.05);
+            border: 2px dashed rgba(255, 107, 53, 0.3);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .admin-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-orange);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-light);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            border-radius: 8px;
+            color: var(--text-light);
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--accent-orange);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .form-group small {
+            display: block;
+            margin-top: 0.3rem;
+            color: var(--text-gray);
+            font-size: 0.85rem;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            background: var(--accent-orange);
+            color: var(--text-light);
+            border: none;
+            border-radius: 8px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            background: #ff8555;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 107, 53, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 107, 53, 0.2);
+            margin-left: 1rem;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 107, 53, 0.3);
+        }
+
+        .instagram-section {
+            text-align: center;
+            padding: 3rem 0;
+            border-top: 1px solid rgba(255, 107, 53, 0.2);
+        }
+
+        .instagram-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .instagram-embed-wrapper {
+            max-width: 540px;
+            margin: 2rem auto;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            border-radius: 12px;
+            padding: 2rem;
+        }
+
+        .help-text {
+            background: rgba(255, 107, 53, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .help-text strong {
+            color: var(--accent-orange);
+        }
+
+        .instagram-profile-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.2rem 2.5rem;
+            background: linear-gradient(135deg, #833AB4 0%, #FD1D1D 50%, #FCAF45 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: var(--transition);
+            margin-top: 2rem;
+        }
+
+        .instagram-profile-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(131, 58, 180, 0.4);
+        }
+
+        .instagram-profile-link svg {
+            width: 30px;
+            height: 30px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .editing-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .instagram-profile-link {
+                font-size: 1rem;
+                padding: 1rem 2rem;
+            }
+        }
+
+        /* Mobile menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(0, 0, 0, 0.98);
+                flex-direction: column;
+                padding: 2rem;
+                border-top: 1px solid rgba(255, 107, 53, 0.2);
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator svg {
+            width: 30px;
+            height: 30px;
+            fill: var(--accent-orange);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">atharv<span>.</span></div>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#code" class="nav-link">Code & Systems</a></li>
+                <li><a href="#progress" class="nav-link">Progress</a></li>
+                <li><a href="#editing" class="nav-link">Editing</a></li>
+                <li><a href="#random" class="nav-link">Random</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator" id="scrollIndicator">
+        <svg viewBox="0 0 24 24">
+            <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+        </svg>
+    </div>
+
+    <!-- Home Section -->
+    <section id="home">
+        <img src="1.png" alt="Home" class="portfolio-image">
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <img src="2.png" alt="About Me" class="portfolio-image">
+    </section>
+
+    <!-- Code & Systems Section -->
+    <section id="code">
+        <img src="3.png" alt="Code & Systems" class="portfolio-image">
+    </section>
+
+    <!-- Progress Section -->
+    <section id="progress">
+        <img src="4.png" alt="My Progress" class="portfolio-image">
+    </section>
+
+    <!-- Editing Section -->
+    <section id="editing">
+        <div class="editing-container">
+            <div class="editing-hero">
+                <h1>Video Editing Portfolio</h1>
+                <p>Cinematic cuts, pacing, and mood-driven edits</p>
+            </div>
+
+            <div class="instagram-section">
+                
+                <div class="insta-card">
+                    <div class="insta-header">
+                        <div class="insta-avatar">
+                            <span>A</span>
+                        </div>
+                        <div class="insta-info">
+                            <div class="insta-handle">atharvagarwal0</div>
+                            <div class="insta-stats">
+                                <span><strong>Video</strong> Editor</span>
+                                <span><strong>Creative</strong> Dev</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="insta-bio">
+                        <p>Cinematic AI visuals & Storytelling.<br>Dm for collaborations 📩</p>
+                    </div>
+
+                    <a href="https://www.instagram.com/atharvagarwal0/" target="_blank" class="insta-btn">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        View Profile on Instagram
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+            <!-- Instagram Profile Section -->
+            <div class="instagram-section">
+                <h2>Follow Me on Instagram</h2>
+                <div id="instagramEmbedDisplay"></div>
+                <div id="instagramProfileLinkDisplay"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Random/Loading Section -->
+    <section id="random">
+        <img src="6.png" alt="Loading" class="portfolio-image">
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <img src="7.png" alt="Contact" class="portfolio-image">
+    </section>
+
+<script>
+        // Navigation
+        function toggleMobileMenu() {
+            document.getElementById('navLinks').classList.toggle('show');
+        }
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('show');
+            });
+        });
+
+        // Update active nav link on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Hide scroll indicator after scrolling
+            if (window.scrollY > 100) {
+                document.getElementById('scrollIndicator').style.display = 'none';
+            } else {
+                document.getElementById('scrollIndicator').style.display = 'block';
+            }
+        });
+
+        // Load Instagram Script
+        // This makes the hardcoded blockquote turn into a nice profile widget
+        function loadInstagramScript() {
+            const script = document.createElement('script');
+            script.async = true;
+            script.src = '//www.instagram.com/embed.js';
+            document.body.appendChild(script);
+        }
+
+        // Initialize on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            loadInstagramScript();
+        });
+    </script>
+</body>
+</html>
