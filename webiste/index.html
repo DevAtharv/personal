@@ -409,32 +409,38 @@
         }
 
         /* --- MOBILE RESPONSIVE RULES --- */
+       /* --- MOBILE FORCE FIX --- */
         @media (max-width: 768px) {
             
-            /* 1. THE GAP FIX: Stops sections from being too tall */
+            /* 1. FORCE SECTIONS TO SHRINK */
             section {
-                min-height: auto; /* Remove the "full screen" requirement */
-                height: auto;
-                padding-top: 90px; /* Keeps space for the navbar */
-                padding-bottom: 40px; /* Small natural gap between images */
-                display: block;
+                min-height: unset !important; /* Kill the 100vh rule */
+                height: auto !important;      /* Force height to match content */
+                display: block !important;    /* Disable flexbox centering */
+                padding-top: 85px !important; /* Just enough space for navbar */
+                padding-bottom: 0 !important; /* Remove bottom padding */
+                margin-bottom: 0 !important;  /* Remove margins */
             }
 
+            /* 2. FORCE IMAGES TO FIT */
             .portfolio-image {
-                width: 100%;
-                height: auto;
-                object-fit: contain;
+                width: 100% !important;
+                height: auto !important;
+                max-height: none !important;
+                object-fit: contain !important;
+                display: block !important;
+                margin-bottom: -5px !important; /* Removes the tiny "ghost" gap below images */
             }
 
-            /* 2. MENU & TYPOGRAPHY */
+            /* 3. MOBILE MENU FIXES */
             .mobile-menu-btn {
                 display: block;
             }
 
             .nav-links {
-                display: none; /* Hidden until clicked */
+                display: none;
                 position: absolute;
-                top: 100%;
+                top: 80px; /* Match navbar height */
                 left: 0;
                 right: 0;
                 background: rgba(0, 0, 0, 0.98);
@@ -448,13 +454,21 @@
                 display: flex;
             }
 
+            /* Text resizing for mobile */
             .editing-hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
+            }
+            
+            .editing-hero {
+                padding: 2rem 0;
+                margin-bottom: 2rem;
             }
 
             .instagram-profile-link {
                 font-size: 1rem;
                 padding: 1rem 2rem;
+                width: 100%;
+                justify-content: center;
             }
         }
         /* Scroll indicator */
