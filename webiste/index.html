@@ -398,9 +398,54 @@
         }
 
         /* Responsive */
+/* Mobile menu button (Default hidden on Desktop) */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* --- MOBILE RESPONSIVE RULES --- */
         @media (max-width: 768px) {
+            
+            /* 1. THE GAP FIX: Stops sections from being too tall */
+            section {
+                min-height: auto; /* Remove the "full screen" requirement */
+                height: auto;
+                padding-top: 90px; /* Keeps space for the navbar */
+                padding-bottom: 40px; /* Small natural gap between images */
+                display: block;
+            }
+
+            .portfolio-image {
+                width: 100%;
+                height: auto;
+                object-fit: contain;
+            }
+
+            /* 2. MENU & TYPOGRAPHY */
+            .mobile-menu-btn {
+                display: block;
+            }
+
             .nav-links {
-                gap: 1rem;
+                display: none; /* Hidden until clicked */
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(0, 0, 0, 0.98);
+                flex-direction: column;
+                padding: 2rem;
+                border-top: 1px solid rgba(255, 107, 53, 0.2);
+                gap: 1.5rem;
+            }
+
+            .nav-links.show {
+                display: flex;
             }
 
             .editing-hero h1 {
@@ -412,39 +457,6 @@
                 padding: 1rem 2rem;
             }
         }
-
-        /* Mobile menu */
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--text-light);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        @media (max-width: 768px) {
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: rgba(0, 0, 0, 0.98);
-                flex-direction: column;
-                padding: 2rem;
-                border-top: 1px solid rgba(255, 107, 53, 0.2);
-            }
-
-            .nav-links.show {
-                display: flex;
-            }
-        }
-
         /* Scroll indicator */
         .scroll-indicator {
             position: fixed;
@@ -631,4 +643,5 @@
         });
     </script>
 </body>
+
 </html>
