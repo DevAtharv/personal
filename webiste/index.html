@@ -71,12 +71,38 @@
     .sec-title { font-size: clamp(2.2rem, 3.5vw, 3.2rem); font-weight: 300; letter-spacing: -0.02em; line-height: 1.15; }
 
     /* ABOUT */
-    #about { display: grid; grid-template-columns: 1fr 1fr; min-height: 100vh; overflow: hidden; }
-    .about-img { position: relative; overflow: hidden; }
-    .about-img img { width: 100%; height: 100%; object-fit: cover; object-position: center 15%; filter: grayscale(100%) contrast(1.08); display: block; }
-    .about-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, rgba(6,6,6,0) 50%, var(--black) 100%), linear-gradient(to bottom, var(--black) 0%, transparent 12%); }
-    .about-content { padding: 8rem 5rem 5rem 4rem; display: flex; flex-direction: column; justify-content: center; }
-    .about-body { font-family: 'DM Mono', monospace; font-size: 0.82rem; line-height: 2; color: var(--gray-light); margin: 2.5rem 0; letter-spacing: 0.02em; }
+    #about { min-height: 100vh; display: flex; align-items: center; padding: 8rem 6rem; position: relative; overflow: hidden; }
+    .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 8rem; align-items: center; width: 100%; max-width: 1300px; }
+    .about-left { position: relative; }
+    .about-photo {
+      width: 100%; aspect-ratio: 3/4; object-fit: cover;
+      object-position: center top;
+      filter: grayscale(100%) contrast(1.08);
+      display: block;
+      border-radius: 2px;
+    }
+    .about-photo-frame {
+      position: relative;
+    }
+    .about-photo-frame::before {
+      content: '';
+      position: absolute;
+      top: -12px; left: -12px;
+      width: 60px; height: 60px;
+      border-top: 2px solid var(--orange);
+      border-left: 2px solid var(--orange);
+      z-index: 1;
+    }
+    .about-photo-frame::after {
+      content: '';
+      position: absolute;
+      bottom: -12px; right: -12px;
+      width: 60px; height: 60px;
+      border-bottom: 2px solid var(--orange);
+      border-right: 2px solid var(--orange);
+    }
+    .about-content { }
+    .about-body { font-family: 'DM Mono', monospace; font-size: 0.85rem; line-height: 2; color: var(--gray-light); margin: 2rem 0 2.5rem; letter-spacing: 0.02em; }
     .about-tagline { font-family: 'DM Mono', monospace; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white); padding: 0.8rem 1.2rem; border-left: 3px solid var(--orange); background: rgba(232,97,26,0.07); }
     .about-tagline em { font-style: normal; background: var(--orange); color: var(--black); padding: 0.1em 0.4em; border-radius: 2px; }
 
@@ -167,9 +193,10 @@
       #home { padding: 0 1.5rem; }
       .hero-marquees { display: none; }
       .hero-scroll { left: 1.5rem; }
-      #about { grid-template-columns: 1fr; }
-      .about-img { max-height: 55vw; }
-      .about-content { padding: 3rem 1.5rem; }
+      #about { padding: 5rem 1.5rem; }
+      .about-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .about-photo { aspect-ratio: 1/1; }
+      .about-photo-frame::before, .about-photo-frame::after { width: 40px; height: 40px; }
       #code { padding: 5rem 1.5rem; }
       .project-grid { grid-template-columns: 1fr; }
       #progress { padding: 5rem 1.5rem; }
@@ -260,14 +287,18 @@
 
 <!-- ABOUT -->
 <section id="about">
-  <div class="about-img">
-    <img src="2.png" alt="Atharv Agarwal">
-  </div>
-  <div class="about-content">
-    <div class="sec-label">About Me</div>
-    <h2 class="sec-title">Still figuring<br>things out.</h2>
-    <p class="about-body">I'm still figuring things out and learning as I go. I'm curious about technology, finance, and creative work, and I care more about improving steadily than pretending to have it all together. This portfolio is a record of what I'm learning, building, and refining over time.</p>
-    <div class="about-tagline">I'M NOT AN <em>EXPERT</em>—I'M A <em>LEARNER</em></div>
+  <div class="about-inner">
+    <div class="about-left">
+      <div class="about-photo-frame">
+        <img src="2.png" alt="Atharv Agarwal" class="about-photo">
+      </div>
+    </div>
+    <div class="about-content">
+      <div class="sec-label">About Me</div>
+      <h2 class="sec-title">Still figuring<br>things out.</h2>
+      <p class="about-body">I'm still figuring things out and learning as I go. I'm curious about technology, finance, and creative work, and I care more about improving steadily than pretending to have it all together. This portfolio is a record of what I'm learning, building, and refining over time.</p>
+      <div class="about-tagline">I'M NOT AN <em>EXPERT</em>—I'M A <em>LEARNER</em></div>
+    </div>
   </div>
 </section>
 
@@ -399,7 +430,7 @@
   <div class="contact-name">atharv<span>.</span></div>
   <div class="contact-sub">Atharv Agarwal — reach out</div>
   <div class="contact-links">
-    <a href="mailto:reach@atharvagarwal.in" class="clink">
+    <a href="/cdn-cgi/l/email-protection#dba9bebab8b39bbaafb3baa9adbabcbaa9acbab7f5b2b5" class="clink">
       <div class="cicon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
       <span class="clabel">Email</span>
     </a>
@@ -414,7 +445,7 @@
   </div>
 </section>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // Stars
   const starsEl = document.getElementById('stars');
   for (let i = 0; i < 70; i++) {
@@ -456,9 +487,4 @@
       bars.forEach(b => { b.style.width = b.dataset.w + '%'; });
     }
   }
-  window.addEventListener('scroll', animateBars, { passive: true });
-  // Also trigger on load in case already in view
-  setTimeout(animateBars, 300);
-</script>
-</body>
-</html>
+  window.addEventListene
