@@ -1,660 +1,1231 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atharv - Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<style>
-        /* Instagram Card Styles */
-        .insta-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 107, 53, 0.2);
-            border-radius: 20px;
-            padding: 2rem;
-            max-width: 400px;
-            margin: 0 auto;
-            backdrop-filter: blur(10px);
-            transition: transform 0.3s ease;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>atharv. — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300&family=DM+Mono:wght@300;400;500&family=Playfair+Display:ital,wght@1,400;1,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --orange: #E8611A;
+      --orange-dim: rgba(232, 97, 26, 0.15);
+      --black: #060606;
+      --white: #F2F0EC;
+      --gray: #5A5A5A;
+      --gray-light: #9A9A9A;
+    }
 
-        .insta-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-orange);
-            box-shadow: 0 10px 40px rgba(255, 107, 53, 0.15);
-        }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        .insta-header {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
+    html { scroll-behavior: smooth; }
 
-        .insta-avatar {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 3px; /* Border width */
-        }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      overflow-x: hidden;
+      cursor: none;
+    }
 
-        .insta-avatar span {
-            width: 100%;
-            height: 100%;
-            background: #000;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #fff;
-        }
+    /* Custom cursor */
+    .cursor {
+      width: 8px; height: 8px;
+      background: var(--orange);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s ease;
+    }
+    .cursor-ring {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(232, 97, 26, 0.5);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: all 0.15s ease;
+    }
 
-        .insta-info {
-            text-align: left;
-        }
+    /* ---- NAV ---- */
+    nav {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 1.4rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(6,6,6,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      transition: all 0.4s ease;
+    }
 
-        .insta-handle {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #fff;
-            margin-bottom: 0.2rem;
-        }
+    .nav-logo {
+      font-size: 1.4rem;
+      font-weight: 300;
+      letter-spacing: 0.02em;
+      color: var(--white);
+    }
+    .nav-logo span { color: var(--orange); }
 
-        .insta-stats {
-            font-size: 0.9rem;
-            color: var(--text-gray);
-        }
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray-light);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--white); }
 
-        .insta-stats strong {
-            color: var(--accent-orange);
-        }
+    .mobile-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
 
-        .insta-bio {
-            text-align: left;
-            margin-bottom: 2rem;
-            color: var(--text-gray);
-            font-size: 0.95rem;
-            line-height: 1.5;
-            padding-left: 0.5rem;
-            border-left: 2px solid rgba(255, 107, 53, 0.3);
-        }
+    /* ---- MARQUEE ---- */
+    .marquee-wrap {
+      overflow: hidden;
+      white-space: nowrap;
+      width: 100%;
+    }
+    .marquee-track {
+      display: inline-flex;
+      animation: marquee-scroll 22s linear infinite;
+    }
+    .marquee-track.reverse { animation-direction: reverse; }
+    .marquee-item {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.6rem 1.8rem;
+      color: var(--gray-light);
+    }
+    .marquee-item .dot { color: var(--orange); margin-left: 0.3em; }
+    .marquee-wrap.inverted .marquee-item { color: var(--black); }
+    .marquee-wrap.inverted { background: var(--white); }
 
-        .insta-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.8rem;
-            width: 100%;
-            padding: 1rem;
-            background: var(--text-light);
-            color: #000;
-            text-decoration: none;
-            border-radius: 12px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
+    @keyframes marquee-scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
 
-        .insta-btn svg {
-            width: 20px;
-            height: 20px;
-        }
+    /* ---- SECTIONS ---- */
+    section {
+      min-height: 100vh;
+      position: relative;
+    }
 
-        .insta-btn:hover {
-            background: var(--accent-orange);
-            color: #fff;
-        }
-        :root {
-            --accent-orange: #ff6b35;
-            --bg-dark: #000000;
-            --text-light: #ffffff;
-            --text-gray: #a0a0a0;
-            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+    /* ---- HERO ---- */
+    #home {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 0 6rem;
+      overflow: hidden;
+      background: var(--black);
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    .hero-bg-number {
+      position: absolute;
+      left: -2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: clamp(18rem, 28vw, 32rem);
+      font-weight: 700;
+      color: rgba(255,255,255,0.025);
+      line-height: 1;
+      letter-spacing: -0.05em;
+      user-select: none;
+      pointer-events: none;
+    }
 
-        html {
-            scroll-behavior: smooth;
-        }
+    .hero-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.2s forwards;
+    }
 
-        body {
-            font-family: 'Outfit', sans-serif;
-            background: var(--bg-dark);
-            color: var(--text-light);
-            overflow-x: hidden;
-        }
+    .hero-headline {
+      font-size: clamp(3.5rem, 6vw, 7rem);
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 0;
+    }
+    .hero-headline span {
+      display: block;
+      opacity: 0;
+      animation: fadeUp 0.8s forwards;
+    }
+    .hero-headline span:nth-child(1) { animation-delay: 0.35s; }
+    .hero-headline span:nth-child(2) { color: var(--gray); animation-delay: 0.5s; }
+    .hero-headline span:nth-child(3) { animation-delay: 0.65s; }
 
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 107, 53, 0.1);
-            height: 80px;
-        }
+    .hero-marquees {
+      position: absolute;
+      right: -60px;
+      top: 50%;
+      transform: translateY(-50%) rotate(15deg);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      width: 55vw;
+      opacity: 0;
+      animation: fadeIn 1s 1s forwards;
+    }
 
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            height: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    .hero-marquees .marquee-wrap:first-child { background: var(--white); }
+    .hero-marquees .marquee-wrap:first-child .marquee-item { color: var(--black); }
+    .hero-marquees .marquee-wrap:last-child { background: #1a1a1a; }
+    .hero-marquees .marquee-wrap:last-child .marquee-item { color: var(--white); }
 
-        .logo {
-            font-family: 'Space Mono', monospace;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-light);
-            letter-spacing: -0.05em;
-        }
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 6rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray);
+      opacity: 0;
+      animation: fadeIn 1s 1.5s forwards;
+    }
+    .hero-scroll-hint::before {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 1px;
+      background: var(--gray);
+    }
 
-        .logo span {
-            color: var(--accent-orange);
-        }
+    /* Stars effect */
+    .stars {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .star {
+      position: absolute;
+      width: 2px; height: 2px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0;
+      animation: twinkle var(--dur) var(--delay) infinite;
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0; }
+      50% { opacity: var(--max-op); }
+    }
 
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
+    /* ---- ABOUT ---- */
+    #about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      min-height: 100vh;
+      padding-top: 80px;
+    }
 
-        .nav-links a {
-            color: var(--text-gray);
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
-            position: relative;
-            cursor: pointer;
-        }
+    .about-img-col {
+      position: relative;
+      height: 100%;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+    .about-img-col img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(100%) contrast(1.1);
+      display: block;
+    }
+    .about-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, transparent 60%, var(--black) 100%);
+    }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent-orange);
-            transition: var(--transition);
-        }
+    .about-content {
+      padding: 5rem 5rem 5rem 4rem;
+    }
 
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--text-light);
-        }
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 30px;
+      height: 1px;
+      background: var(--orange);
+    }
 
-        .nav-links a:hover::after,
-        .nav-links a.active::after {
-            width: 100%;
-        }
+    .section-title {
+      font-size: clamp(2.5rem, 4vw, 3.5rem);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      margin-bottom: 2.5rem;
+      line-height: 1.1;
+    }
 
-        /* --- UPDATED SECTIONS --- */
-        section {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start; /* Aligns content to the top */
-            align-items: center;
-            padding-top: 80px; /* Pushes content below the navbar */
-            position: relative;
-        }
+    .about-text {
+      font-size: 0.95rem;
+      line-height: 2;
+      color: var(--gray-light);
+      margin-bottom: 2.5rem;
+      font-family: 'DM Mono', monospace;
+      font-weight: 300;
+      letter-spacing: 0.02em;
+    }
 
-        /* --- UPDATED IMAGE STYLES --- */
-        .portfolio-image {
-            width: 100%; /* Forces image to fill the screen width */
-            height: auto; /* Lets the height grow naturally */
-            display: block;
-            /* No max-height limitation anymore */
-        }
+    .about-tagline {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--white);
+      padding: 0.8rem 1.2rem;
+      border-left: 3px solid var(--orange);
+      background: rgba(232, 97, 26, 0.08);
+    }
 
-        /* Editing Section */
-        #editing {
-            display: block;
-            min-height: 100vh;
-            padding: 100px 0 50px;
-        }
+    .about-tagline em {
+      color: var(--orange);
+      font-style: normal;
+      background: var(--orange);
+      color: var(--black);
+      padding: 0.1em 0.4em;
+      border-radius: 2px;
+    }
 
-        .editing-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-        }
+    /* ---- CODE ---- */
+    #code {
+      padding: 8rem 6rem;
+      display: flex;
+      flex-direction: column;
+    }
 
-        .editing-hero {
-            text-align: center;
-            margin-bottom: 4rem;
-            padding: 3rem 0;
-            border-bottom: 1px solid rgba(255, 107, 53, 0.2);
-        }
+    .code-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 5rem;
+    }
 
-        .editing-hero h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #ffffff 0%, var(--accent-orange) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+    .project-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      flex: 1;
+    }
 
-        .editing-hero p {
-            font-size: 1.2rem;
-            color: var(--text-gray);
-            max-width: 600px;
-            margin: 0 auto;
-        }
+    .project-card {
+      background: #0d0d0d;
+      padding: 3rem;
+      border: 1px solid rgba(255,255,255,0.04);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 2px;
+      background: var(--orange);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .project-card:hover::before { transform: scaleX(1); }
+    .project-card:hover { background: #111; }
 
-        .admin-section {
-            background: rgba(255, 107, 53, 0.05);
-            border: 2px dashed rgba(255, 107, 53, 0.3);
-            border-radius: 12px;
-            padding: 2rem;
-            margin-bottom: 3rem;
-        }
+    .project-card.wip {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 300px;
+      border: 1px dashed rgba(255,255,255,0.08);
+    }
 
-        .admin-section h2 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--accent-orange);
-        }
+    .wip-text {
+      font-size: clamp(2.5rem, 5vw, 5rem);
+      font-weight: 300;
+      color: rgba(255,255,255,0.15);
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    .wip-sub {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--orange);
+    }
 
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
+    .project-number {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      color: var(--gray);
+      margin-bottom: 2rem;
+    }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: var(--text-light);
-        }
+    .project-title {
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      letter-spacing: -0.01em;
+    }
 
-        .form-group input {
-            width: 100%;
-            padding: 0.8rem;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 107, 53, 0.3);
-            border-radius: 8px;
-            color: var(--text-light);
-            font-family: 'Outfit', sans-serif;
-            font-size: 1rem;
-            transition: var(--transition);
-        }
+    .project-desc {
+      font-size: 0.85rem;
+      line-height: 1.8;
+      color: var(--gray-light);
+      margin-bottom: 2rem;
+      font-family: 'DM Mono', monospace;
+      font-weight: 300;
+    }
 
-        .form-group input:focus {
-            outline: none;
-            border-color: var(--accent-orange);
-            background: rgba(255, 255, 255, 0.08);
-        }
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .tech-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      padding: 0.3rem 0.8rem;
+      border: 1px solid rgba(232, 97, 26, 0.3);
+      color: var(--orange);
+      border-radius: 2px;
+    }
 
-        .form-group small {
-            display: block;
-            margin-top: 0.3rem;
-            color: var(--text-gray);
-            font-size: 0.85rem;
-        }
+    /* ---- PROGRESS ---- */
+    #progress {
+      padding: 8rem 6rem;
+    }
 
-        .btn {
-            padding: 0.8rem 2rem;
-            background: var(--accent-orange);
-            color: var(--text-light);
-            border: none;
-            border-radius: 8px;
-            font-family: 'Outfit', sans-serif;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-        }
+    .progress-intro {
+      max-width: 500px;
+      margin-bottom: 5rem;
+    }
+    .progress-intro p {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.82rem;
+      line-height: 1.9;
+      color: var(--gray-light);
+      margin-top: 1.5rem;
+      letter-spacing: 0.03em;
+    }
 
-        .btn:hover {
-            background: #ff8555;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(255, 107, 53, 0.4);
-        }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem 6rem;
+    }
 
-        .btn-secondary {
-            background: rgba(255, 107, 53, 0.2);
-            margin-left: 1rem;
-        }
+    .skill-item { }
 
-        .btn-secondary:hover {
-            background: rgba(255, 107, 53, 0.3);
-        }
+    .skill-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.8rem;
+    }
 
-        .instagram-section {
-            text-align: center;
-            padding: 3rem 0;
-            border-top: 1px solid rgba(255, 107, 53, 0.2);
-        }
+    .skill-name {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--white);
+      font-weight: 500;
+    }
 
-        .instagram-section h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
+    .skill-pct {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--orange);
+      letter-spacing: 0.1em;
+    }
 
-        .instagram-embed-wrapper {
-            max-width: 540px;
-            margin: 2rem auto;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 107, 53, 0.2);
-            border-radius: 12px;
-            padding: 2rem;
-        }
+    .skill-meta {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--gray);
+      margin-bottom: 1rem;
+      letter-spacing: 0.02em;
+    }
 
-        .help-text {
-            background: rgba(255, 107, 53, 0.1);
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
+    .skill-bar-track {
+      height: 3px;
+      background: rgba(255,255,255,0.06);
+      position: relative;
+      overflow: hidden;
+    }
+    .skill-bar-fill {
+      height: 100%;
+      background: var(--orange);
+      width: 0;
+      transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+    .skill-bar-fill::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: -3px;
+      width: 8px; height: 8px;
+      background: var(--orange);
+      border-radius: 50%;
+    }
+    .skill-bar-fill.animated { width: var(--pct); }
 
-        .help-text strong {
-            color: var(--accent-orange);
-        }
+    /* ---- EDITING ---- */
+    #editing {
+      padding: 8rem 6rem;
+      display: flex;
+      flex-direction: column;
+    }
 
-        .instagram-profile-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1.2rem 2.5rem;
-            background: linear-gradient(135deg, #833AB4 0%, #FD1D1D 50%, #FCAF45 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            transition: var(--transition);
-            margin-top: 2rem;
-        }
+    .editing-top {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+      margin-bottom: 5rem;
+    }
 
-        .instagram-profile-link:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(131, 58, 180, 0.4);
-        }
+    .editing-desc {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.82rem;
+      line-height: 2;
+      color: var(--gray-light);
+      letter-spacing: 0.03em;
+    }
 
-        .instagram-profile-link svg {
-            width: 30px;
-            height: 30px;
-        }
+    .editing-skills {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+    }
 
-        /* Responsive */
-        /* Mobile menu button (Default hidden on Desktop) */
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--text-light);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
+    .edit-skill {
+      background: #0d0d0d;
+      padding: 1.5rem;
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+    .edit-skill-name {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 0.4rem;
+    }
+    .edit-skill-val {
+      font-size: 0.85rem;
+      color: var(--gray-light);
+    }
 
-        /* --- MOBILE RESPONSIVE RULES --- */
-       /* --- MOBILE FORCE FIX --- */
-        @media (max-width: 768px) {
-            
-            /* 1. FORCE SECTIONS TO SHRINK */
-            section {
-                min-height: unset !important; /* Kill the 100vh rule */
-                height: auto !important;      /* Force height to match content */
-                display: block !important;    /* Disable flexbox centering */
-                padding-top: 85px !important; /* Just enough space for navbar */
-                padding-bottom: 0 !important; /* Remove bottom padding */
-                margin-bottom: 0 !important;  /* Remove margins */
-            }
+    .ig-card {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      background: #0d0d0d;
+      border: 1px solid rgba(255,255,255,0.05);
+      padding: 3rem;
+      max-width: 700px;
+    }
 
-            /* 2. FORCE IMAGES TO FIT */
-            .portfolio-image {
-                width: 100% !important;
-                height: auto !important;
-                max-height: none !important;
-                object-fit: contain !important;
-                display: block !important;
-                margin-bottom: -5px !important; /* Removes the tiny "ghost" gap below images */
-            }
+    .ig-avatar {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888, #f09433);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .ig-avatar-inner {
+      width: 72px; height: 72px;
+      background: #0d0d0d;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--white);
+    }
 
-            /* 3. MOBILE MENU FIXES */
-            .mobile-menu-btn {
-                display: block;
-            }
+    .ig-info { flex: 1; }
+    .ig-handle {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+    }
+    .ig-bio {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--gray-light);
+      margin-bottom: 1.2rem;
+      line-height: 1.6;
+    }
+    .ig-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--black);
+      background: var(--white);
+      padding: 0.8rem 1.6rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .ig-btn:hover { background: var(--orange); color: var(--white); }
 
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 80px; /* Match navbar height */
-                left: 0;
-                right: 0;
-                background: rgba(0, 0, 0, 0.98);
-                flex-direction: column;
-                padding: 2rem;
-                border-top: 1px solid rgba(255, 107, 53, 0.2);
-                gap: 1.5rem;
-            }
+    /* ---- RANDOM ---- */
+    #random {
+      padding: 8rem 6rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
 
-            .nav-links.show {
-                display: flex;
-            }
+    .random-label { margin-bottom: 4rem; }
 
-            /* Text resizing for mobile */
-            .editing-hero h1 {
-                font-size: 2.2rem;
-            }
-            
-            .editing-hero {
-                padding: 2rem 0;
-                margin-bottom: 2rem;
-            }
+    .random-desc {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.85rem;
+      line-height: 2;
+      color: var(--gray-light);
+      max-width: 500px;
+      margin-bottom: 4rem;
+    }
 
-            .instagram-profile-link {
-                font-size: 1rem;
-                padding: 1rem 2rem;
-                width: 100%;
-                justify-content: center;
-            }
-        }
-        /* Scroll indicator */
-        .scroll-indicator {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 100;
-            animation: bounce 2s infinite;
-        }
+    .loading-display {
+      width: 100%;
+      max-width: 500px;
+    }
+    .loading-text {
+      font-size: clamp(3rem, 6vw, 6rem);
+      font-weight: 300;
+      letter-spacing: 0.25em;
+      color: var(--white);
+      margin-bottom: 2rem;
+    }
+    .loading-bar-wrap {
+      width: 100%;
+      height: 6px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .loading-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(to right, var(--orange), #ff9a5c);
+      border-radius: 3px;
+      animation: loading-anim 3s ease-in-out infinite;
+    }
+    @keyframes loading-anim {
+      0% { width: 0%; }
+      70% { width: 60%; }
+      90% { width: 65%; }
+      100% { width: 65%; }
+    }
 
-        .scroll-indicator svg {
-            width: 30px;
-            height: 30px;
-            fill: var(--accent-orange);
-        }
+    .random-items {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 4rem;
+    }
+    .random-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray);
+      padding: 0.5rem 1rem;
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: all 0.3s ease;
+    }
+    .random-tag:hover { border-color: var(--orange); color: var(--orange); }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateX(-50%) translateY(0);
-            }
-            40% {
-                transform: translateX(-50%) translateY(-10px);
-            }
-            60% {
-                transform: translateX(-50%) translateY(-5px);
-            }
-        }
-    </style>
+    /* ---- CONTACT ---- */
+    #contact {
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-bg-text {
+      position: absolute;
+      font-size: clamp(10rem, 20vw, 22rem);
+      font-weight: 700;
+      color: rgba(255,255,255,0.02);
+      letter-spacing: -0.05em;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .contact-wordmark {
+      font-size: clamp(3.5rem, 8vw, 8rem);
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .contact-wordmark span { color: var(--orange); }
+
+    .contact-sub {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-links {
+      display: flex;
+      gap: 4rem;
+      position: relative;
+      z-index: 1;
+    }
+    .contact-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.8rem;
+      text-decoration: none;
+      color: var(--gray-light);
+      transition: all 0.3s ease;
+    }
+    .contact-link:hover { color: var(--white); }
+    .contact-link:hover .cl-icon { border-color: var(--orange); background: var(--orange-dim); }
+    .cl-icon {
+      width: 48px; height: 48px;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+    .cl-icon svg { width: 18px; height: 18px; fill: currentColor; }
+    .cl-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    /* ---- BOTTOM MARQUEE DIVIDER ---- */
+    .section-divider {
+      width: 100%;
+      height: 1px;
+      background: rgba(255,255,255,0.05);
+    }
+
+    /* ---- ANIMATIONS ---- */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ---- MOBILE ---- */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: rgba(6,6,6,0.98); flex-direction: column; padding: 2rem; gap: 1.5rem; border-top: 1px solid rgba(255,255,255,0.05); }
+      .nav-links.open { display: flex; }
+      .mobile-btn { display: block; }
+      #home { padding: 0 2rem; min-height: 100vh; }
+      .hero-headline { font-size: clamp(2.5rem, 8vw, 4rem); }
+      .hero-marquees { display: none; }
+      .hero-scroll-hint { left: 2rem; }
+      #about { grid-template-columns: 1fr; }
+      .about-img-col { min-height: 50vh; }
+      .about-content { padding: 3rem 2rem; }
+      #code { padding: 5rem 2rem; }
+      .code-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .project-grid { grid-template-columns: 1fr; }
+      #progress { padding: 5rem 2rem; }
+      .skills-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      #editing { padding: 5rem 2rem; }
+      .editing-top { grid-template-columns: 1fr; gap: 3rem; }
+      #random { padding: 5rem 2rem; }
+      #contact { padding: 4rem 2rem; }
+      .contact-links { gap: 2rem; flex-wrap: wrap; justify-content: center; }
+    }
+  </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <div class="logo">atharv<span>.</span></div>
-            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#code" class="nav-link">Code & Systems</a></li>
-                <li><a href="#progress" class="nav-link">Progress</a></li>
-                <li><a href="#editing" class="nav-link">Editing</a></li>
-                <li><a href="#random" class="nav-link">Random</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
 
-    <!-- Scroll Indicator -->
-    <div class="scroll-indicator" id="scrollIndicator">
-        <svg viewBox="0 0 24 24">
-            <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
-        </svg>
+<!-- Custom Cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-logo">atharv<span>.</span></div>
+  <button class="mobile-btn" id="mobileBtn" onclick="toggleMenu()">☰</button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home" class="nav-link">Home</a></li>
+    <li><a href="#about" class="nav-link">About</a></li>
+    <li><a href="#code" class="nav-link">Code</a></li>
+    <li><a href="#progress" class="nav-link">Progress</a></li>
+    <li><a href="#editing" class="nav-link">Editing</a></li>
+    <li><a href="#random" class="nav-link">Random</a></li>
+    <li><a href="#contact" class="nav-link">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ========= HERO ========= -->
+<section id="home">
+  <div class="stars" id="stars"></div>
+  <div class="hero-bg-number">A</div>
+
+  <div class="hero-tag">Atharv Agarwal — Portfolio 2025</div>
+  <h1 class="hero-headline">
+    <span>Curiosity.</span>
+    <span>Momentum.</span>
+    <span>Entropy Control.</span>
+  </h1>
+
+  <div class="hero-marquees">
+    <div class="marquee-wrap inverted">
+      <div class="marquee-track">
+        <span class="marquee-item">CODING<span class="dot">.</span></span>
+        <span class="marquee-item">EDITING<span class="dot">.</span></span>
+        <span class="marquee-item">INQUIRING<span class="dot">.</span></span>
+        <span class="marquee-item">BUILDING<span class="dot">.</span></span>
+        <span class="marquee-item">CODING<span class="dot">.</span></span>
+        <span class="marquee-item">EDITING<span class="dot">.</span></span>
+        <span class="marquee-item">INQUIRING<span class="dot">.</span></span>
+        <span class="marquee-item">BUILDING<span class="dot">.</span></span>
+      </div>
+    </div>
+    <div class="marquee-wrap">
+      <div class="marquee-track reverse">
+        <span class="marquee-item">AMBITIOUS<span class="dot">.</span></span>
+        <span class="marquee-item">RESTLESS<span class="dot">.</span></span>
+        <span class="marquee-item">CURIOUS<span class="dot">.</span></span>
+        <span class="marquee-item">IMPATIENT<span class="dot">.</span></span>
+        <span class="marquee-item">SELF-DIRECTED<span class="dot">.</span></span>
+        <span class="marquee-item">AMBITIOUS<span class="dot">.</span></span>
+        <span class="marquee-item">RESTLESS<span class="dot">.</span></span>
+        <span class="marquee-item">CURIOUS<span class="dot">.</span></span>
+        <span class="marquee-item">IMPATIENT<span class="dot">.</span></span>
+        <span class="marquee-item">SELF-DIRECTED<span class="dot">.</span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-scroll-hint">Scroll to explore</div>
+</section>
+
+<!-- MARQUEE DIVIDER -->
+<div class="marquee-wrap" style="background:#0f0f0f; padding: 0.3rem 0;">
+  <div class="marquee-track" style="animation-duration:30s;">
+    <span class="marquee-item" style="color:#3a3a3a; font-size:0.6rem; letter-spacing:0.3em;">ATHARV AGARWAL</span>
+    <span class="marquee-item" style="color: var(--orange); font-size:0.6rem;">✦</span>
+    <span class="marquee-item" style="color:#3a3a3a; font-size:0.6rem; letter-spacing:0.3em;">DATA · ML · VIDEO · FINANCE</span>
+    <span class="marquee-item" style="color: var(--orange); font-size:0.6rem;">✦</span>
+    <span class="marquee-item" style="color:#3a3a3a; font-size:0.6rem; letter-spacing:0.3em;">ATHARV AGARWAL</span>
+    <span class="marquee-item" style="color: var(--orange); font-size:0.6rem;">✦</span>
+    <span class="marquee-item" style="color:#3a3a3a; font-size:0.6rem; letter-spacing:0.3em;">DATA · ML · VIDEO · FINANCE</span>
+    <span class="marquee-item" style="color: var(--orange); font-size:0.6rem;">✦</span>
+    <span class="marquee-item" style="color:#3a3a3a; font-size:0.6rem; letter-spacing:0.3em;">ATHARV AGARWAL</span>
+    <span class="marquee-item" style="color: var(--orange); font-size:0.6rem;">✦</span>
+    <span class="marquee-item" style="color:#3a3a3a; font-size:0.6rem; letter-spacing:0.3em;">DATA · ML · VIDEO · FINANCE</span>
+    <span class="marquee-item" style="color: var(--orange); font-size:0.6rem;">✦</span>
+  </div>
+</div>
+
+<!-- ========= ABOUT ========= -->
+<section id="about">
+  <div class="about-img-col">
+    <img src="2.png" alt="Atharv Agarwal">
+    <div class="about-img-overlay"></div>
+  </div>
+  <div class="about-content">
+    <div class="section-label reveal">About Me</div>
+    <h2 class="section-title reveal" style="transition-delay:0.1s;">Still figuring<br>things out.</h2>
+    <p class="about-text reveal" style="transition-delay:0.2s;">
+      I'm still figuring things out and learning as I go. I'm curious about technology, finance, and creative work, and I care more about improving steadily than pretending to have it all together. This portfolio is a record of what I'm learning, building, and refining over time.
+    </p>
+    <div class="about-tagline reveal" style="transition-delay:0.3s;">
+      I'M NOT AN <em>EXPERT</em>—I'M A <em>LEARNER</em>
+    </div>
+  </div>
+</section>
+
+<!-- ========= CODE ========= -->
+<section id="code">
+  <div class="code-header reveal">
+    <div>
+      <div class="section-label">Code &amp; Systems</div>
+      <h2 class="section-title" style="margin-bottom:0;">What I'm<br>building.</h2>
+    </div>
+  </div>
+
+  <div class="project-grid">
+    <div class="project-card reveal">
+      <div class="project-number">01 / CODE</div>
+      <div class="project-title">ML Stock Analysis Platform</div>
+      <p class="project-desc">
+        An end-to-end machine learning system for analyzing and predicting stock market trends. Built with a strong emphasis on data pipelines, feature engineering, and model evaluation rather than surface-level predictions.
+      </p>
+      <div class="project-tech">
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">Pandas</span>
+        <span class="tech-tag">NumPy</span>
+        <span class="tech-tag">scikit-learn</span>
+        <span class="tech-tag">Flask</span>
+      </div>
+      <div style="margin-top:1.5rem; display:flex; gap:1rem; font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--gray);">
+        <span>Focus: Data analysis · ML logic · Backend architecture</span>
+      </div>
     </div>
 
-    <!-- Home Section -->
-    <section id="home">
-        <img src="1.png" alt="Home" class="portfolio-image">
-    </section>
+    <div class="project-card wip reveal" style="transition-delay:0.15s;">
+      <div class="wip-text">In Progress.</div>
+      <div class="wip-sub">Something's coming ✦</div>
+    </div>
+  </div>
+</section>
 
-    <!-- About Section -->
-    <section id="about">
-        <img src="2.png" alt="About Me" class="portfolio-image">
-    </section>
+<!-- ========= PROGRESS ========= -->
+<section id="progress">
+  <div class="progress-intro reveal">
+    <div class="section-label">My.progress.bar</div>
+    <h2 class="section-title">Current<br>Focus.</h2>
+    <p>I treat learning as a continuous process, not a checklist. Below reflects where I'm currently operating — not where I'm "finished."</p>
+  </div>
 
-    <!-- Code & Systems Section -->
-    <section id="code">
-        <img src="3.png" alt="Code & Systems" class="portfolio-image">
-    </section>
+  <div class="skills-grid">
+    <div class="skill-item reveal">
+      <div class="skill-header">
+        <span class="skill-name">Data Analysis</span>
+        <span class="skill-pct">90%</span>
+      </div>
+      <div class="skill-meta">Status: Strong foundation · Python · Pandas · NumPy · Matplotlib · Seaborn</div>
+      <div class="skill-bar-track">
+        <div class="skill-bar-fill" style="--pct: 90%;"></div>
+      </div>
+    </div>
 
-    <!-- Progress Section -->
-    <section id="progress">
-        <img src="4.png" alt="My Progress" class="portfolio-image">
-    </section>
+    <div class="skill-item reveal" style="transition-delay:0.1s;">
+      <div class="skill-header">
+        <span class="skill-name">Video Editing</span>
+        <span class="skill-pct">80%</span>
+      </div>
+      <div class="skill-meta">Status: Confident · Cinematic cuts, pacing, mood-driven edits · CapCut Pro</div>
+      <div class="skill-bar-track">
+        <div class="skill-bar-fill" style="--pct: 80%;"></div>
+      </div>
+    </div>
 
-    <!-- Editing Section -->
-    <section id="editing">
-        <div class="editing-container">
-            <div class="editing-hero">
-                <h1>Video Editing Portfolio</h1>
-                <p>Cinematic cuts, pacing, and mood-driven edits</p>
-            </div>
+    <div class="skill-item reveal" style="transition-delay:0.2s;">
+      <div class="skill-header">
+        <span class="skill-name">Machine Learning</span>
+        <span class="skill-pct">60%</span>
+      </div>
+      <div class="skill-meta">Status: Actively learning · Classical ML, model evaluation, feature engineering · scikit-learn</div>
+      <div class="skill-bar-track">
+        <div class="skill-bar-fill" style="--pct: 60%;"></div>
+      </div>
+    </div>
 
-            <div class="instagram-section">
-                
-                <div class="insta-card">
-                    <div class="insta-header">
-                        <div class="insta-avatar">
-                            <span>A</span>
-                        </div>
-                        <div class="insta-info">
-                            <div class="insta-handle">atharvagarwal0</div>
-                            <div class="insta-stats">
-                                <span><strong>Video</strong> Editor</span>
-                                <span><strong>Creative</strong> Dev</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="insta-bio">
-                        <p>Cinematic AI visuals & Storytelling.<br>Dm for collaborations 📩</p>
-                    </div>
+    <div class="skill-item reveal" style="transition-delay:0.3s;">
+      <div class="skill-header">
+        <span class="skill-name">Vibe Coding</span>
+        <span class="skill-pct">70%</span>
+      </div>
+      <div class="skill-meta">Status: Strong instinct · Translating mood into UI/interactions · Feel-first development</div>
+      <div class="skill-bar-track">
+        <div class="skill-bar-fill" style="--pct: 70%;"></div>
+      </div>
+    </div>
 
-                    <a href="https://www.instagram.com/atharvagarwal0/" target="_blank" class="insta-btn">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                        View Profile on Instagram
-                    </a>
-                </div>
+    <div class="skill-item reveal" style="transition-delay:0.4s;">
+      <div class="skill-header">
+        <span class="skill-name">Model Deployment</span>
+        <span class="skill-pct">30%</span>
+      </div>
+      <div class="skill-meta">Status: Early-stage exploration · Turning models into usable systems · Flask · APIs</div>
+      <div class="skill-bar-track">
+        <div class="skill-bar-fill" style="--pct: 30%;"></div>
+      </div>
+    </div>
 
-            </div>
-        </div>
-    </section>
-            <!-- Instagram Profile Section -->
-            <div class="instagram-section">
-                <h2>Follow Me on Instagram</h2>
-                <div id="instagramEmbedDisplay"></div>
-                <div id="instagramProfileLinkDisplay"></div>
-            </div>
-        </div>
-    </section>
+    <div class="skill-item reveal" style="transition-delay:0.5s;">
+      <div class="skill-header">
+        <span class="skill-name">Finance</span>
+        <span class="skill-pct">50%</span>
+      </div>
+      <div class="skill-meta">Level: Foundation → Building · Financial markets, business fundamentals, data-driven decisions</div>
+      <div class="skill-bar-track">
+        <div class="skill-bar-fill" style="--pct: 50%;"></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Random/Loading Section -->
-    <section id="random">
-        <img src="6.png" alt="Loading" class="portfolio-image">
-    </section>
+<!-- ========= EDITING ========= -->
+<section id="editing">
+  <div class="section-label reveal" style="margin-bottom:1.5rem;">Editing</div>
+  <h2 class="section-title reveal" style="margin-bottom:4rem; transition-delay:0.1s;">Visual<br>Storytelling.</h2>
 
-    <!-- Contact Section -->
-    <section id="contact">
-        <img src="7.png" alt="Contact" class="portfolio-image">
-    </section>
+  <div class="editing-top">
+    <div class="reveal" style="transition-delay:0.2s;">
+      <p class="editing-desc">
+        Cinematic cuts, pacing, and mood-driven edits. I focus on feel and flow — building sequences that land emotionally, not just technically. Every project is a chance to experiment with rhythm, atmosphere, and visual language.
+      </p>
+    </div>
+
+    <div class="editing-skills reveal" style="transition-delay:0.3s;">
+      <div class="edit-skill">
+        <div class="edit-skill-name">Style</div>
+        <div class="edit-skill-val">Cinematic · Narrative</div>
+      </div>
+      <div class="edit-skill">
+        <div class="edit-skill-name">Tool</div>
+        <div class="edit-skill-val">CapCut Pro</div>
+      </div>
+      <div class="edit-skill">
+        <div class="edit-skill-name">Focus</div>
+        <div class="edit-skill-val">Mood-driven pacing</div>
+      </div>
+      <div class="edit-skill">
+        <div class="edit-skill-name">Level</div>
+        <div class="edit-skill-val">Confident — 80%</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ig-card reveal" style="transition-delay:0.4s;">
+    <div class="ig-avatar">
+      <div class="ig-avatar-inner">A</div>
+    </div>
+    <div class="ig-info">
+      <div class="ig-handle">@atharvagarwal0</div>
+      <p class="ig-bio">Cinematic AI visuals &amp; Storytelling.<br>DM for collaborations 📩</p>
+      <a href="https://www.instagram.com/atharvagarwal0/" target="_blank" class="ig-btn">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        View Profile
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ========= RANDOM ========= -->
+<section id="random">
+  <div class="random-label reveal">
+    <div class="section-label">Random</div>
+    <h2 class="section-title">Still<br>Loading.</h2>
+  </div>
+
+  <div class="loading-display reveal" style="transition-delay:0.2s;">
+    <div class="loading-text">L o a d i n g . .</div>
+    <div class="loading-bar-wrap">
+      <div class="loading-bar-fill"></div>
+    </div>
+  </div>
+
+  <p class="random-desc reveal" style="transition-delay:0.3s; margin-top:2rem;">
+    This section is a placeholder for the things that don't fit anywhere else — thoughts, experiments, observations, and whatever I happen to be interested in this week.
+  </p>
+
+  <div class="random-items reveal" style="transition-delay:0.4s;">
+    <span class="random-tag">Philosophy</span>
+    <span class="random-tag">Chess</span>
+    <span class="random-tag">Markets</span>
+    <span class="random-tag">Stoicism</span>
+    <span class="random-tag">AI Art</span>
+    <span class="random-tag">Productivity Systems</span>
+    <span class="random-tag">Finance Theory</span>
+    <span class="random-tag">Sci-Fi</span>
+  </div>
+</section>
+
+<!-- ========= CONTACT ========= -->
+<section id="contact">
+  <div class="contact-bg-text">atharv</div>
+  <div class="contact-wordmark reveal">atharv<span>.</span></div>
+  <div class="contact-sub reveal" style="transition-delay:0.1s;">Atharv Agarwal — reach out</div>
+
+  <div class="contact-links reveal" style="transition-delay:0.25s;">
+    <a href="mailto:reach@atharvagarwal.in" class="contact-link">
+      <div class="cl-icon">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      </div>
+      <span class="cl-label">Email</span>
+    </a>
+
+    <a href="https://www.linkedin.com/in/atharv-agarwal/" target="_blank" class="contact-link">
+      <div class="cl-icon">
+        <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </div>
+      <span class="cl-label">LinkedIn</span>
+    </a>
+
+    <a href="https://www.instagram.com/atharvagarwal0/" target="_blank" class="contact-link">
+      <div class="cl-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </div>
+      <span class="cl-label">Instagram</span>
+    </a>
+  </div>
+</section>
 
 <script>
-        // Navigation
-        function toggleMobileMenu() {
-            document.getElementById('navLinks').classList.toggle('show');
-        }
+  // ---- Cursor ----
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  function animCursor() {
+    cursor.style.left = mx + 'px';
+    cursor.style.top = my + 'px';
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(animCursor);
+  }
+  animCursor();
 
-        // Close mobile menu when clicking a link
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                document.getElementById('navLinks').classList.remove('show');
-            });
-        });
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => { ring.style.transform = 'translate(-50%, -50%) scale(1.8)'; ring.style.borderColor = 'var(--orange)'; });
+    el.addEventListener('mouseleave', () => { ring.style.transform = 'translate(-50%, -50%) scale(1)'; ring.style.borderColor = 'rgba(232,97,26,0.5)'; });
+  });
 
-        // Update active nav link on scroll
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-link');
-            
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (pageYOffset >= (sectionTop - 200)) {
-                    current = section.getAttribute('id');
-                }
-            });
+  // ---- Stars ----
+  const starsEl = document.getElementById('stars');
+  for (let i = 0; i < 80; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    s.style.left = Math.random() * 100 + '%';
+    s.style.top = Math.random() * 100 + '%';
+    s.style.setProperty('--dur', (2 + Math.random() * 4) + 's');
+    s.style.setProperty('--delay', (Math.random() * 4) + 's');
+    s.style.setProperty('--max-op', (0.1 + Math.random() * 0.4).toFixed(2));
+    starsEl.appendChild(s);
+  }
 
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === '#' + current) {
-                    link.classList.add('active');
-                }
-            });
+  // ---- Mobile menu ----
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+  document.querySelectorAll('.nav-link').forEach(l => {
+    l.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+  });
 
-            // Hide scroll indicator after scrolling
-            if (window.scrollY > 100) {
-                document.getElementById('scrollIndicator').style.display = 'none';
-            } else {
-                document.getElementById('scrollIndicator').style.display = 'block';
-            }
-        });
+  // ---- Active nav ----
+  const sections = document.querySelectorAll('section');
+  const navLinks = document.querySelectorAll('.nav-link');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const link = document.querySelector(`.nav-link[href="#${e.target.id}"]`);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { threshold: 0.4 });
+  sections.forEach(s => observer.observe(s));
 
-        // Load Instagram Script
-        // This makes the hardcoded blockquote turn into a nice profile widget
-        function loadInstagramScript() {
-            const script = document.createElement('script');
-            script.async = true;
-            script.src = '//www.instagram.com/embed.js';
-            document.body.appendChild(script);
-        }
+  // ---- Scroll reveal ----
+  const revealObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
-        // Initialize on page load
-        window.addEventListener('DOMContentLoaded', () => {
-            loadInstagramScript();
-        });
-    </script>
+  // ---- Skill bars ----
+  const skillObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.skill-bar-fill').forEach(bar => bar.classList.add('animated'));
+      }
+    });
+  }, { threshold: 0.3 });
+  const progressSection = document.getElementById('progress');
+  if (progressSection) skillObs.observe(progressSection);
+</script>
 </body>
 </html>
