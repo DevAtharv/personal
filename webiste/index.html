@@ -48,10 +48,13 @@
     .hero-headline span:nth-child(1) { animation: fadeUp 0.7s 0.25s both; }
     .hero-headline span:nth-child(2) { color: var(--gray); animation: fadeUp 0.7s 0.4s both; }
     .hero-headline span:nth-child(3) { animation: fadeUp 0.7s 0.55s both; }
-    .hero-marquees { position: absolute; right: -60px; top: 50%; transform: translateY(-50%) rotate(15deg); display: flex; flex-direction: column; gap: 0.5rem; width: 55vw; animation: fadeIn 1s 1s both; }
-    .hero-marquees .m1 { background: var(--white); }
-    .hero-marquees .m1 .marquee-item { color: var(--black); }
-    .hero-marquees .m2 { background: #1a1a1a; }
+    .hero-marquees { position: absolute; right: -80px; top: 50%; transform: translateY(-50%) rotate(15deg); display: flex; flex-direction: column; gap: 6px; width: 58vw; animation: fadeIn 1s 1s both; }
+    .hero-marquees .m1 { background: var(--white); padding: 0.7rem 0; }
+    .hero-marquees .m1 .marquee-item { color: var(--black); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.18em; padding: 0 1.5rem; }
+    .hero-marquees .m1 .dot { color: var(--orange); }
+    .hero-marquees .m2 { background: #1c1c1c; padding: 0.7rem 0; }
+    .hero-marquees .m2 .marquee-item { color: var(--white); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.18em; padding: 0 1.5rem; }
+    .hero-marquees .m2 .dot { color: var(--orange); }
     .hero-scroll { position: absolute; bottom: 2.5rem; left: 6rem; display: flex; align-items: center; gap: 1rem; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray); animation: fadeIn 1s 1.2s both; }
     .hero-scroll::before { content: ''; display: block; width: 40px; height: 1px; background: var(--gray); }
 
@@ -476,15 +479,15 @@
     });
   }, { passive: true });
 
-  // Skill bars - animate on scroll into view
+  // Skill bars - bulletproof, fill immediately with no dependency on scroll
   const bars = document.querySelectorAll('.bar-fill');
-  let barsAnimated = false;
-  function animateBars() {
-    const progressSection = document.getElementById('progress');
-    const rect = progressSection.getBoundingClientRect();
-    if (rect.top < window.innerHeight * 0.8 && !barsAnimated) {
-      barsAnimated = true;
-      bars.forEach(b => { b.style.width = b.dataset.w + '%'; });
-    }
+  function fillBars() {
+    bars.forEach(b => { b.style.width = b.dataset.w + '%'; });
   }
-  window.addEventListene
+  // Fire at multiple points to guarantee it works
+  setTimeout(fillBars, 200);
+  setTimeout(fillBars, 800);
+  window.addEventListener('scroll', function checkBars() {
+    fillBars();
+    window.removeEventListener('scroll', checkBars);
+  }, { passive: true });
