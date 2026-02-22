@@ -40,23 +40,149 @@
     @keyframes mscroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
     /* HERO */
-    #home { min-height: 100vh; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 0 6rem; position: relative; overflow: hidden; }
-    .hero-bg-a { position: absolute; left: -2rem; top: 50%; transform: translateY(-50%); font-size: clamp(16rem, 25vw, 30rem); font-weight: 700; color: rgba(255,255,255,0.025); line-height: 1; user-select: none; pointer-events: none; }
-    .hero-tag { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange); margin-bottom: 2rem; position: relative; z-index: 1; animation: fadeUp 0.7s 0.1s both; }
-    .hero-headline { font-size: clamp(3rem, 5.5vw, 6.5rem); font-weight: 300; line-height: 1.1; letter-spacing: -0.02em; position: relative; z-index: 1; }
+    #home {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 0 6rem;
+      position: relative;
+      overflow: hidden;
+      padding-top: 80px;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-bg-a {
+      position: absolute;
+      left: -2rem; top: 50%;
+      transform: translateY(-50%);
+      font-size: clamp(16rem, 25vw, 30rem);
+      font-weight: 700;
+      color: rgba(255,255,255,0.025);
+      line-height: 1;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .hero-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 2.5rem;
+      position: relative;
+      z-index: 1;
+      animation: fadeUp 0.7s 0.1s both;
+    }
+
+    .hero-headline {
+      font-size: clamp(3rem, 5vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      position: relative;
+      z-index: 1;
+    }
+
     .hero-headline span { display: block; }
-    .hero-headline span:nth-child(1) { animation: fadeUp 0.7s 0.25s both; }
+    .hero-headline span:nth-child(1) { animation: fadeUp 0.7s 0.25s both; color: var(--white); }
     .hero-headline span:nth-child(2) { color: var(--gray); animation: fadeUp 0.7s 0.4s both; }
-    .hero-headline span:nth-child(3) { animation: fadeUp 0.7s 0.55s both; }
-    .hero-marquees { position: absolute; right: -80px; top: 50%; transform: translateY(-50%) rotate(15deg); display: flex; flex-direction: column; gap: 6px; width: 58vw; animation: fadeIn 1s 1s both; }
-    .hero-marquees .m1 { background: var(--white); padding: 0.7rem 0; }
-    .hero-marquees .m1 .marquee-item { color: var(--black); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.18em; padding: 0 1.5rem; }
-    .hero-marquees .m1 .dot { color: var(--orange); }
-    .hero-marquees .m2 { background: #1c1c1c; padding: 0.7rem 0; }
-    .hero-marquees .m2 .marquee-item { color: var(--white); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.18em; padding: 0 1.5rem; }
-    .hero-marquees .m2 .dot { color: var(--orange); }
-    .hero-scroll { position: absolute; bottom: 2.5rem; left: 6rem; display: flex; align-items: center; gap: 1rem; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray); animation: fadeIn 1s 1.2s both; }
-    .hero-scroll::before { content: ''; display: block; width: 40px; height: 1px; background: var(--gray); }
+    .hero-headline span:nth-child(3) { animation: fadeUp 0.7s 0.55s both; color: var(--white); }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 6rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray);
+      animation: fadeIn 1s 1.2s both;
+    }
+    .hero-scroll::before {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 1px;
+      background: var(--gray);
+    }
+
+    /* HERO RIGHT — word grid */
+    .hero-right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+      animation: fadeIn 1s 0.8s both;
+      height: 100%;
+    }
+
+    .word-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      width: 100%;
+      max-width: 420px;
+    }
+
+    .word-cell {
+      padding: 1.8rem 2rem;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: #0a0a0a;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .word-cell::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%; height: 2px;
+      background: var(--orange);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .word-cell:hover::before { transform: scaleX(1); }
+    .word-cell:hover { background: #111; }
+
+    .word-cell .wc-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 0.5rem;
+    }
+
+    .word-cell .wc-word {
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: var(--white);
+      letter-spacing: -0.01em;
+    }
+
+    .word-cell.highlight {
+      background: var(--orange);
+      border-color: var(--orange);
+    }
+    .word-cell.highlight::before { display: none; }
+    .word-cell.highlight .wc-label { color: rgba(0,0,0,0.6); }
+    .word-cell.highlight .wc-word { color: var(--black); font-weight: 500; }
 
     /* Stars */
     .stars { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
@@ -77,34 +203,10 @@
     #about { min-height: 100vh; display: flex; align-items: center; padding: 8rem 6rem; position: relative; overflow: hidden; }
     .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 8rem; align-items: center; width: 100%; max-width: 1300px; }
     .about-left { position: relative; }
-    .about-photo {
-      width: 100%; aspect-ratio: 3/4; object-fit: cover;
-      object-position: center top;
-      filter: grayscale(100%) contrast(1.08);
-      display: block;
-      border-radius: 2px;
-    }
-    .about-photo-frame {
-      position: relative;
-    }
-    .about-photo-frame::before {
-      content: '';
-      position: absolute;
-      top: -12px; left: -12px;
-      width: 60px; height: 60px;
-      border-top: 2px solid var(--orange);
-      border-left: 2px solid var(--orange);
-      z-index: 1;
-    }
-    .about-photo-frame::after {
-      content: '';
-      position: absolute;
-      bottom: -12px; right: -12px;
-      width: 60px; height: 60px;
-      border-bottom: 2px solid var(--orange);
-      border-right: 2px solid var(--orange);
-    }
-    .about-content { }
+    .about-photo { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: center top; filter: grayscale(100%) contrast(1.08); display: block; border-radius: 2px; }
+    .about-photo-frame { position: relative; }
+    .about-photo-frame::before { content: ''; position: absolute; top: -12px; left: -12px; width: 60px; height: 60px; border-top: 2px solid var(--orange); border-left: 2px solid var(--orange); z-index: 1; }
+    .about-photo-frame::after { content: ''; position: absolute; bottom: -12px; right: -12px; width: 60px; height: 60px; border-bottom: 2px solid var(--orange); border-right: 2px solid var(--orange); }
     .about-body { font-family: 'DM Mono', monospace; font-size: 0.85rem; line-height: 2; color: var(--gray-light); margin: 2rem 0 2.5rem; letter-spacing: 0.02em; }
     .about-tagline { font-family: 'DM Mono', monospace; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white); padding: 0.8rem 1.2rem; border-left: 3px solid var(--orange); background: rgba(232,97,26,0.07); }
     .about-tagline em { font-style: normal; background: var(--orange); color: var(--black); padding: 0.1em 0.4em; border-radius: 2px; }
@@ -112,7 +214,6 @@
     /* CODE */
     #code { padding: 8rem 6rem; min-height: 100vh; }
     .code-head { margin-bottom: 4rem; }
-    .code-head .sec-title { margin-top: 0.5rem; }
     .project-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
     .project-card { background: #0d0d0d; padding: 3rem; border: 1px solid rgba(255,255,255,0.05); transition: background 0.3s; position: relative; overflow: hidden; }
     .project-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: var(--orange); transform: scaleX(0); transform-origin: left; transition: transform 0.4s; }
@@ -193,13 +294,12 @@
       .nav-links { display: none; position: absolute; top: 68px; left: 0; width: 100%; background: rgba(6,6,6,0.98); flex-direction: column; padding: 2rem; gap: 1.5rem; }
       .nav-links.open { display: flex; }
       .mobile-btn { display: block; }
-      #home { padding: 0 1.5rem; }
-      .hero-marquees { display: none; }
+      #home { grid-template-columns: 1fr; padding: 0 1.5rem; padding-top: 80px; }
+      .hero-right { display: none; }
       .hero-scroll { left: 1.5rem; }
       #about { padding: 5rem 1.5rem; }
       .about-inner { grid-template-columns: 1fr; gap: 3rem; }
       .about-photo { aspect-ratio: 1/1; }
-      .about-photo-frame::before, .about-photo-frame::after { width: 40px; height: 40px; }
       #code { padding: 5rem 1.5rem; }
       .project-grid { grid-template-columns: 1fr; }
       #progress { padding: 5rem 1.5rem; }
@@ -235,40 +335,47 @@
 <section id="home">
   <div class="stars" id="stars"></div>
   <div class="hero-bg-a">A</div>
-  <div class="hero-tag">Atharv Agarwal — Portfolio 2025</div>
-  <h1 class="hero-headline">
-    <span>Curiosity.</span>
-    <span>Momentum.</span>
-    <span>Entropy Control.</span>
-  </h1>
-  <div class="hero-marquees">
-    <div class="marquee-wrap m1">
-      <div class="marquee-track">
-        <span class="marquee-item">CODING<span class="dot">.</span></span>
-        <span class="marquee-item">EDITING<span class="dot">.</span></span>
-        <span class="marquee-item">INQUIRING<span class="dot">.</span></span>
-        <span class="marquee-item">BUILDING<span class="dot">.</span></span>
-        <span class="marquee-item">CODING<span class="dot">.</span></span>
-        <span class="marquee-item">EDITING<span class="dot">.</span></span>
-        <span class="marquee-item">INQUIRING<span class="dot">.</span></span>
-        <span class="marquee-item">BUILDING<span class="dot">.</span></span>
+
+  <!-- LEFT: headline -->
+  <div class="hero-left">
+    <div class="hero-tag">Atharv Agarwal — Portfolio 2025</div>
+    <h1 class="hero-headline">
+      <span>Curiosity.</span>
+      <span>Momentum.</span>
+      <span>Entropy Control.</span>
+    </h1>
+  </div>
+
+  <!-- RIGHT: clean word grid -->
+  <div class="hero-right">
+    <div class="word-grid">
+      <div class="word-cell highlight">
+        <div class="wc-label">Core</div>
+        <div class="wc-word">Curious</div>
       </div>
-    </div>
-    <div class="marquee-wrap m2">
-      <div class="marquee-track rev">
-        <span class="marquee-item">AMBITIOUS<span class="dot">.</span></span>
-        <span class="marquee-item">RESTLESS<span class="dot">.</span></span>
-        <span class="marquee-item">CURIOUS<span class="dot">.</span></span>
-        <span class="marquee-item">IMPATIENT<span class="dot">.</span></span>
-        <span class="marquee-item">SELF-DIRECTED<span class="dot">.</span></span>
-        <span class="marquee-item">AMBITIOUS<span class="dot">.</span></span>
-        <span class="marquee-item">RESTLESS<span class="dot">.</span></span>
-        <span class="marquee-item">CURIOUS<span class="dot">.</span></span>
-        <span class="marquee-item">IMPATIENT<span class="dot">.</span></span>
-        <span class="marquee-item">SELF-DIRECTED<span class="dot">.</span></span>
+      <div class="word-cell">
+        <div class="wc-label">Mode</div>
+        <div class="wc-word">Building</div>
+      </div>
+      <div class="word-cell">
+        <div class="wc-label">Drive</div>
+        <div class="wc-word">Ambitious</div>
+      </div>
+      <div class="word-cell">
+        <div class="wc-label">Style</div>
+        <div class="wc-word">Restless</div>
+      </div>
+      <div class="word-cell">
+        <div class="wc-label">Approach</div>
+        <div class="wc-word">Self-Directed</div>
+      </div>
+      <div class="word-cell">
+        <div class="wc-label">Craft</div>
+        <div class="wc-word">Coding · Editing</div>
       </div>
     </div>
   </div>
+
   <div class="hero-scroll">Scroll to explore</div>
 </section>
 
@@ -433,7 +540,7 @@
   <div class="contact-name">atharv<span>.</span></div>
   <div class="contact-sub">Atharv Agarwal — reach out</div>
   <div class="contact-links">
-    <a href="/cdn-cgi/l/email-protection#dba9bebab8b39bbaafb3baa9adbabcbaa9acbab7f5b2b5" class="clink">
+    <a href="mailto:hello@atharvagarwal.in" class="clink">
       <div class="cicon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
       <span class="clabel">Email</span>
     </a>
@@ -448,7 +555,7 @@
   </div>
 </section>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   // Stars
   const starsEl = document.getElementById('stars');
   for (let i = 0; i < 70; i++) {
@@ -478,5 +585,6 @@
       if (l.getAttribute('href') === '#' + cur) l.classList.add('active');
     });
   }, { passive: true });
-
-  // Bars are set directly in HTML - no JS needed
+</script>
+</body>
+</html>
