@@ -312,14 +312,14 @@
       <div class="proj-num">02 / FINTECH</div>
       <div class="proj-status"><span class="status-dot"></span>Active Development</div>
       <div class="proj-title">GetSync</div>
-      <p class="proj-desc">A personal finance assistant built for Indian users. Syncs Gmail to automatically parse financial emails, categorise transactions, and surface spending insights. Powered by LLaMA via Groq, deployed on Railway with a Flask backend and Supabase handling auth and data.</p>
+      <p class="proj-desc">A personal finance assistant built for Indian users. Syncs Gmail to automatically parse financial emails, categorise transactions, and surface spending insights. Powered by LLaMA via Groq, deployed on Render with a Flask backend and Supabase handling auth and data.</p>
       <div class="proj-tags">
         <span class="tag">Python</span>
         <span class="tag">Flask</span>
         <span class="tag">Supabase</span>
         <span class="tag">Gmail API</span>
         <span class="tag">LLaMA · Groq</span>
-        <span class="tag">Railway</span>
+        <span class="tag">Render</span>
       </div>
       <div class="proj-focus">Focus: LLM parsing · Auth · Finance logic · Indian market</div>
       <a href="https://finance-assistant-lwtv.onrender.com/" target="_blank" class="proj-link">
@@ -433,7 +433,7 @@
   <div class="contact-name">atharv<span>.</span></div>
   <div class="contact-sub">Atharv Agarwal — reach out</div>
   <div class="contact-links">
-    <a href="mailto:reach@atharvagarwal.in" class="clink">
+    <a href="/cdn-cgi/l/email-protection#d9abbcb8bab199b8adb1b8abafb8beb8abaeb8b5f7b0b7" class="clink">
       <div class="cicon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
       <span class="clabel">Email</span>
     </a>
@@ -448,7 +448,7 @@
   </div>
 </section>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   const starsEl = document.getElementById('stars');
   for (let i = 0; i < 70; i++) {
     const s = document.createElement('div');
@@ -469,10 +469,4 @@
     let cur = '';
     sections.forEach(s => { if (window.scrollY >= s.offsetTop - 200) cur = s.id; });
     navAs.forEach(l => {
-      l.classList.remove('active');
-      if (l.getAttribute('href') === '#' + cur) l.classList.add('active');
-    });
-  }, { passive: true });
-</script>
-</body>
-</html>
+      l.classList
