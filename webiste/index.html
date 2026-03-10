@@ -17,7 +17,6 @@
     html { scroll-behavior: smooth; }
     body { font-family: 'DM Sans', sans-serif; background: var(--black); color: var(--white); overflow-x: hidden; }
 
-    /* NAV */
     nav {
       position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
       padding: 1.4rem 3rem; display: flex; align-items: center; justify-content: space-between;
@@ -31,175 +30,55 @@
     .nav-links a:hover, .nav-links a.active { color: var(--white); }
     .mobile-btn { display: none; background: none; border: none; color: var(--white); font-size: 1.5rem; cursor: pointer; }
 
-    /* MARQUEE */
     .marquee-wrap { overflow: hidden; white-space: nowrap; width: 100%; }
     .marquee-track { display: inline-flex; animation: mscroll 22s linear infinite; }
-    .marquee-track.rev { animation-direction: reverse; }
     .marquee-item { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.6rem 1.8rem; color: var(--gray-light); }
     .marquee-item .dot { color: var(--orange); }
     @keyframes mscroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-    /* HERO */
     #home {
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      padding: 0 6rem;
-      position: relative;
-      overflow: hidden;
-      padding-top: 80px;
+      min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center; padding: 0 6rem; position: relative; overflow: hidden; padding-top: 80px;
     }
-
-    .hero-left {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      position: relative;
-      z-index: 1;
-    }
-
+    .hero-left { display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 1; }
     .hero-bg-a {
-      position: absolute;
-      left: -2rem; top: 50%;
-      transform: translateY(-50%);
-      font-size: clamp(16rem, 25vw, 30rem);
-      font-weight: 700;
-      color: rgba(255,255,255,0.025);
-      line-height: 1;
-      user-select: none;
-      pointer-events: none;
+      position: absolute; left: -2rem; top: 50%; transform: translateY(-50%);
+      font-size: clamp(16rem, 25vw, 30rem); font-weight: 700; color: rgba(255,255,255,0.025);
+      line-height: 1; user-select: none; pointer-events: none;
     }
-
-    .hero-tag {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.68rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--orange);
-      margin-bottom: 2.5rem;
-      position: relative;
-      z-index: 1;
-      animation: fadeUp 0.7s 0.1s both;
-    }
-
-    .hero-headline {
-      font-size: clamp(3rem, 5vw, 5.5rem);
-      font-weight: 300;
-      line-height: 1.12;
-      letter-spacing: -0.03em;
-      position: relative;
-      z-index: 1;
-    }
-
+    .hero-tag { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange); margin-bottom: 2.5rem; position: relative; z-index: 1; animation: fadeUp 0.7s 0.1s both; }
+    .hero-headline { font-size: clamp(3rem, 5vw, 5.5rem); font-weight: 300; line-height: 1.12; letter-spacing: -0.03em; position: relative; z-index: 1; }
     .hero-headline span { display: block; }
     .hero-headline span:nth-child(1) { animation: fadeUp 0.7s 0.25s both; color: var(--white); }
     .hero-headline span:nth-child(2) { color: var(--gray); animation: fadeUp 0.7s 0.4s both; }
     .hero-headline span:nth-child(3) { animation: fadeUp 0.7s 0.55s both; color: var(--white); }
-
-    .hero-scroll {
-      position: absolute;
-      bottom: 2.5rem;
-      left: 6rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--gray);
-      animation: fadeIn 1s 1.2s both;
-    }
-    .hero-scroll::before {
-      content: '';
-      display: block;
-      width: 40px;
-      height: 1px;
-      background: var(--gray);
-    }
-
-    /* HERO RIGHT — word grid */
-    .hero-right {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      z-index: 1;
-      animation: fadeIn 1s 0.8s both;
-      height: 100%;
-    }
-
-    .word-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1px;
-      width: 100%;
-      max-width: 420px;
-    }
-
-    .word-cell {
-      padding: 1.8rem 2rem;
-      border: 1px solid rgba(255,255,255,0.06);
-      background: #0a0a0a;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .word-cell::before {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0;
-      width: 100%; height: 2px;
-      background: var(--orange);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.4s ease;
-    }
-
+    .hero-scroll { position: absolute; bottom: 2.5rem; left: 6rem; display: flex; align-items: center; gap: 1rem; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray); animation: fadeIn 1s 1.2s both; }
+    .hero-scroll::before { content: ''; display: block; width: 40px; height: 1px; background: var(--gray); }
+    .hero-right { display: flex; align-items: center; justify-content: center; position: relative; z-index: 1; animation: fadeIn 1s 0.8s both; height: 100%; }
+    .word-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; width: 100%; max-width: 420px; }
+    .word-cell { padding: 1.8rem 2rem; border: 1px solid rgba(255,255,255,0.06); background: #0a0a0a; transition: all 0.3s ease; position: relative; overflow: hidden; }
+    .word-cell::before { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: var(--orange); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
     .word-cell:hover::before { transform: scaleX(1); }
     .word-cell:hover { background: #111; }
-
-    .word-cell .wc-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--orange);
-      margin-bottom: 0.5rem;
-    }
-
-    .word-cell .wc-word {
-      font-size: 1.1rem;
-      font-weight: 300;
-      color: var(--white);
-      letter-spacing: -0.01em;
-    }
-
-    .word-cell.highlight {
-      background: var(--orange);
-      border-color: var(--orange);
-    }
+    .word-cell .wc-label { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--orange); margin-bottom: 0.5rem; }
+    .word-cell .wc-word { font-size: 1.1rem; font-weight: 300; color: var(--white); letter-spacing: -0.01em; }
+    .word-cell.highlight { background: var(--orange); border-color: var(--orange); }
     .word-cell.highlight::before { display: none; }
     .word-cell.highlight .wc-label { color: rgba(0,0,0,0.6); }
     .word-cell.highlight .wc-word { color: var(--black); font-weight: 500; }
 
-    /* Stars */
     .stars { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
     .star { position: absolute; width: 2px; height: 2px; background: white; border-radius: 50%; opacity: 0; animation: twinkle var(--dur) var(--delay) infinite; }
     @keyframes twinkle { 0%,100% { opacity: 0; } 50% { opacity: var(--op); } }
 
-    /* DIVIDER */
     .divider-strip { background: #0d0d0d; padding: 0.4rem 0; overflow: hidden; }
     .divider-strip .marquee-track { animation-duration: 35s; }
     .divider-strip .marquee-item { font-size: 0.58rem; letter-spacing: 0.3em; color: #2e2e2e; }
 
-    /* SHARED */
     .sec-label { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--orange); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem; }
     .sec-label::before { content: ''; display: block; width: 28px; height: 1px; background: var(--orange); }
     .sec-title { font-size: clamp(2.2rem, 3.5vw, 3.2rem); font-weight: 300; letter-spacing: -0.02em; line-height: 1.15; }
 
-    /* ABOUT */
     #about { min-height: 100vh; display: flex; align-items: center; padding: 8rem 6rem; position: relative; overflow: hidden; }
     .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 8rem; align-items: center; width: 100%; max-width: 1300px; }
     .about-left { position: relative; }
@@ -211,7 +90,6 @@
     .about-tagline { font-family: 'DM Mono', monospace; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white); padding: 0.8rem 1.2rem; border-left: 3px solid var(--orange); background: rgba(232,97,26,0.07); }
     .about-tagline em { font-style: normal; background: var(--orange); color: var(--black); padding: 0.1em 0.4em; border-radius: 2px; }
 
-    /* CODE */
     #code { padding: 8rem 6rem; min-height: 100vh; }
     .code-head { margin-bottom: 4rem; }
     .project-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
@@ -222,14 +100,40 @@
     .project-card.wip { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 280px; border: 1px dashed rgba(255,255,255,0.07); }
     .wip-big { font-size: clamp(2rem, 4vw, 4rem); font-weight: 300; color: rgba(255,255,255,0.12); margin-bottom: 1rem; }
     .wip-sub { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange); }
-    .proj-num { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em; color: var(--gray); margin-bottom: 2rem; }
+    .proj-num { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em; color: var(--gray); margin-bottom: 1.2rem; }
     .proj-title { font-size: 1.25rem; font-weight: 500; margin-bottom: 1rem; }
     .proj-desc { font-family: 'DM Mono', monospace; font-size: 0.8rem; line-height: 1.9; color: var(--gray-light); margin-bottom: 2rem; }
     .proj-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
     .tag { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; padding: 0.3rem 0.8rem; border: 1px solid rgba(232,97,26,0.35); color: var(--orange); border-radius: 2px; }
     .proj-focus { margin-top: 1.5rem; font-family: 'DM Mono', monospace; font-size: 0.62rem; color: var(--gray); }
 
-    /* PROGRESS */
+    /* LIVE LINK */
+    .proj-link {
+      display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1.5rem;
+      font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--orange); text-decoration: none;
+      border: 1px solid rgba(232,97,26,0.35); padding: 0.45rem 1rem;
+      border-radius: 2px; transition: all 0.3s;
+    }
+    .proj-link:hover { background: var(--orange); color: var(--black); border-color: var(--orange); }
+
+    /* LIVE STATUS BADGE */
+    .proj-status {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: 'DM Mono', monospace; font-size: 0.6rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: #4ade80; margin-bottom: 1.2rem;
+    }
+    .status-dot {
+      width: 6px; height: 6px; background: #4ade80;
+      border-radius: 50%; box-shadow: 0 0 6px #4ade80;
+      animation: pulse-green 2s ease-in-out infinite;
+    }
+    @keyframes pulse-green {
+      0%, 100% { opacity: 1; box-shadow: 0 0 6px #4ade80; }
+      50% { opacity: 0.5; box-shadow: 0 0 14px #4ade80; }
+    }
+
     #progress { padding: 8rem 6rem; min-height: 100vh; }
     .progress-intro { max-width: 520px; margin-bottom: 5rem; }
     .progress-intro p { font-family: 'DM Mono', monospace; font-size: 0.8rem; line-height: 1.9; color: var(--gray-light); margin-top: 1.5rem; }
@@ -242,7 +146,6 @@
     .bar-fill { height: 100%; background: var(--orange); position: relative; }
     .bar-fill::after { content: ''; position: absolute; right: -4px; top: -4px; width: 10px; height: 10px; background: var(--orange); border-radius: 50%; box-shadow: 0 0 6px var(--orange); }
 
-    /* EDITING */
     #editing { padding: 8rem 6rem; min-height: 100vh; }
     .editing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; margin: 3rem 0 4rem; }
     .editing-desc { font-family: 'DM Mono', monospace; font-size: 0.82rem; line-height: 2; color: var(--gray-light); }
@@ -261,7 +164,6 @@
     .ig-btn:hover { background: var(--orange); color: var(--white); }
     .ig-meta { margin-left: auto; flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-end; gap: 0.8rem; font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray); }
 
-    /* RANDOM */
     #random { padding: 8rem 6rem; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
     .loading-txt { font-size: clamp(2.5rem, 5vw, 5rem); font-weight: 300; letter-spacing: 0.2em; white-space: nowrap; margin: 2rem 0 1.5rem; }
     .loading-bar { width: 100%; max-width: 480px; height: 5px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden; }
@@ -272,7 +174,6 @@
     .rtag { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray); padding: 0.5rem 1rem; border: 1px solid rgba(255,255,255,0.07); transition: all 0.3s; cursor: default; }
     .rtag:hover { border-color: var(--orange); color: var(--orange); }
 
-    /* CONTACT */
     #contact { min-height: 75vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 5rem 4rem; position: relative; overflow: hidden; }
     .contact-ghost { position: absolute; font-size: clamp(8rem, 18vw, 20rem); font-weight: 700; color: rgba(255,255,255,0.025); letter-spacing: -0.05em; user-select: none; pointer-events: none; }
     .contact-name { font-size: clamp(3rem, 7vw, 7rem); font-weight: 300; letter-spacing: -0.03em; margin-bottom: 0.4rem; position: relative; z-index: 1; }
@@ -331,12 +232,9 @@
   </ul>
 </nav>
 
-<!-- HERO -->
 <section id="home">
   <div class="stars" id="stars"></div>
   <div class="hero-bg-a">A</div>
-
-  <!-- LEFT: headline -->
   <div class="hero-left">
     <div class="hero-tag">Atharv Agarwal — Portfolio 2025</div>
     <h1 class="hero-headline">
@@ -345,41 +243,19 @@
       <span>Entropy Control.</span>
     </h1>
   </div>
-
-  <!-- RIGHT: clean word grid -->
   <div class="hero-right">
     <div class="word-grid">
-      <div class="word-cell highlight">
-        <div class="wc-label">Core</div>
-        <div class="wc-word">Curious</div>
-      </div>
-      <div class="word-cell">
-        <div class="wc-label">Mode</div>
-        <div class="wc-word">Building</div>
-      </div>
-      <div class="word-cell">
-        <div class="wc-label">Drive</div>
-        <div class="wc-word">Ambitious</div>
-      </div>
-      <div class="word-cell">
-        <div class="wc-label">Style</div>
-        <div class="wc-word">Restless</div>
-      </div>
-      <div class="word-cell">
-        <div class="wc-label">Approach</div>
-        <div class="wc-word">Self-Directed</div>
-      </div>
-      <div class="word-cell">
-        <div class="wc-label">Craft</div>
-        <div class="wc-word">Coding · Editing</div>
-      </div>
+      <div class="word-cell highlight"><div class="wc-label">Core</div><div class="wc-word">Curious</div></div>
+      <div class="word-cell"><div class="wc-label">Mode</div><div class="wc-word">Building</div></div>
+      <div class="word-cell"><div class="wc-label">Drive</div><div class="wc-word">Ambitious</div></div>
+      <div class="word-cell"><div class="wc-label">Style</div><div class="wc-word">Restless</div></div>
+      <div class="word-cell"><div class="wc-label">Approach</div><div class="wc-word">Self-Directed</div></div>
+      <div class="word-cell"><div class="wc-label">Craft</div><div class="wc-word">Coding · Editing</div></div>
     </div>
   </div>
-
   <div class="hero-scroll">Scroll to explore</div>
 </section>
 
-<!-- DIVIDER -->
 <div class="divider-strip">
   <div class="marquee-wrap">
     <div class="marquee-track" style="animation-duration:35s;">
@@ -395,7 +271,6 @@
   </div>
 </div>
 
-<!-- ABOUT -->
 <section id="about">
   <div class="about-inner">
     <div class="about-left">
@@ -412,13 +287,13 @@
   </div>
 </section>
 
-<!-- CODE -->
 <section id="code">
   <div class="code-head">
     <div class="sec-label">Code &amp; Systems</div>
     <h2 class="sec-title">What I'm building.</h2>
   </div>
   <div class="project-grid">
+
     <div class="project-card">
       <div class="proj-num">01 / CODE</div>
       <div class="proj-title">ML Stock Analysis Platform</div>
@@ -432,14 +307,35 @@
       </div>
       <div class="proj-focus">Focus: Data analysis · ML logic · Backend architecture</div>
     </div>
+
+    <div class="project-card">
+      <div class="proj-num">02 / FINTECH</div>
+      <div class="proj-status"><span class="status-dot"></span>Active Development</div>
+      <div class="proj-title">GetSync</div>
+      <p class="proj-desc">A personal finance assistant built for Indian users. Syncs Gmail to automatically parse financial emails, categorise transactions, and surface spending insights. Powered by LLaMA via Groq, deployed on Railway with a Flask backend and Supabase handling auth and data.</p>
+      <div class="proj-tags">
+        <span class="tag">Python</span>
+        <span class="tag">Flask</span>
+        <span class="tag">Supabase</span>
+        <span class="tag">Gmail API</span>
+        <span class="tag">LLaMA · Groq</span>
+        <span class="tag">Railway</span>
+      </div>
+      <div class="proj-focus">Focus: LLM parsing · Auth · Finance logic · Indian market</div>
+      <a href="https://finance-assistant-lwtv.onrender.com/" target="_blank" class="proj-link">
+        <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42L17.59 5H14V3zM5 5h6V3H5C3.9 3 3 3.9 3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-6h-2v6H5V5z"/></svg>
+        View Live
+      </a>
+    </div>
+
     <div class="project-card wip">
       <div class="wip-big">In Progress.</div>
       <div class="wip-sub">Something's coming ✦</div>
     </div>
+
   </div>
 </section>
 
-<!-- PROGRESS -->
 <section id="progress">
   <div class="progress-intro">
     <div class="sec-label">My.progress.bar</div>
@@ -480,7 +376,6 @@
   </div>
 </section>
 
-<!-- EDITING -->
 <section id="editing">
   <div class="sec-label">Editing</div>
   <h2 class="sec-title" style="margin-top:0.5rem;">Visual Storytelling.</h2>
@@ -515,7 +410,6 @@
   </div>
 </section>
 
-<!-- RANDOM -->
 <section id="random">
   <div class="sec-label" style="justify-content:center;">Random</div>
   <h2 class="sec-title" style="margin-top:0.5rem; margin-bottom:0;">Still Loading.</h2>
@@ -534,7 +428,6 @@
   </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact">
   <div class="contact-ghost">atharv</div>
   <div class="contact-name">atharv<span>.</span></div>
@@ -556,7 +449,6 @@
 </section>
 
 <script>
-  // Stars
   const starsEl = document.getElementById('stars');
   for (let i = 0; i < 70; i++) {
     const s = document.createElement('div');
@@ -568,13 +460,9 @@
     s.style.setProperty('--op', (0.1 + Math.random() * 0.4).toFixed(2));
     starsEl.appendChild(s);
   }
-
-  // Mobile menu
   document.querySelectorAll('.nla').forEach(l => {
     l.addEventListener('click', () => document.getElementById('nl').classList.remove('open'));
   });
-
-  // Active nav
   const sections = document.querySelectorAll('section');
   const navAs = document.querySelectorAll('.nla');
   window.addEventListener('scroll', () => {
@@ -588,4 +476,3 @@
 </script>
 </body>
 </html>
-
