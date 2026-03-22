@@ -639,6 +639,15 @@ a {
   overflow: hidden;
 }
 
+.portrait-image {
+  display: block;
+  width: 100%;
+  min-height: 30rem;
+  object-fit: cover;
+  object-position: center top;
+  filter: grayscale(100%) contrast(1.05);
+}
+
 .portrait-fallback::before {
   content: '';
   position: absolute;

@@ -1,3 +1,4 @@
+import portrait from './2.png';
 import { focusMetrics, heroNotes, heroTicker, interests, navItems, projects, socialLinks } from './content';
 
 function App() {
@@ -128,9 +129,7 @@ function App() {
           <div className="about-layout">
             <div className="portrait-card">
               <div className="portrait-frame">
-                <div className="portrait-fallback" aria-label="Portrait placeholder for Atharv Agarwal">
-                  <span>AA</span>
-                </div>
+                <img className="portrait-image" src={portrait} alt="Atharv Agarwal" />
               </div>
             </div>
             <div className="about-content-block">
