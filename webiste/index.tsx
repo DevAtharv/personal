@@ -115,6 +115,26 @@ function App() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (!hash) {
+      return;
+    }
+
+    window.requestAnimationFrame(() => {
+      const target = document.querySelector<HTMLElement>(hash);
+      if (!target) {
+        return;
+      }
+
+      target.classList.add('is-visible');
+      target.querySelectorAll<HTMLElement>('.reveal-on-scroll').forEach((item) => {
+        item.classList.add('is-visible');
+      });
+      target.scrollIntoView();
+    });
+  }, []);
+
   function handleHeroPointerMove(event: PointerEvent<HTMLElement>) {
     const bounds = event.currentTarget.getBoundingClientRect();
     const x = ((event.clientX - bounds.left) / bounds.width) * 100;
@@ -156,20 +176,8 @@ function App() {
             <div className="cursor-halo" aria-hidden="true" />
             <div className="hero-scanline" aria-hidden="true" />
 
-            <div className="hero-object hero-object-orange">
-              <span>ML</span>
-              <small>signal lab</small>
-            </div>
-            <div className="hero-object hero-object-code">
-              <span>build.log</span>
-              <small>curious / ambitious / refining</small>
-            </div>
             <div className="hero-object hero-object-portrait">
               <img src={portrait} alt="Atharv Agarwal" />
-            </div>
-            <div className="hero-object hero-object-note">
-              <span>AI + finance</span>
-              <small>systems with taste</small>
             </div>
             <div className="hero-status-card">
               <span>Current mode</span>
@@ -199,31 +207,6 @@ function App() {
               </a>
               <p>{heroTicker.secondary}</p>
             </div>
-          </div>
-        </section>
-
-        <div className="ticker" aria-hidden="true">
-          <div className="ticker-track">
-            {Array.from({ length: 8 }).map((_, i) => (
-              <span key={i}>
-                {heroTicker.primary} <em>/</em> {heroTicker.secondary} <em>/</em>
-              </span>
-            ))}
-          </div>
-        </div>
-
-        <section className="motion-strip" aria-label="Portfolio highlights">
-          <div className="motion-strip-track">
-            {[...projects, ...projects].map((project, index) => (
-              <a
-                key={`${project.id}-${index}`}
-                className={`motion-tile motion-tile-${project.id}`}
-                href="#work"
-              >
-                <span>{project.index}</span>
-                <strong>{project.title}</strong>
-              </a>
-            ))}
           </div>
         </section>
 
