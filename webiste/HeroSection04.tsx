@@ -1,5 +1,3 @@
-import React from "react";
-
 export function HeroSection04() {
   return (
     <section className="hs04-section">

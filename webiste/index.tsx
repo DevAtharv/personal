@@ -1,3 +1,4 @@
+import { useEffect, useState, type CSSProperties, type PointerEvent } from 'react';
 import portrait from './2.png';
 import {
   focusMetrics,
@@ -9,69 +10,79 @@ import {
 } from './content';
 import './styles.css';
 
-/* ── per-project code previews ── */
-const projectCode: Record<string, string[][]> = {
+const projectCode: Record<string, string[]> = {
   'ml-stock-analysis': [
-    ['cm', '# signal_model.py'],
-    ['kw', 'def ', 'fn', 'evaluate_signal', 'op', '(data):'],
-    ['op', '    pipeline = ['],
-    ['str', '        "clean → engineer → validate"', 'op', ','],
-    ['str', '        "measure drift before confidence"', 'op', ','],
-    ['op', '    ]'],
-    ['kw', '    return ', 'fn', 'select_best_model', 'op', '(pipeline)'],
-    ['cm', ''],
-    ['kw', 'model ', 'op', '= ', 'fn', 'fit_pipeline', 'op', '(data)'],
-    ['fn', 'evaluate_signal', 'op', '(model.predict())'],
+    'clean -> engineer -> validate',
+    'measure drift before confidence',
+    'select best model',
   ],
   getsync: [
-    ['cm', '# getsync / parser.py'],
-    ['kw', 'from ', 'fn', 'llama_groq', 'kw', ' import ', 'fn', 'LLM'],
-    ['kw', 'from ', 'fn', 'supabase', 'kw', ' import ', 'fn', 'client'],
-    ['op', ''],
-    ['kw', 'def ', 'fn', 'parse_email', 'op', '(msg):'],
-    ['op', '    result = ', 'fn', 'LLM', 'op', '.run('],
-    ['str', '        f"Extract transactions from: {msg}"'],
-    ['op', '    )'],
-    ['kw', '    return ', 'fn', 'client', 'op', '.insert(result)'],
+    'gmail -> parse -> categorise',
+    'llm extracts finance context',
+    'supabase stores clean insights',
   ],
   glint: [
-    ['cm', '// glint / playlist.js'],
-    ['kw', 'const ', 'fn', 'generatePlaylist ', 'op', '= async (', 'fn', 'prompt', 'op', ') => {'],
-    ['op', '  const ', 'fn', 'tracks ', 'op', '= await ', 'fn', 'ai.suggest', 'op', '({'],
-    ['str', '    mood: prompt', 'op', ','],
-    ['str', '    limit: 20', 'op', ','],
-    ['op', '  });'],
-    ['kw', '  return ', 'fn', 'tracks', 'op', '.map(', 'fn', 'normalize', 'op', ');'],
-    ['op', '};'],
+    'prompt -> mood -> playlist',
+    'import spotify + apple music',
+    'polish the listening flow',
   ],
 };
 
-function CodeLine({ parts }: { parts: string[] }) {
-  const elements: JSX.Element[] = [];
-  for (let i = 0; i < parts.length; i += 2) {
-    const cls = parts[i];
-    const txt = parts[i + 1] ?? '';
-    elements.push(<span key={i} className={cls}>{txt}</span>);
-  }
-  return <div className="t-line" style={{ paddingLeft: 0 }}>{elements}</div>;
-}
+const moodWords: Record<string, string> = {
+  'ml-stock-analysis': 'Signal',
+  getsync: 'Sync',
+  glint: 'Glint',
+};
 
-function ProjectVisual({ project }: { project: typeof projects[0] }) {
-  const lines = projectCode[project.id] ?? [];
+const studioCards = [
+  {
+    label: 'Operating mode',
+    value: 'Learning in public',
+    detail: 'Shipping small systems, reading the feedback, tightening the next version.',
+  },
+  {
+    label: 'Current edge',
+    value: 'AI x finance',
+    detail: 'Turning messy signals into usable interfaces and decisions.',
+  },
+  {
+    label: 'Creative layer',
+    value: 'Cinematic edits',
+    detail: 'Visual rhythm, pacing, and mood as part of the product language.',
+  },
+];
+
+type HeroStyle = CSSProperties & {
+  '--cursor-x': string;
+  '--cursor-y': string;
+  '--motion-x': string;
+  '--motion-y': string;
+  '--motion-x-reverse': string;
+  '--motion-y-reverse': string;
+};
+
+function ProjectMedia({ project }: { project: typeof projects[0] }) {
+  const lines = projectCode[project.id] ?? project.stack.slice(0, 3);
+
   return (
-    <div className="project-visual">
-      <div className="project-visual-bar">
-        <span className="pvb-dot" />
-        <span className="pvb-dot" />
-        <span className="pvb-dot" />
-        <span className="pvb-name">{project.id}.py</span>
+    <div className={`project-media project-media-${project.id}`}>
+      <div className="project-media-word">{moodWords[project.id] ?? project.title}</div>
+      <div className="project-media-meta">
+        <span>{project.index}</span>
+        <span>{project.category}</span>
       </div>
-      <div className="pcode">
-        {lines.map((parts, i) => (
-          <CodeLine key={i} parts={parts} />
+
+      <div className="project-mini-screen">
+        <div className="mini-screen-bar">
+          <span />
+          <span />
+          <span />
+        </div>
+        {lines.map((line) => (
+          <p key={line}>{line}</p>
         ))}
       </div>
-      <div className="project-visual-fade" />
+
       <div className="project-tags">
         {project.tags.map((tag) => (
           <span key={tag.label} className={`project-tag project-tag-${tag.tone}`}>
@@ -84,211 +95,225 @@ function ProjectVisual({ project }: { project: typeof projects[0] }) {
 }
 
 function App() {
+  const [cursor, setCursor] = useState({ x: 50, y: 48 });
+
+  useEffect(() => {
+    const revealItems = document.querySelectorAll<HTMLElement>('.reveal-on-scroll');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.18 },
+    );
+
+    revealItems.forEach((item) => observer.observe(item));
+    return () => observer.disconnect();
+  }, []);
+
+  function handleHeroPointerMove(event: PointerEvent<HTMLElement>) {
+    const bounds = event.currentTarget.getBoundingClientRect();
+    const x = ((event.clientX - bounds.left) / bounds.width) * 100;
+    const y = ((event.clientY - bounds.top) / bounds.height) * 100;
+    setCursor({ x, y });
+  }
+
+  const heroStyle: HeroStyle = {
+    '--cursor-x': `${cursor.x}%`,
+    '--cursor-y': `${cursor.y}%`,
+    '--motion-x': `${(cursor.x - 50) * 0.18}px`,
+    '--motion-y': `${(cursor.y - 50) * 0.18}px`,
+    '--motion-x-reverse': `${(50 - cursor.x) * 0.13}px`,
+    '--motion-y-reverse': `${(50 - cursor.y) * 0.13}px`,
+  };
+
   return (
     <div className="site-shell">
-
-      {/* ── TOPBAR ── */}
       <header className="topbar">
         <a className="brand" href="#home">
-          atharv<span className="dot">.</span>
+          <span className="brand-mark" /> atharv
         </a>
         <nav className="nav" aria-label="Main navigation">
           {navItems.map((item) => (
             <a key={item.href} href={item.href}>{item.label}</a>
           ))}
         </nav>
-        <a className="topbar-action" href="#contact">Contact</a>
+        <a className="topbar-action" href="#contact">Let&apos;s talk</a>
       </header>
 
       <main className="main-canvas">
+        <section
+          className="hero"
+          id="home"
+          style={heroStyle}
+          onPointerMove={handleHeroPointerMove}
+        >
+          <div className="hero-frame">
+            <div className="cursor-halo" aria-hidden="true" />
+            <div className="hero-scanline" aria-hidden="true" />
 
-        {/* ── HERO ── */}
-        <section className="hero" id="home">
-          <div className="hero-bg" aria-hidden="true" />
-          <div className="hero-blob" aria-hidden="true" />
+            <div className="hero-object hero-object-orange">
+              <span>ML</span>
+              <small>signal lab</small>
+            </div>
+            <div className="hero-object hero-object-code">
+              <span>build.log</span>
+              <small>curious / ambitious / refining</small>
+            </div>
+            <div className="hero-object hero-object-portrait">
+              <img src={portrait} alt="Atharv Agarwal" />
+            </div>
+            <div className="hero-object hero-object-note">
+              <span>AI + finance</span>
+              <small>systems with taste</small>
+            </div>
+            <div className="hero-status-card">
+              <span>Current mode</span>
+              <strong>building in public</strong>
+              <small>React / ML / finance / edits</small>
+            </div>
 
-          <div className="hero-inner">
-            {/* Left — copy */}
-            <div className="hero-copy">
-              <div className="hero-eyebrow">
-                <span className="hero-eyebrow-dot" />
-                Atharv Agarwal — Portfolio 2025
-              </div>
-
-              <h1 className="hero-headline">
-                Curiosity.<br />
-                <em>Momentum.</em><br />
-                Entropy.
+            <div className="hero-core">
+              <span className="hero-kicker">Welcome</span>
+              <h1>
+                atharv<span>.</span>
               </h1>
-
-              <p className="hero-lede">
-                I&apos;m still figuring things out and learning as I go. I care about technology,
-                finance, and creative work — building steadily rather than pretending to have
-                it all together.
+              <span className="hero-est">Est. 2025</span>
+              <p>
+                Data, machine learning, finance, and visual storytelling shaped into
+                sharp systems with a cinematic editorial feel.
               </p>
-
-              <div className="hero-actions">
-                <a className="btn-primary" href="#work">
-                  View projects
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                </a>
-                <a className="btn-ghost" href="#about">About me</a>
-              </div>
-
-              <div className="hero-stats">
-                <div>
-                  <div className="hero-stat-value">3+</div>
-                  <div className="hero-stat-label">Live projects</div>
-                </div>
-                <div>
-                  <div className="hero-stat-value">6</div>
-                  <div className="hero-stat-label">Skills tracked</div>
-                </div>
-                <div>
-                  <div className="hero-stat-value">∞</div>
-                  <div className="hero-stat-label">Still learning</div>
-                </div>
+              <div className="hero-action-row">
+                <a href="#work" className="hero-pill">View work</a>
+                <a href="#about" className="hero-link">Read profile</a>
               </div>
             </div>
 
-            {/* Right — terminal */}
-            <div className="hero-terminal">
-              <div className="terminal-bar">
-                <span className="t-dot t-dot-r" />
-                <span className="t-dot t-dot-y" />
-                <span className="t-dot t-dot-g" />
-                <span className="terminal-bar-title">atharv_workspace.sh</span>
-              </div>
-              <div className="terminal-body">
-                <div className="t-line">
-                  <span className="t-prompt">$</span>
-                  <span className="t-cmd">fetch current_status</span>
-                </div>
-                <div className="t-out hi">"still learning, still building, still refining"</div>
-                <br />
-                <div className="t-line">
-                  <span className="t-prompt">$</span>
-                  <span className="t-cmd">ls projects/featured</span>
-                </div>
-                <div className="t-out mo">stock_lab &nbsp; getsync &nbsp; glint &nbsp; portfolio_v1</div>
-                <br />
-                <div className="t-line">
-                  <span className="t-prompt">$</span>
-                  <span className="t-cmd">cat operating_mode.txt</span>
-                </div>
-                <div className="t-out">curious / ambitious / self-directed</div>
-                <br />
-                <div className="t-line">
-                  <span className="t-prompt">$</span>
-                  <span className="t-cmd">echo skills</span>
-                </div>
-                <div className="t-out">Data Analysis · ML · Flask · React · Finance</div>
-                <br />
-                <div className="t-line">
-                  <span className="t-prompt">$</span>
-                  <span className="t-cursor" />
-                </div>
-              </div>
+            <div className="hero-bottom">
+              <a href="#work" className="scroll-cue">
+                <span>+</span> Scroll to explore
+              </a>
+              <p>{heroTicker.secondary}</p>
             </div>
           </div>
         </section>
 
-        {/* ── TICKER ── */}
         <div className="ticker" aria-hidden="true">
           <div className="ticker-track">
             {Array.from({ length: 8 }).map((_, i) => (
               <span key={i}>
-                {heroTicker.primary} <em>·</em> {heroTicker.secondary} <em>·</em>
+                {heroTicker.primary} <em>/</em> {heroTicker.secondary} <em>/</em>
               </span>
             ))}
           </div>
         </div>
 
-        {/* ── ABOUT ── */}
-        <section id="about">
-          <div className="container">
-            <div className="section-label">About</div>
-            <h2 className="section-title">Still figuring things out.</h2>
+        <section className="motion-strip" aria-label="Portfolio highlights">
+          <div className="motion-strip-track">
+            {[...projects, ...projects].map((project, index) => (
+              <a
+                key={`${project.id}-${index}`}
+                className={`motion-tile motion-tile-${project.id}`}
+                href="#work"
+              >
+                <span>{project.index}</span>
+                <strong>{project.title}</strong>
+              </a>
+            ))}
+          </div>
+        </section>
 
-            <div className="about-grid">
-              <div className="portrait-card">
-                <div className="portrait-frame">
-                  <img className="portrait-image" src={portrait} alt="Atharv Agarwal" />
-                </div>
-                <div className="portrait-badge">Bokaro Steel City, India</div>
-              </div>
-
-              <div className="about-content">
-                <p className="about-body">
-                  I&apos;m curious about technology, finance, and creative work. I care more about
-                  improving steadily than pretending to have it all together. This portfolio is a
-                  record of what I&apos;m learning, building, and refining over time.
-                </p>
-                <p className="about-body">
-                  I treat every project as a forcing function — something that pushes me to think
-                  past surface-level outputs and understand the systems that actually matter.
-                </p>
-                <div className="about-tagline">
-                  Not an <em>expert</em> — a <em>learner</em> building in public.
-                </div>
-                <div className="about-chips">
-                  {['Python', 'React', 'Flask', 'ML', 'Finance', 'Video Editing'].map((s) => (
-                    <span key={s} className="about-chip">
-                      <span>▸</span> {s}
-                    </span>
-                  ))}
-                </div>
-              </div>
+        <section className="studio-snapshot reveal-on-scroll" aria-label="Current studio snapshot">
+          <div className="snapshot-inner">
+            <div className="snapshot-copy">
+              <span className="section-label">Current Direction</span>
+              <h2>
+                A portfolio that moves like a studio wall.
+              </h2>
+              <p>
+                This is the place where code, market curiosity, product taste, and
+                visual storytelling sit together. Not polished into silence, but refined
+                enough to feel intentional.
+              </p>
             </div>
 
-            <div className="pillars">
-              <article className="pillar">
-                <span className="blueprint-index">01 / Foundation</span>
-                <h3>Code &amp; systems.</h3>
-                <p>Data pipelines, ML logic, backend structure — I care about what happens under the surface.</p>
-              </article>
-              <article className="pillar">
-                <span className="blueprint-index">02 / Direction</span>
-                <h3>Learning in public.</h3>
-                <p>This site is a progress log, not a finished monument. Direction &gt; destination.</p>
-              </article>
-              <article className="pillar">
-                <span className="blueprint-index">03 / Craft</span>
-                <h3>Editing with feel.</h3>
-                <p>Rhythm, atmosphere, visual language — the strongest work lands emotionally and technically.</p>
-              </article>
+            <div className="snapshot-board">
+              {studioCards.map((card, index) => (
+                <article key={card.label} className="snapshot-card reveal-on-scroll">
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                  <h3>{card.value}</h3>
+                  <p>{card.detail}</p>
+                  <small>{card.label}</small>
+                </article>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* ── PROJECTS ── */}
-        <section id="work">
+        <section id="about" className="statement-section reveal-on-scroll">
+          <div className="container statement-grid">
+            <div>
+              <span className="section-label">About</span>
+              <h2 className="statement-title">
+                I&apos;m atharv -
+                <br />
+                a <em>curious</em>
+                <br />
+                builder.
+              </h2>
+            </div>
+            <div className="statement-copy">
+              <p>
+                I&apos;m still figuring things out and learning as I go. I care about
+                technology, finance, and creative work, building steadily instead of
+                pretending to have everything solved.
+              </p>
+              <p>
+                This portfolio is a living studio wall: projects, experiments, editing
+                instincts, and the current shape of what I&apos;m learning.
+              </p>
+              <div className="about-chips">
+                {['Python', 'React', 'Flask', 'ML', 'Finance', 'Video Editing'].map((skill) => (
+                  <span key={skill} className="about-chip">{skill}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="work" className="work-section reveal-on-scroll">
           <div className="container">
-            <div className="section-label">Selected Projects</div>
-            <h2 className="section-title">Workbench entries.</h2>
-            <p className="section-desc">
-              A small set of things I&apos;ve built that forced me to think past the surface.
-            </p>
+            <div className="section-heading-row">
+              <div>
+                <span className="section-label">Selected Projects</span>
+                <h2 className="section-title">Project reel.</h2>
+              </div>
+              <p className="section-desc">
+                Three live directions: analysis, automation, and AI-assisted product
+                experiences with a stronger visual point of view.
+              </p>
+            </div>
 
             <div className="project-grid">
               {projects.map((project) => (
-                <article key={project.id} className="project-card">
-                  <ProjectVisual project={project} />
+                <article key={project.id} className="project-card reveal-on-scroll">
+                  <ProjectMedia project={project} />
 
                   <div className="project-detail">
-                    <div>
-                      <div className="project-title-row">
-                        <span className="project-index">{project.index} / {project.category}</span>
-                        {project.status && (
-                          <span className={`project-status${project.status === 'Live' ? ' live' : ''}`}>
-                            {project.status}
-                          </span>
-                        )}
-                      </div>
-                      <h3>{project.title}</h3>
-                      <p className="project-subtitle">{project.subtitle}</p>
+                    <div className="project-title-row">
+                      <span className="project-index">{project.index} / {project.category}</span>
+                      {project.status && (
+                        <span className={`project-status${project.status === 'Live' ? ' live' : ''}`}>
+                          {project.status}
+                        </span>
+                      )}
                     </div>
-
+                    <h3>{project.title}</h3>
+                    <p className="project-subtitle">{project.subtitle}</p>
                     <p className="project-desc">{project.description}</p>
 
                     <div className="chip-row">
@@ -302,7 +327,6 @@ function App() {
                       {project.cta && (
                         <a className="project-cta" href={project.cta.href} target="_blank" rel="noreferrer">
                           {project.cta.label}
-                          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
                         </a>
                       )}
                     </div>
@@ -313,23 +337,19 @@ function App() {
           </div>
         </section>
 
-        {/* ── PROGRESS ── */}
-        <section id="progress">
+        <section id="progress" className="reveal-on-scroll">
           <div className="container">
-            <div className="progress-header">
+            <div className="section-heading-row">
               <div>
-                <div className="section-label">My progress</div>
+                <span className="section-label">My Progress</span>
                 <h2 className="section-title">Current focus.</h2>
-                <p className="section-desc">
-                  Learning as a continuous process, not a checklist.
-                </p>
               </div>
               <span className="compile-stamp">Last update: March 23, 2026</span>
             </div>
 
             <div className="metrics-grid">
               {focusMetrics.map((metric) => (
-                <article key={metric.label} className="metric-card">
+                <article key={metric.label} className="metric-card reveal-on-scroll">
                   <div className="metric-header">
                     <h3>{metric.label}</h3>
                     <span className="metric-value">{metric.value}%</span>
@@ -345,50 +365,37 @@ function App() {
           </div>
         </section>
 
-        {/* ── EDITING ── */}
-        <section id="editing">
-          <div className="container">
-            <div className="section-label">Editing</div>
-            <h2 className="section-title">Visual storytelling.</h2>
+        <section id="editing" className="editing-section reveal-on-scroll">
+          <div className="container editing-grid">
+            <div>
+              <span className="section-label">Editing</span>
+              <h2 className="section-title">Visual storytelling.</h2>
+              <p className="section-desc">
+                Cinematic cuts, pacing, and mood-driven edits. I focus on feel and flow,
+                building sequences that land emotionally and technically.
+              </p>
+            </div>
 
-            <div className="editing-grid">
-              <div className="editing-copy">
-                <p>
-                  Cinematic cuts, pacing, and mood-driven edits. I focus on feel and flow —
-                  building sequences that land emotionally, not just technically.
-                </p>
-                <p>
-                  Every project is a chance to experiment with rhythm, atmosphere, and visual
-                  language.
-                </p>
-                <p className="editing-quote">
-                  &quot;The edit is where the story actually gets made.&quot;
-                </p>
-              </div>
-
-              <div className="social-card">
-                <span className="active-badge">Active</span>
-                <h3>@atharvagarwal0</h3>
-                <p>Cinematic AI visuals and storytelling. DM for collaborations.</p>
-                <div className="social-dl">
-                  <div><span className="social-dt">Style</span><span className="social-dd">Cinematic · Narrative</span></div>
-                  <div><span className="social-dt">Tool</span><span className="social-dd">CapCut Pro</span></div>
-                  <div><span className="social-dt">Focus</span><span className="social-dd">Mood-driven pacing</span></div>
-                  <div><span className="social-dt">Level</span><span className="social-dd">Confident · 80%</span></div>
-                </div>
-                <a className="social-link" href="https://www.instagram.com/atharvagarwal0/" target="_blank" rel="noreferrer">
-                  View on Instagram
-                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-                </a>
-              </div>
+            <div className="social-card">
+              <span className="active-badge">Active</span>
+              <h3>@atharvagarwal0</h3>
+              <p>Cinematic AI visuals and storytelling. DM for collaborations.</p>
+              <dl className="social-dl">
+                <div><dt>Style</dt><dd>Cinematic / Narrative</dd></div>
+                <div><dt>Tool</dt><dd>CapCut Pro</dd></div>
+                <div><dt>Focus</dt><dd>Mood-driven pacing</dd></div>
+                <div><dt>Level</dt><dd>Confident / 80%</dd></div>
+              </dl>
+              <a className="social-link" href="https://www.instagram.com/atharvagarwal0/" target="_blank" rel="noreferrer">
+                View on Instagram
+              </a>
             </div>
           </div>
         </section>
 
-        {/* ── RANDOM ── */}
-        <section id="random">
+        <section id="random" className="reveal-on-scroll">
           <div className="container">
-            <div className="section-label">Random</div>
+            <span className="section-label">Random</span>
             <h2 className="section-title">Still loading.</h2>
             <p className="section-desc">
               Things that don&apos;t fit anywhere else: thoughts, experiments, and whatever I&apos;m into this week.
@@ -400,21 +407,19 @@ function App() {
             </div>
           </div>
         </section>
-
       </main>
 
-      {/* ── FOOTER / CONTACT ── */}
       <footer className="footer" id="contact">
         <div className="footer-inner">
-          <div className="section-label">Contact</div>
+          <span className="section-label">Contact</span>
           <div className="footer-top">
             <div>
               <div className="footer-display">
-                atharv<em>.</em>
+                atharv<span>.</span>
               </div>
               <p className="footer-pitch">
                 Open to interesting conversations, collaborations, and project inquiries.
-                Reach out — I&apos;ll reply.
+                Reach out and I&apos;ll reply.
               </p>
             </div>
             <div className="contact-links">
@@ -433,7 +438,6 @@ function App() {
           </div>
         </div>
       </footer>
-
     </div>
   );
 }
