@@ -1728,7 +1728,14 @@ section[id] {
   }
 
   .hero-object-portrait {
-    display: none;
+    display: block;
+    left: calc(50% + 52px);
+    right: auto;
+    bottom: 88px;
+    width: 70px;
+    height: 90px;
+    transform: none;
+    rotate: 3deg;
   }
 
   .cursor-halo {
