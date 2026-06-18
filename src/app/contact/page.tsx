@@ -83,7 +83,7 @@ export default function Contact() {
             transition={{ duration: 0.55 }}
             className="space-y-4"
           >
-            <div className="rounded-xl bg-white p-6 shadow-[0_16px_42px_rgba(13,37,61,0.065)] ring-1 ring-[#edf2f7]">
+            <div className="rounded-xl bg-white p-6 shadow-[0_24px_60px_rgba(13,37,61,0.08)]">
               <h3 className="mb-5 text-2xl font-light text-[#0d253d]">Links</h3>
               <div className="space-y-5">
                 <a href={`mailto:${contactEmail}`} className="flex items-center gap-4 text-[#273951] transition-colors hover:text-accent">
@@ -129,7 +129,7 @@ export default function Contact() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.55, delay: 0.1 }}
           >
-            <form onSubmit={handleSubmit} className="rounded-xl bg-white p-5 shadow-[0_16px_42px_rgba(13,37,61,0.065)] ring-1 ring-[#edf2f7] md:p-8">
+            <form onSubmit={handleSubmit} className="rounded-xl bg-white p-5 shadow-[0_24px_60px_rgba(13,37,61,0.08)] md:p-8">
               {formState.status === "success" ? (
                 <div className="flex min-h-[420px] flex-col items-center justify-center py-10 text-center">
                   <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#b9b9f9] text-[#4434d4]">
@@ -140,7 +140,7 @@ export default function Contact() {
                   <button
                     type="button"
                     onClick={() => setFormState({ status: "idle", message: "" })}
-                    className="mt-8 rounded-full px-5 py-3 font-medium text-[#0d253d] ring-1 ring-[#edf2f7] transition-colors hover:bg-[#f6f9fc]"
+                    className="mt-8 rounded-full bg-[#f6f9fc] px-5 py-3 font-medium text-[#0d253d] transition-colors hover:bg-[#eef4fb]"
                   >
                     Send another inquiry
                   </button>
@@ -150,33 +150,33 @@ export default function Contact() {
                   <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
                     <div className="space-y-2">
                       <label htmlFor="name" className="text-sm font-medium text-[#273951]">Full Name *</label>
-                      <input required name="name" type="text" id="name" className="w-full rounded-md border border-[#d7e3ef] bg-white px-4 py-3 text-[#0d253d] outline-none transition-all placeholder:text-[#64748d] focus:border-accent focus:ring-1 focus:ring-accent" placeholder="Your name" />
+                      <input required name="name" type="text" id="name" className="w-full rounded-md bg-[#f7faff] px-4 py-3 text-[#0d253d] outline-none transition-all placeholder:text-[#64748d] ring-1 ring-[#dfeaf4] focus:ring-accent" placeholder="Your name" />
                     </div>
                     <div className="space-y-2">
                       <label htmlFor="company" className="text-sm font-medium text-[#273951]">Company / Brand</label>
-                      <input name="company" type="text" id="company" className="w-full rounded-md border border-[#d7e3ef] bg-white px-4 py-3 text-[#0d253d] outline-none transition-all placeholder:text-[#64748d] focus:border-accent focus:ring-1 focus:ring-accent" placeholder="Brand name" />
+                      <input name="company" type="text" id="company" className="w-full rounded-md bg-[#f7faff] px-4 py-3 text-[#0d253d] outline-none transition-all placeholder:text-[#64748d] ring-1 ring-[#dfeaf4] focus:ring-accent" placeholder="Brand name" />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
                     <div className="space-y-2">
                       <label htmlFor="email" className="text-sm font-medium text-[#273951]">Email Address *</label>
-                      <input required name="email" type="email" id="email" className="w-full rounded-md border border-[#d7e3ef] bg-white px-4 py-3 text-[#0d253d] outline-none transition-all placeholder:text-[#64748d] focus:border-accent focus:ring-1 focus:ring-accent" placeholder="you@example.com" />
+                      <input required name="email" type="email" id="email" className="w-full rounded-md bg-[#f7faff] px-4 py-3 text-[#0d253d] outline-none transition-all placeholder:text-[#64748d] ring-1 ring-[#dfeaf4] focus:ring-accent" placeholder="you@example.com" />
                     </div>
                     <div className="space-y-2">
                       <label htmlFor="social" className="text-sm font-medium text-[#273951]">LinkedIn / Social Profile *</label>
-                      <input required name="social" type="text" id="social" className="w-full rounded-md border border-[#d7e3ef] bg-white px-4 py-3 text-[#0d253d] outline-none transition-all placeholder:text-[#64748d] focus:border-accent focus:ring-1 focus:ring-accent" placeholder="LinkedIn URL, @handle, or website" />
+                      <input required name="social" type="text" id="social" className="w-full rounded-md bg-[#f7faff] px-4 py-3 text-[#0d253d] outline-none transition-all placeholder:text-[#64748d] ring-1 ring-[#dfeaf4] focus:ring-accent" placeholder="LinkedIn URL, @handle, or website" />
                     </div>
                   </div>
 
                   <div className="space-y-2">
                     <label htmlFor="phone" className="text-sm font-medium text-[#273951]">Phone / WhatsApp</label>
-                    <input name="phone" type="tel" id="phone" className="w-full rounded-md border border-[#d7e3ef] bg-white px-4 py-3 text-[#0d253d] outline-none transition-all placeholder:text-[#64748d] focus:border-accent focus:ring-1 focus:ring-accent" placeholder="+91 ..." />
+                    <input name="phone" type="tel" id="phone" className="w-full rounded-md bg-[#f7faff] px-4 py-3 text-[#0d253d] outline-none transition-all placeholder:text-[#64748d] ring-1 ring-[#dfeaf4] focus:ring-accent" placeholder="+91 ..." />
                   </div>
 
                   <div className="space-y-2">
                     <label htmlFor="message" className="text-sm font-medium text-[#273951]">Message *</label>
-                    <textarea required name="message" id="message" rows={6} className="w-full resize-none rounded-md border border-[#d7e3ef] bg-white px-4 py-3 text-[#0d253d] outline-none transition-all placeholder:text-[#64748d] focus:border-accent focus:ring-1 focus:ring-accent" placeholder="Tell me about the idea, system, workflow, or business problem."></textarea>
+                    <textarea required name="message" id="message" rows={6} className="w-full resize-none rounded-md bg-[#f7faff] px-4 py-3 text-[#0d253d] outline-none transition-all placeholder:text-[#64748d] ring-1 ring-[#dfeaf4] focus:ring-accent" placeholder="Tell me about the idea, system, workflow, or business problem."></textarea>
                   </div>
 
                   <button

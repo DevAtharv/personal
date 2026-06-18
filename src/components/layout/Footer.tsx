@@ -27,7 +27,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="border-t border-[#edf2f7] bg-white py-14">
+    <footer className="bg-white py-14">
       <div className="container mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-[1.3fr_0.7fr_0.7fr]">
           <div>
@@ -61,7 +61,7 @@ export default function Footer() {
                   target={social.href.startsWith("http") ? "_blank" : undefined}
                   rel={social.href.startsWith("http") ? "noopener noreferrer" : undefined}
                   aria-label={social.label}
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#64748d] ring-1 ring-[#edf2f7] transition-all hover:bg-accent hover:text-white hover:ring-accent"
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-[#f6f9fc] text-[#64748d] transition-all hover:bg-accent hover:text-white"
                 >
                   {social.icon}
                 </a>
@@ -70,7 +70,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col justify-between gap-4 border-t border-[#edf2f7] pt-6 text-sm text-[#64748d] md:flex-row md:items-center">
+        <div className="mt-10 flex flex-col justify-between gap-4 pt-6 text-sm text-[#64748d] md:flex-row md:items-center">
           <p>&copy; {currentYear} Atharv Agarwal. All rights reserved.</p>
           <p>Real solutions for real problems.</p>
         </div>

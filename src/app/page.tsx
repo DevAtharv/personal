@@ -12,9 +12,9 @@ const fadeUp = {
 
 function DashboardMockup() {
   return (
-    <div className="rounded-2xl bg-white p-4 shadow-[0_24px_80px_rgba(13,37,61,0.12)] ring-1 ring-[#edf2f7]">
+    <div className="rounded-2xl bg-white p-4 shadow-[0_28px_90px_rgba(13,37,61,0.16)]">
       <div className="overflow-hidden rounded-xl bg-[#1c1e54] text-white">
-        <div className="flex items-center justify-between border-b border-white/[0.08] px-4 py-3">
+        <div className="flex items-center justify-between bg-white/[0.035] px-4 py-3">
           <div className="flex gap-1.5">
             <span className="h-2.5 w-2.5 rounded-full bg-[#ea2261]" />
             <span className="h-2.5 w-2.5 rounded-full bg-[#f96bee]" />
@@ -96,10 +96,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-6 py-14">
+      <section className="px-6 py-16">
         <div className="container mx-auto grid max-w-7xl grid-cols-1 gap-4 md:grid-cols-4">
           {heroStats.map((stat) => (
-            <article key={stat.label} className="rounded-xl bg-white p-5 shadow-[0_10px_30px_rgba(13,37,61,0.055)] ring-1 ring-[#edf2f7]">
+            <article key={stat.label} className="rounded-xl bg-[#fbfdff] p-5 shadow-[0_18px_46px_rgba(13,37,61,0.07)]">
               <p className="text-sm font-medium text-[#0d253d]">{stat.label}</p>
               <p className="mt-2 text-sm leading-6 text-[#64748d]">{stat.detail}</p>
             </article>
@@ -126,7 +126,7 @@ export default function Home() {
                 whileInView="visible"
                 viewport={{ once: true }}
                 transition={{ duration: 0.45, delay: index * 0.08 }}
-                className="rounded-xl bg-white p-7 shadow-[0_16px_42px_rgba(13,37,61,0.065)] ring-1 ring-[#edf2f7]"
+                className="rounded-xl bg-white p-7 shadow-[0_24px_60px_rgba(13,37,61,0.08)]"
               >
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <span className="rounded-full bg-[#b9b9f9] px-3 py-1 text-xs font-medium uppercase text-[#4434d4]">{work.status}</span>
@@ -164,7 +164,7 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
             {technologies.map((tool) => (
-              <div key={tool.name} className="rounded-xl bg-white p-4 shadow-[0_10px_30px_rgba(13,37,61,0.055)] ring-1 ring-[#edf2f7]">
+              <div key={tool.name} className="rounded-xl bg-[#fbfdff] p-4 shadow-[0_18px_46px_rgba(13,37,61,0.07)]">
                 <tool.icon size={21} className="text-accent" />
                 <p className="mt-6 text-sm font-medium text-[#273951]">{tool.name}</p>
               </div>
@@ -176,7 +176,7 @@ export default function Home() {
       <section className="bg-[#1c1e54] px-6 py-24 text-white">
         <div className="container mx-auto grid max-w-7xl grid-cols-1 gap-6 lg:grid-cols-3">
           {skillGroups.map((group) => (
-            <article key={group.title} className="rounded-xl bg-white/[0.055] p-7 ring-1 ring-white/[0.08]">
+            <article key={group.title} className="rounded-xl bg-white/[0.07] p-7 shadow-[0_20px_60px_rgba(0,0,0,0.16)]">
               <group.icon size={26} className="text-[#b9b9f9]" />
               <h3 className="mt-5 text-2xl font-light">{group.title}</h3>
               <div className="mt-5 flex flex-wrap gap-2">
@@ -200,7 +200,7 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-1 gap-4">
             {projects.map((project) => (
-              <article key={project.title} className="rounded-xl bg-white p-5 shadow-[0_10px_30px_rgba(13,37,61,0.055)] ring-1 ring-[#edf2f7]">
+              <article key={project.title} className="rounded-xl bg-white p-5 shadow-[0_18px_46px_rgba(13,37,61,0.07)]">
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <h3 className="text-2xl font-light text-[#0d253d]">{project.title}</h3>
                   <span className="rounded-full bg-[#b9b9f9] px-3 py-1 text-xs font-medium uppercase text-[#4434d4]">{project.status}</span>
@@ -232,7 +232,7 @@ export default function Home() {
       </section>
 
       <section className="px-6 pb-24">
-        <div className="container mx-auto max-w-7xl rounded-xl bg-white p-8 shadow-[0_16px_42px_rgba(13,37,61,0.065)] ring-1 ring-[#edf2f7] md:p-10">
+        <div className="container mx-auto max-w-7xl rounded-xl bg-white p-8 shadow-[0_24px_60px_rgba(13,37,61,0.08)] md:p-10">
           <div className="flex flex-col justify-between gap-8 md:flex-row md:items-center">
             <div>
               <p className="mb-3 text-sm font-medium uppercase text-accent">Contact</p>

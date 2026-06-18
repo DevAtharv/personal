@@ -28,7 +28,7 @@ export default function Projects() {
               initial={{ opacity: 0, y: 22 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, delay: index * 0.08 }}
-              className="flex min-h-[360px] flex-col rounded-xl bg-white p-6 shadow-[0_12px_34px_rgba(13,37,61,0.06)] ring-1 ring-[#edf2f7]"
+              className="flex min-h-[360px] flex-col rounded-xl bg-white p-6 shadow-[0_20px_52px_rgba(13,37,61,0.075)]"
             >
               <span className="w-fit rounded-full bg-[#b9b9f9] px-3 py-1 text-xs font-medium uppercase text-[#4434d4]">{project.status}</span>
               <h2 className="mt-7 text-3xl font-light text-[#0d253d]">{project.title}</h2>

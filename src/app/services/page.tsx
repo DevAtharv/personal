@@ -25,7 +25,7 @@ export default function Services() {
 
         <div className="grid grid-cols-2 gap-3 md:grid-cols-4 lg:grid-cols-8">
           {technologies.map((tool) => (
-            <div key={tool.name} className="flex min-h-24 flex-col justify-between rounded-xl bg-white p-3 shadow-[0_10px_30px_rgba(13,37,61,0.055)] ring-1 ring-[#edf2f7]">
+            <div key={tool.name} className="flex min-h-24 flex-col justify-between rounded-xl bg-white p-3 shadow-[0_18px_46px_rgba(13,37,61,0.07)]">
               <tool.icon size={19} className="text-accent" />
               <span className="text-sm font-medium text-[#273951]">{tool.name}</span>
             </div>
@@ -40,7 +40,7 @@ export default function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.45, delay: index * 0.08 }}
-              className="rounded-xl bg-white p-6 shadow-[0_12px_34px_rgba(13,37,61,0.06)] ring-1 ring-[#edf2f7]"
+              className="rounded-xl bg-white p-6 shadow-[0_20px_52px_rgba(13,37,61,0.075)]"
             >
               <group.icon size={26} className="text-accent" />
               <h2 className="mt-5 text-2xl font-light text-[#0d253d]">{group.title}</h2>
