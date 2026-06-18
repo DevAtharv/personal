@@ -34,7 +34,7 @@ export default function Work() {
               className="scroll-mt-28 overflow-hidden rounded-lg border border-white/10 bg-white/[0.035]"
             >
               <div className="grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr]">
-                <div className="min-h-80 border-b border-white/10 bg-[radial-gradient(circle_at_30%_18%,rgba(139,255,189,0.22),transparent_17rem),linear-gradient(145deg,rgba(255,255,255,0.10),rgba(255,255,255,0.02))] p-6 lg:border-b-0 lg:border-r md:p-8">
+                <div className="min-h-80 border-b border-white/10 bg-[radial-gradient(circle_at_30%_18%,rgba(255,107,53,0.24),transparent_17rem),linear-gradient(145deg,rgba(255,246,232,0.10),rgba(255,255,255,0.02))] p-6 lg:border-b-0 lg:border-r md:p-8">
                   <div className="flex flex-wrap items-center justify-between gap-3">
                     <span className="rounded-full border border-white/10 bg-black/25 px-3 py-1 text-xs font-bold uppercase tracking-wider text-white/70">{work.status}</span>
                     <span className="text-xs font-bold uppercase tracking-[0.22em] text-accent">Featured</span>
@@ -72,11 +72,11 @@ export default function Work() {
 
                   <div className="mt-8 flex flex-wrap gap-4">
                     {work.url ? (
-                      <a href={work.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-lg bg-white px-5 py-3 text-sm font-bold text-black transition-transform hover:-translate-y-0.5">
+                      <a href={work.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-lg bg-accent px-5 py-3 text-sm font-bold text-black transition-transform hover:-translate-y-0.5 hover:bg-accent-hover">
                         Visit Live Site <ExternalLink size={15} />
                       </a>
                     ) : (
-                      <Link href="/contact" className="inline-flex items-center gap-2 rounded-lg bg-white px-5 py-3 text-sm font-bold text-black transition-transform hover:-translate-y-0.5">
+                      <Link href="/contact" className="inline-flex items-center gap-2 rounded-lg bg-accent px-5 py-3 text-sm font-bold text-black transition-transform hover:-translate-y-0.5 hover:bg-accent-hover">
                         Discuss Launch Systems <ArrowRight size={16} />
                       </Link>
                     )}

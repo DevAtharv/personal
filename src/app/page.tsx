@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <div className="w-full overflow-hidden">
       <section className="relative px-6 pb-24 pt-36 md:pt-44">
-        <div className="absolute inset-x-0 top-0 -z-10 h-[680px] border-b border-white/10 bg-[linear-gradient(110deg,rgba(255,255,255,0.08),transparent_38%),radial-gradient(circle_at_74%_20%,rgba(139,255,189,0.16),transparent_26rem)]" />
+        <div className="absolute inset-x-0 top-0 -z-10 h-[680px] border-b border-white/10 bg-[linear-gradient(110deg,rgba(255,246,232,0.08),transparent_38%),radial-gradient(circle_at_74%_20%,rgba(255,107,53,0.18),transparent_26rem)]" />
         <div className="container mx-auto grid max-w-7xl grid-cols-1 gap-12 lg:grid-cols-[1.04fr_0.96fr] lg:items-center">
           <motion.div
             initial={{ opacity: 0, y: 22 }}
@@ -20,20 +20,20 @@ export default function Home() {
               <span className="h-2 w-2 rounded-full bg-accent" />
               Young builder working on real business systems
             </div>
-            <h1 className="text-6xl font-heading font-bold tracking-tight text-white md:text-8xl lg:text-9xl">
+            <h1 className="text-5xl font-heading font-bold tracking-tight text-white md:text-7xl lg:text-8xl">
               Atharv Agarwal
             </h1>
-            <h2 className="mt-7 max-w-3xl text-2xl font-semibold leading-snug text-white/82 md:text-4xl">
+            <h2 className="mt-7 max-w-3xl text-2xl font-semibold leading-snug text-white/82 md:text-3xl">
               Building software, automations, and digital systems for growing businesses.
             </h2>
             <p className="mt-7 max-w-2xl text-lg leading-8 text-white/58">
               I work at the intersection of technology, automation, and business operations. I enjoy vibe coding practical products, streamlining workflows, and helping businesses operate more efficiently through software.
             </p>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-              <Link href="/work" className="inline-flex items-center justify-center gap-2 rounded-lg bg-white px-6 py-4 font-bold text-black transition-transform hover:-translate-y-0.5">
+              <Link href="/work" className="inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-6 py-4 font-bold text-black transition-transform hover:-translate-y-0.5 hover:bg-accent-hover">
                 View My Work <ArrowRight size={18} />
               </Link>
-              <Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/12 bg-white/[0.04] px-6 py-4 font-bold text-white transition-colors hover:bg-white/[0.08]">
+              <Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/12 bg-white/[0.04] px-6 py-4 font-bold text-white transition-colors hover:border-accent/40 hover:bg-white/[0.08]">
                 Contact Me <ArrowRight size={18} />
               </Link>
             </div>
@@ -97,7 +97,7 @@ export default function Home() {
                 transition={{ duration: 0.45, delay: index * 0.08 }}
                 className="grid grid-cols-1 overflow-hidden rounded-lg border border-white/10 bg-white/[0.035] lg:grid-cols-[0.82fr_1.18fr]"
               >
-                <div className="relative min-h-72 border-b border-white/10 bg-[radial-gradient(circle_at_20%_12%,rgba(139,255,189,0.24),transparent_16rem),linear-gradient(145deg,rgba(255,255,255,0.10),rgba(255,255,255,0.02))] p-6 lg:border-b-0 lg:border-r">
+                <div className="relative min-h-72 border-b border-white/10 bg-[radial-gradient(circle_at_20%_12%,rgba(255,107,53,0.24),transparent_16rem),linear-gradient(145deg,rgba(255,246,232,0.10),rgba(255,255,255,0.02))] p-6 lg:border-b-0 lg:border-r">
                   <div className="flex items-center justify-between gap-4">
                     <span className="rounded-full border border-white/10 bg-black/25 px-3 py-1 text-xs font-bold uppercase tracking-wider text-white/70">
                       {work.status}
@@ -206,7 +206,7 @@ export default function Home() {
       </section>
 
       <section className="px-6 pb-24">
-        <div className="container mx-auto max-w-7xl rounded-lg border border-white/10 bg-white px-6 py-12 text-black md:px-10 md:py-16">
+        <div className="container mx-auto max-w-7xl rounded-lg border border-white/10 bg-[#f8f3ea] px-6 py-12 text-black md:px-10 md:py-16">
           <div className="flex flex-col justify-between gap-8 md:flex-row md:items-center">
             <div>
               <p className="mb-3 text-sm font-bold uppercase tracking-[0.24em] text-black/45">Contact</p>
@@ -215,7 +215,7 @@ export default function Home() {
                 I am always interested in discussing technology, business systems, automation, and new ideas.
               </p>
             </div>
-            <Link href="/contact" className="inline-flex shrink-0 items-center justify-center gap-2 rounded-lg bg-black px-6 py-4 font-bold text-white transition-transform hover:-translate-y-0.5">
+            <Link href="/contact" className="inline-flex shrink-0 items-center justify-center gap-2 rounded-lg bg-accent px-6 py-4 font-bold text-black transition-transform hover:-translate-y-0.5 hover:bg-accent-hover">
               Contact Me <ArrowRight size={18} />
             </Link>
           </div>

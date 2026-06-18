@@ -15,7 +15,7 @@ export default function ContactFab() {
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{ delay: 0.8, type: "spring", stiffness: 200, damping: 20 }}
-      className="fixed bottom-5 right-5 z-50 flex items-center justify-center rounded-lg bg-white p-4 text-black shadow-[0_12px_34px_rgba(0,0,0,0.35)] transition-transform duration-300 hover:-translate-y-0.5 hover:bg-accent md:bottom-8 md:right-8"
+      className="fixed bottom-5 right-5 z-50 flex items-center justify-center rounded-lg bg-accent p-4 text-black shadow-[0_12px_34px_rgba(255,107,53,0.28)] transition-transform duration-300 hover:-translate-y-0.5 hover:bg-accent-hover md:bottom-8 md:right-8"
       aria-label="Email Atharv"
     >
       <Mail size={24} />

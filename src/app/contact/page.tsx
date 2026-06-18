@@ -181,7 +181,7 @@ export default function Contact() {
                   <button
                     type="submit"
                     disabled={formState.status === "submitting"}
-                    className="w-full rounded-lg bg-white py-4 text-lg font-bold text-black transition-transform duration-300 hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70"
+                    className="w-full rounded-lg bg-accent py-4 text-lg font-bold text-black transition-transform duration-300 hover:-translate-y-0.5 hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-70"
                   >
                     {formState.status === "submitting" ? "Preparing..." : "Submit Inquiry"}
                   </button>

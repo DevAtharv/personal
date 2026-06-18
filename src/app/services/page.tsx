@@ -54,12 +54,12 @@ export default function Services() {
           ))}
         </div>
 
-        <div className="mt-16 rounded-lg border border-white/10 bg-white px-6 py-10 text-black md:px-8">
+        <div className="mt-16 rounded-lg border border-white/10 bg-[#f8f3ea] px-6 py-10 text-black md:px-8">
           <h2 className="text-3xl font-heading font-bold">Want to discuss a useful system?</h2>
           <p className="mt-4 max-w-2xl text-black/62">
             I&apos;m interested in business systems, automation, workflow design, and practical product ideas.
           </p>
-          <Link href="/contact" className="mt-6 inline-flex items-center gap-2 rounded-lg bg-black px-5 py-3 font-bold text-white">
+          <Link href="/contact" className="mt-6 inline-flex items-center gap-2 rounded-lg bg-accent px-5 py-3 font-bold text-black hover:bg-accent-hover">
             Contact Me <ArrowRight size={16} />
           </Link>
         </div>

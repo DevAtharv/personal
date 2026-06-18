@@ -58,7 +58,7 @@ export default function Navbar() {
           ))}
           <Link
             href="/contact"
-            className="px-5 py-2.5 rounded-lg bg-white text-black font-bold text-sm hover:bg-accent transition-all duration-300"
+            className="px-5 py-2.5 rounded-lg bg-accent text-black font-bold text-sm hover:bg-accent-hover transition-all duration-300"
           >
             Let's Talk
           </Link>
@@ -101,7 +101,7 @@ export default function Navbar() {
               <Link
                 href="/contact"
                 onClick={() => setMobileMenuOpen(false)}
-                className="mt-4 px-6 py-3 rounded-lg bg-white text-black font-bold text-center hover:bg-accent transition-colors"
+                className="mt-4 px-6 py-3 rounded-lg bg-accent text-black font-bold text-center hover:bg-accent-hover transition-colors"
               >
                 Let's Talk
               </Link>
