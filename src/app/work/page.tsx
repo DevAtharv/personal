@@ -18,7 +18,7 @@ export default function Work() {
           <p className="mb-4 text-sm font-bold uppercase tracking-[0.22em] text-accent">Selected work</p>
           <h1 className="text-5xl font-heading font-bold leading-[1.02] md:text-7xl">Proof from food and FMCG builds.</h1>
           <p className="mt-6 max-w-3xl text-lg leading-8 text-foreground/65 md:text-xl">
-            Two focused builds, one simple pattern: clear brand presentation, a cleaner path to inquiry, and outcomes that happened before heavy marketing spend.
+            One live commerce storefront and one pre-launch spice brand system, both built around clear presentation, buyer trust, and measurable demand without heavy marketing spend.
           </p>
         </motion.div>
 
@@ -53,12 +53,23 @@ export default function Work() {
                       <h2 className="text-4xl font-heading font-bold md:text-5xl">{project.title}</h2>
                       <p className="mt-3 text-sm font-bold uppercase tracking-[0.18em] text-foreground/45">{project.type}</p>
                     </div>
-                    <Link
-                      href="/contact"
-                      className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-foreground px-5 py-3 text-sm font-bold text-background transition-transform duration-300 hover:-translate-y-0.5 md:w-auto"
-                    >
-                      Build Similar <ArrowRight size={16} />
-                    </Link>
+                    {project.url ? (
+                      <a
+                        href={project.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-foreground px-5 py-3 text-sm font-bold text-background transition-transform duration-300 hover:-translate-y-0.5 md:w-auto"
+                      >
+                        Visit Live Site <ArrowRight size={16} />
+                      </a>
+                    ) : (
+                      <Link
+                        href="/contact"
+                        className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-foreground px-5 py-3 text-sm font-bold text-background transition-transform duration-300 hover:-translate-y-0.5 md:w-auto"
+                      >
+                        Discuss Pre-launch <ArrowRight size={16} />
+                      </Link>
+                    )}
                   </div>
 
                   <p className="mt-7 max-w-3xl text-lg leading-8 text-foreground/68">{project.description}</p>

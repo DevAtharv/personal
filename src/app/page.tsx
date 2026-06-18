@@ -14,7 +14,7 @@ const proofPoints = [
   {
     label: "Vadi Masala",
     value: "150kg",
-    detail: "orders with ₹0 ad spend",
+    detail: "pre-launch orders, ₹0 marketing budget",
   },
   {
     label: "Focus",
@@ -163,9 +163,21 @@ export default function Home() {
                     ))}
                   </div>
 
-                  <Link href={`/work#${project.id}`} className="mt-8 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-foreground hover:text-accent">
-                    Read project notes <ArrowRight size={16} />
-                  </Link>
+                  <div className="mt-8 flex flex-wrap gap-4">
+                    <Link href={`/work#${project.id}`} className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-foreground hover:text-accent">
+                      Read project notes <ArrowRight size={16} />
+                    </Link>
+                    {project.url ? (
+                      <a
+                        href={project.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-accent hover:text-accent-hover"
+                      >
+                        Visit live site <ArrowRight size={16} />
+                      </a>
+                    ) : null}
+                  </div>
                 </div>
               </motion.article>
             ))}
@@ -177,7 +189,7 @@ export default function Home() {
         <div className="container mx-auto flex max-w-7xl flex-col justify-between gap-8 md:flex-row md:items-center">
           <div>
             <p className="mb-3 text-sm font-bold uppercase tracking-[0.22em] text-accent">Next build</p>
-            <h2 className="max-w-3xl text-4xl font-heading font-bold md:text-6xl">Have a food brand that needs orders without wasting ad budget?</h2>
+            <h2 className="max-w-3xl text-4xl font-heading font-bold md:text-6xl">Have a food brand that needs orders before wasting ad budget?</h2>
           </div>
           <Link
             href="/contact"
