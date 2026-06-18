@@ -26,13 +26,13 @@ export default function Navbar() {
       className={clsx(
         "fixed top-0 left-0 w-full z-50 transition-all duration-300",
         isScrolled
-          ? "bg-background/80 backdrop-blur-xl border-b border-white/10 py-4"
-          : "bg-transparent py-6"
+          ? "bg-white/90 backdrop-blur-xl border-b border-[#e3e8ee] py-3"
+          : "bg-transparent py-5"
       )}
     >
       <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
         {/* Logo */}
-        <Link href="/" className="font-heading font-bold text-2xl tracking-tight z-50">
+        <Link href="/" className="font-heading font-semibold text-2xl z-50 text-[#0d253d]">
           atharv<span className="text-accent">.</span>
         </Link>
 
@@ -44,7 +44,7 @@ export default function Navbar() {
               href={link.path}
               className={clsx(
                 "text-sm font-medium transition-colors hover:text-accent relative group",
-                pathname === link.path ? "text-accent" : "text-foreground/70"
+                pathname === link.path ? "text-accent" : "text-[#273951]/75"
               )}
             >
               {link.name}
@@ -58,7 +58,7 @@ export default function Navbar() {
           ))}
           <Link
             href="/contact"
-            className="px-5 py-2.5 rounded-lg bg-accent text-black font-bold text-sm hover:bg-accent-hover transition-all duration-300"
+            className="px-5 py-2.5 rounded-full bg-accent text-white font-medium text-sm hover:bg-accent-hover transition-all duration-300"
           >
             Let's Talk
           </Link>
@@ -66,7 +66,7 @@ export default function Navbar() {
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden z-50 text-foreground p-2 -mr-2"
+          className="md:hidden z-50 text-[#0d253d] p-2 -mr-2"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Toggle Menu"
         >
@@ -82,7 +82,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-full left-0 w-full bg-background border-b border-white/10 shadow-2xl md:hidden"
+            className="absolute top-full left-0 w-full bg-white border-b border-[#e3e8ee] shadow-2xl md:hidden"
           >
             <nav className="flex flex-col py-6 px-6 gap-6">
               {navLinks.map((link) => (
@@ -92,7 +92,7 @@ export default function Navbar() {
                   onClick={() => setMobileMenuOpen(false)}
                   className={clsx(
                     "text-lg font-medium",
-                    pathname === link.path ? "text-accent" : "text-foreground/80 hover:text-accent"
+                    pathname === link.path ? "text-accent" : "text-[#273951] hover:text-accent"
                   )}
                 >
                   {link.name}
@@ -101,7 +101,7 @@ export default function Navbar() {
               <Link
                 href="/contact"
                 onClick={() => setMobileMenuOpen(false)}
-                className="mt-4 px-6 py-3 rounded-lg bg-accent text-black font-bold text-center hover:bg-accent-hover transition-colors"
+                className="mt-4 px-6 py-3 rounded-full bg-accent text-white font-medium text-center hover:bg-accent-hover transition-colors"
               >
                 Let's Talk
               </Link>

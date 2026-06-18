@@ -60,7 +60,8 @@ export default function Contact() {
   };
 
   return (
-    <div className="min-h-screen px-6 pb-24 pt-32">
+    <div className="relative isolate min-h-screen overflow-hidden bg-white px-6 pb-24 pt-32 text-[#0d253d]">
+      <div className="absolute inset-x-0 top-0 -z-10 h-[430px] bg-[radial-gradient(circle_at_10%_8%,rgba(245,233,212,0.95),transparent_18rem),radial-gradient(circle_at_48%_4%,rgba(185,185,249,0.62),transparent_20rem),radial-gradient(circle_at_90%_6%,rgba(234,34,97,0.16),transparent_18rem),linear-gradient(90deg,#f5e9d4,#f6f9fc)]" />
       <div className="container mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -68,9 +69,9 @@ export default function Contact() {
           transition={{ duration: 0.5 }}
           className="mx-auto mb-14 max-w-3xl text-center"
         >
-          <p className="mb-4 text-sm font-bold uppercase tracking-[0.24em] text-accent">Contact</p>
-          <h1 className="text-5xl font-heading font-bold text-white md:text-7xl">Let&apos;s build something useful.</h1>
-          <p className="mt-6 text-lg leading-8 text-white/58">
+          <p className="mb-4 text-sm font-medium uppercase text-accent">Contact</p>
+          <h1 className="text-5xl font-light leading-[1.03] text-[#0d253d] md:text-6xl">Let&apos;s build something useful.</h1>
+          <p className="mt-6 text-lg font-light leading-8 text-[#273951]">
             I&apos;m always interested in discussing technology, business systems, automation, and new ideas.
           </p>
         </motion.div>
@@ -82,44 +83,44 @@ export default function Contact() {
             transition={{ duration: 0.55 }}
             className="space-y-4"
           >
-            <div className="rounded-lg border border-white/10 bg-white/[0.035] p-6">
-              <h3 className="mb-5 text-2xl font-bold text-white">Links</h3>
+            <div className="rounded-xl border border-[#e3e8ee] bg-white p-6 shadow-[0_8px_24px_rgba(0,55,112,0.08)]">
+              <h3 className="mb-5 text-2xl font-light text-[#0d253d]">Links</h3>
               <div className="space-y-5">
-                <a href={`mailto:${contactEmail}`} className="flex items-center gap-4 text-white/78 transition-colors hover:text-accent">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-accent/10 text-accent">
+                <a href={`mailto:${contactEmail}`} className="flex items-center gap-4 text-[#273951] transition-colors hover:text-accent">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#b9b9f9] text-[#4434d4]">
                     <Mail size={20} />
                   </span>
                   <span>
-                    <span className="block text-sm text-white/38">Email</span>
-                    <span className="font-semibold">{contactEmail}</span>
+                    <span className="block text-sm text-[#64748d]">Email</span>
+                    <span className="font-medium">{contactEmail}</span>
                   </span>
                 </a>
 
-                <a href={linkedInUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-white/78 transition-colors hover:text-accent">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-accent/10 text-accent">
+                <a href={linkedInUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-[#273951] transition-colors hover:text-accent">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#b9b9f9] text-[#4434d4]">
                     <LinkedInMark />
                   </span>
                   <span>
-                    <span className="block text-sm text-white/38">LinkedIn</span>
-                    <span className="font-semibold">atharv-agarwal</span>
+                    <span className="block text-sm text-[#64748d]">LinkedIn</span>
+                    <span className="font-medium">atharv-agarwal</span>
                   </span>
                 </a>
 
-                <div className="flex items-center gap-4 text-white/78">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-accent/10 text-accent">
+                <div className="flex items-center gap-4 text-[#273951]">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#b9b9f9] text-[#4434d4]">
                     <MapPin size={20} />
                   </span>
                   <span>
-                    <span className="block text-sm text-white/38">Location</span>
-                    <span className="font-semibold">India, available worldwide</span>
+                    <span className="block text-sm text-[#64748d]">Location</span>
+                    <span className="font-medium">India, available worldwide</span>
                   </span>
                 </div>
               </div>
             </div>
 
-            <div className="rounded-lg border border-accent/20 bg-accent/10 p-6 text-accent">
-              <p className="text-sm font-bold uppercase tracking-[0.2em]">Best fit</p>
-              <p className="mt-3 text-lg font-semibold">Technology, business systems, automation, and practical product ideas.</p>
+            <div className="rounded-xl bg-[#f5e9d4] p-6 text-[#273951]">
+              <p className="text-sm font-medium uppercase text-accent">Best fit</p>
+              <p className="mt-3 text-lg font-light">Technology, business systems, automation, and practical product ideas.</p>
             </div>
           </motion.aside>
 
@@ -128,18 +129,18 @@ export default function Contact() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.55, delay: 0.1 }}
           >
-            <form onSubmit={handleSubmit} className="rounded-lg border border-white/10 bg-white/[0.035] p-5 md:p-8">
+            <form onSubmit={handleSubmit} className="rounded-xl border border-[#e3e8ee] bg-white p-5 shadow-[0_8px_24px_rgba(0,55,112,0.08)] md:p-8">
               {formState.status === "success" ? (
                 <div className="flex min-h-[420px] flex-col items-center justify-center py-10 text-center">
-                  <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-lg bg-green-500/15 text-green-600">
+                  <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#b9b9f9] text-[#4434d4]">
                     <CheckCircle2 size={34} />
                   </div>
-                  <h3 className="text-3xl font-bold text-white">Inquiry Ready</h3>
-                  <p className="mt-4 max-w-md text-lg text-white/68">{formState.message}</p>
+                  <h3 className="text-3xl font-light text-[#0d253d]">Inquiry Ready</h3>
+                  <p className="mt-4 max-w-md text-lg text-[#64748d]">{formState.message}</p>
                   <button
                     type="button"
                     onClick={() => setFormState({ status: "idle", message: "" })}
-                    className="mt-8 rounded-lg border border-white/15 px-5 py-3 font-semibold text-white transition-colors hover:bg-white/5"
+                    className="mt-8 rounded-full border border-[#e3e8ee] px-5 py-3 font-medium text-[#0d253d] transition-colors hover:bg-[#f6f9fc]"
                   >
                     Send another inquiry
                   </button>
@@ -148,40 +149,40 @@ export default function Contact() {
                 <div className="space-y-5">
                   <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
                     <div className="space-y-2">
-                      <label htmlFor="name" className="text-sm font-semibold text-white/78">Full Name *</label>
-                      <input required name="name" type="text" id="name" className="w-full rounded-lg border border-white/10 bg-black/30 px-4 py-3 text-white outline-none transition-all placeholder:text-white/26 focus:border-accent focus:ring-1 focus:ring-accent" placeholder="Your name" />
+                      <label htmlFor="name" className="text-sm font-medium text-[#273951]">Full Name *</label>
+                      <input required name="name" type="text" id="name" className="w-full rounded-md border border-[#a8c3de] bg-white px-4 py-3 text-[#0d253d] outline-none transition-all placeholder:text-[#64748d] focus:border-accent focus:ring-1 focus:ring-accent" placeholder="Your name" />
                     </div>
                     <div className="space-y-2">
-                      <label htmlFor="company" className="text-sm font-semibold text-white/78">Company / Brand</label>
-                      <input name="company" type="text" id="company" className="w-full rounded-lg border border-white/10 bg-black/30 px-4 py-3 text-white outline-none transition-all placeholder:text-white/26 focus:border-accent focus:ring-1 focus:ring-accent" placeholder="Brand name" />
+                      <label htmlFor="company" className="text-sm font-medium text-[#273951]">Company / Brand</label>
+                      <input name="company" type="text" id="company" className="w-full rounded-md border border-[#a8c3de] bg-white px-4 py-3 text-[#0d253d] outline-none transition-all placeholder:text-[#64748d] focus:border-accent focus:ring-1 focus:ring-accent" placeholder="Brand name" />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
                     <div className="space-y-2">
-                      <label htmlFor="email" className="text-sm font-semibold text-white/78">Email Address *</label>
-                      <input required name="email" type="email" id="email" className="w-full rounded-lg border border-white/10 bg-black/30 px-4 py-3 text-white outline-none transition-all placeholder:text-white/26 focus:border-accent focus:ring-1 focus:ring-accent" placeholder="you@example.com" />
+                      <label htmlFor="email" className="text-sm font-medium text-[#273951]">Email Address *</label>
+                      <input required name="email" type="email" id="email" className="w-full rounded-md border border-[#a8c3de] bg-white px-4 py-3 text-[#0d253d] outline-none transition-all placeholder:text-[#64748d] focus:border-accent focus:ring-1 focus:ring-accent" placeholder="you@example.com" />
                     </div>
                     <div className="space-y-2">
-                      <label htmlFor="social" className="text-sm font-semibold text-white/78">LinkedIn / Social Profile *</label>
-                      <input required name="social" type="text" id="social" className="w-full rounded-lg border border-white/10 bg-black/30 px-4 py-3 text-white outline-none transition-all placeholder:text-white/26 focus:border-accent focus:ring-1 focus:ring-accent" placeholder="LinkedIn URL, @handle, or website" />
+                      <label htmlFor="social" className="text-sm font-medium text-[#273951]">LinkedIn / Social Profile *</label>
+                      <input required name="social" type="text" id="social" className="w-full rounded-md border border-[#a8c3de] bg-white px-4 py-3 text-[#0d253d] outline-none transition-all placeholder:text-[#64748d] focus:border-accent focus:ring-1 focus:ring-accent" placeholder="LinkedIn URL, @handle, or website" />
                     </div>
                   </div>
 
                   <div className="space-y-2">
-                    <label htmlFor="phone" className="text-sm font-semibold text-white/78">Phone / WhatsApp</label>
-                    <input name="phone" type="tel" id="phone" className="w-full rounded-lg border border-white/10 bg-black/30 px-4 py-3 text-white outline-none transition-all placeholder:text-white/26 focus:border-accent focus:ring-1 focus:ring-accent" placeholder="+91 ..." />
+                    <label htmlFor="phone" className="text-sm font-medium text-[#273951]">Phone / WhatsApp</label>
+                    <input name="phone" type="tel" id="phone" className="w-full rounded-md border border-[#a8c3de] bg-white px-4 py-3 text-[#0d253d] outline-none transition-all placeholder:text-[#64748d] focus:border-accent focus:ring-1 focus:ring-accent" placeholder="+91 ..." />
                   </div>
 
                   <div className="space-y-2">
-                    <label htmlFor="message" className="text-sm font-semibold text-white/78">Message *</label>
-                    <textarea required name="message" id="message" rows={6} className="w-full resize-none rounded-lg border border-white/10 bg-black/30 px-4 py-3 text-white outline-none transition-all placeholder:text-white/26 focus:border-accent focus:ring-1 focus:ring-accent" placeholder="Tell me about the idea, system, workflow, or business problem."></textarea>
+                    <label htmlFor="message" className="text-sm font-medium text-[#273951]">Message *</label>
+                    <textarea required name="message" id="message" rows={6} className="w-full resize-none rounded-md border border-[#a8c3de] bg-white px-4 py-3 text-[#0d253d] outline-none transition-all placeholder:text-[#64748d] focus:border-accent focus:ring-1 focus:ring-accent" placeholder="Tell me about the idea, system, workflow, or business problem."></textarea>
                   </div>
 
                   <button
                     type="submit"
                     disabled={formState.status === "submitting"}
-                    className="w-full rounded-lg bg-accent py-4 text-lg font-bold text-black transition-transform duration-300 hover:-translate-y-0.5 hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-70"
+                    className="w-full rounded-full bg-accent py-4 text-lg font-medium text-white transition-colors duration-300 hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-70"
                   >
                     {formState.status === "submitting" ? "Preparing..." : "Submit Inquiry"}
                   </button>

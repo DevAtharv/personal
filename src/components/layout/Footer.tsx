@@ -27,24 +27,24 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="border-t border-white/10 bg-background py-10">
+    <footer className="border-t border-[#e3e8ee] bg-white py-14">
       <div className="container mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-[1.3fr_0.7fr_0.7fr]">
           <div>
-            <Link href="/" className="inline-block font-heading text-2xl font-bold tracking-tight">
+            <Link href="/" className="inline-block font-heading text-2xl font-semibold text-[#0d253d]">
               atharv<span className="text-accent">.</span>
             </Link>
-            <p className="mt-4 max-w-md text-foreground/60">
+            <p className="mt-4 max-w-md text-[#64748d]">
               Vibe coding practical software, automations, and digital systems for real business problems.
             </p>
-            <a href={`mailto:${contactEmail}`} className="mt-5 inline-flex font-semibold text-accent hover:text-accent-hover">
+            <a href={`mailto:${contactEmail}`} className="mt-5 inline-flex font-medium text-accent hover:text-accent-hover">
               {contactEmail}
             </a>
           </div>
 
           <div>
-            <h4 className="mb-4 font-semibold">Navigation</h4>
-            <ul className="space-y-3 text-foreground/60">
+            <h4 className="mb-4 font-semibold text-[#0d253d]">Navigation</h4>
+            <ul className="space-y-3 text-[#64748d]">
               {navLinks.map((link) => (
                 <li key={link.path}><Link href={link.path} className="hover:text-accent transition-colors">{link.name}</Link></li>
               ))}
@@ -52,7 +52,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="mb-4 font-semibold">Connect</h4>
+            <h4 className="mb-4 font-semibold text-[#0d253d]">Connect</h4>
             <div className="flex gap-3">
               {socialLinks.map((social) => (
                 <a
@@ -61,7 +61,7 @@ export default function Footer() {
                   target={social.href.startsWith("http") ? "_blank" : undefined}
                   rel={social.href.startsWith("http") ? "noopener noreferrer" : undefined}
                   aria-label={social.label}
-                  className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-white/[0.035] text-foreground/70 transition-all hover:border-accent hover:bg-accent hover:text-black"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-[#e3e8ee] bg-white text-[#64748d] transition-all hover:border-accent hover:bg-accent hover:text-white"
                 >
                   {social.icon}
                 </a>
@@ -70,7 +70,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col justify-between gap-4 border-t border-white/10 pt-6 text-sm text-foreground/45 md:flex-row md:items-center">
+        <div className="mt-10 flex flex-col justify-between gap-4 border-t border-[#e3e8ee] pt-6 text-sm text-[#64748d] md:flex-row md:items-center">
           <p>&copy; {currentYear} Atharv Agarwal. All rights reserved.</p>
           <p>Real solutions for real problems.</p>
         </div>

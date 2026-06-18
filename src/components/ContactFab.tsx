@@ -15,11 +15,11 @@ export default function ContactFab() {
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{ delay: 0.8, type: "spring", stiffness: 200, damping: 20 }}
-      className="fixed bottom-5 right-5 z-50 flex items-center justify-center rounded-lg bg-accent p-4 text-black shadow-[0_12px_34px_rgba(255,107,53,0.28)] transition-transform duration-300 hover:-translate-y-0.5 hover:bg-accent-hover md:bottom-8 md:right-8"
+      className="fixed bottom-5 right-5 z-50 flex items-center justify-center rounded-full bg-accent p-4 text-white shadow-[0_12px_34px_rgba(83,58,253,0.26)] transition-transform duration-300 hover:-translate-y-0.5 hover:bg-accent-hover md:bottom-8 md:right-8"
       aria-label="Email Atharv"
     >
       <Mail size={24} />
-      <span className="absolute right-full mr-3 hidden whitespace-nowrap rounded-lg border border-white/10 bg-background px-3 py-2 text-sm font-semibold text-foreground shadow-xl md:block">
+      <span className="absolute right-full mr-3 hidden whitespace-nowrap rounded-full border border-[#e3e8ee] bg-white px-3 py-2 text-sm font-medium text-[#0d253d] shadow-[0_8px_24px_rgba(0,55,112,0.12)] md:block">
         Email me
       </span>
     </motion.a>

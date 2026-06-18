@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, ExternalLink, Sparkles } from "lucide-react";
+import { ArrowRight, CheckCircle2, ExternalLink } from "lucide-react";
 import { featuredWork, heroStats, interests, projects, skillGroups, technologies } from "@/lib/site-content";
 
 const fadeUp = {
@@ -10,42 +10,77 @@ const fadeUp = {
   visible: { opacity: 1, y: 0 },
 };
 
+function DashboardMockup() {
+  return (
+    <div className="rounded-2xl bg-white p-4 shadow-[0_24px_80px_rgba(0,55,112,0.14)] ring-1 ring-[#e3e8ee]">
+      <div className="overflow-hidden rounded-xl bg-[#1c1e54] text-white">
+        <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
+          <div className="flex gap-1.5">
+            <span className="h-2.5 w-2.5 rounded-full bg-[#ea2261]" />
+            <span className="h-2.5 w-2.5 rounded-full bg-[#f96bee]" />
+            <span className="h-2.5 w-2.5 rounded-full bg-[#665efd]" />
+          </div>
+          <p className="text-xs text-white/55">systems.ops</p>
+        </div>
+        <div className="grid gap-4 p-5 md:grid-cols-[0.92fr_1.08fr]">
+          <div className="rounded-lg bg-white/[0.08] p-4">
+            <p className="text-xs uppercase text-white/45">Business system</p>
+            <h3 className="mt-3 text-2xl font-light leading-tight">From scattered operations to usable workflows.</h3>
+            <div className="mt-5 space-y-2">
+              {["Customer communication", "Order visibility", "Launch preparation"].map((item) => (
+                <div key={item} className="flex items-center justify-between rounded-md bg-white/[0.08] px-3 py-2 text-sm">
+                  <span>{item}</span>
+                  <span className="text-[#9b9bff]">active</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="space-y-3">
+            {featuredWork.map((work) => (
+              <div key={work.id} className="rounded-lg bg-white p-4 text-[#0d253d]">
+                <div className="flex items-center justify-between gap-3">
+                  <p className="font-medium">{work.title}</p>
+                  <span className="rounded-full bg-[#b9b9f9] px-2.5 py-1 text-[10px] font-medium uppercase text-[#4434d4]">
+                    {work.status}
+                  </span>
+                </div>
+                <p className="mt-2 text-sm leading-6 text-[#64748d]">{work.visualDetail}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
   return (
-    <div className="w-full overflow-hidden">
-      <section className="relative px-6 pb-20 pt-34 md:pb-28 md:pt-42">
-        <div className="absolute inset-x-0 top-0 -z-10 h-[760px] border-b border-white/10 bg-[radial-gradient(circle_at_18%_6%,rgba(255,107,53,0.16),transparent_28rem),radial-gradient(circle_at_88%_8%,rgba(216,224,206,0.08),transparent_30rem)]" />
-
-        <div className="container mx-auto grid max-w-7xl grid-cols-1 gap-10 lg:grid-cols-[1.06fr_0.94fr] lg:items-center">
+    <div className="overflow-hidden bg-white text-[#0d253d]">
+      <section className="relative isolate overflow-hidden px-6 pb-20 pt-32 md:pb-28 md:pt-40">
+        <div className="absolute inset-x-0 top-0 -z-10 h-[560px] bg-[radial-gradient(circle_at_8%_10%,rgba(245,233,212,0.95),transparent_18rem),radial-gradient(circle_at_32%_8%,rgba(255,183,119,0.72),transparent_20rem),radial-gradient(circle_at_62%_2%,rgba(185,185,249,0.76),transparent_20rem),radial-gradient(circle_at_86%_10%,rgba(234,34,97,0.28),transparent_18rem),linear-gradient(90deg,#f5e9d4,#f6f9fc)]" />
+        <div className="container mx-auto grid max-w-7xl grid-cols-1 gap-12 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
           <motion.div
             variants={fadeUp}
             initial="hidden"
             animate="visible"
             transition={{ duration: 0.55 }}
           >
-            <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.045] px-4 py-2 text-sm font-semibold text-white/70 backdrop-blur">
-              <span className="h-2 w-2 rounded-full bg-accent" />
-              Vibe coding practical systems for real businesses
-            </div>
-
-            <h1 className="max-w-5xl text-5xl font-heading font-bold tracking-tight text-white md:text-7xl lg:text-8xl">
-              Atharv Agarwal
-            </h1>
-
-            <p className="mt-7 max-w-3xl text-2xl font-semibold leading-snug text-white/82 md:text-3xl">
-              Building software, automations, and digital systems for growing businesses.
+            <p className="mb-5 inline-flex rounded-full bg-[#b9b9f9] px-3 py-1 text-xs font-medium uppercase text-[#4434d4]">
+              Vibe coding practical systems
             </p>
-
-            <p className="mt-7 max-w-2xl text-lg leading-8 text-white/58">
+            <h1 className="max-w-4xl text-5xl font-light leading-[1.03] text-[#0d253d] md:text-6xl">
+              Atharv Agarwal builds useful software, automations, and digital systems.
+            </h1>
+            <p className="mt-7 max-w-2xl text-lg font-light leading-8 text-[#273951]">
               I work at the intersection of technology, automation, and business operations. I use AI tools, taste, and execution to turn practical ideas into usable systems.
             </p>
-
-            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-              <Link href="/work" className="inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-6 py-4 font-bold text-black transition-transform hover:-translate-y-0.5 hover:bg-accent-hover">
-                View My Work <ArrowRight size={18} />
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <Link href="/work" className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-5 py-3 font-medium text-white transition-colors hover:bg-accent-hover">
+                View my work <ArrowRight size={17} />
               </Link>
-              <Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/12 bg-white/[0.045] px-6 py-4 font-bold text-white transition-colors hover:border-accent/40 hover:bg-white/[0.08]">
-                Contact Me
+              <Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-5 py-3 font-medium text-accent ring-1 ring-accent/25 transition-colors hover:bg-[#f6f9fc]">
+                Contact me
               </Link>
             </div>
           </motion.div>
@@ -55,45 +90,34 @@ export default function Home() {
             initial="hidden"
             animate="visible"
             transition={{ duration: 0.55, delay: 0.12 }}
-            className="rounded-lg border border-white/10 bg-white/[0.055] p-4 shadow-2xl shadow-black/30 backdrop-blur-xl"
           >
-            <div className="rounded-lg border border-white/10 bg-[#10110f]/88 p-5">
-              <div className="flex items-start justify-between gap-5 border-b border-white/10 pb-5">
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-[0.24em] text-accent">Builder profile</p>
-                  <h2 className="mt-2 text-2xl font-heading font-bold text-white">Real solutions for real problems.</h2>
-                </div>
-                <Sparkles size={24} className="text-accent" />
-              </div>
-
-              <div className="grid grid-cols-1 divide-y divide-white/10">
-                {heroStats.map((stat) => (
-                  <div key={stat.label} className="py-5">
-                    <p className="font-bold text-white">{stat.label}</p>
-                    <p className="mt-2 text-sm leading-6 text-white/54">{stat.detail}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <DashboardMockup />
           </motion.div>
         </div>
       </section>
 
-      <section className="px-6 py-20 md:py-24">
+      <section className="px-6 py-14">
+        <div className="container mx-auto grid max-w-7xl grid-cols-1 gap-4 md:grid-cols-4">
+          {heroStats.map((stat) => (
+            <article key={stat.label} className="rounded-xl border border-[#e3e8ee] bg-white p-5 shadow-[0_1px_3px_rgba(0,55,112,0.08)]">
+              <p className="text-sm font-medium text-[#0d253d]">{stat.label}</p>
+              <p className="mt-2 text-sm leading-6 text-[#64748d]">{stat.detail}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="bg-[#f6f9fc] px-6 py-24">
         <div className="container mx-auto max-w-7xl">
-          <div className="mb-10 flex flex-col justify-between gap-5 md:flex-row md:items-end">
-            <div>
-              <p className="mb-3 text-sm font-bold uppercase tracking-[0.24em] text-accent">Featured work</p>
-              <h2 className="max-w-3xl text-4xl font-heading font-bold tracking-tight text-white md:text-6xl">
-                Business work, not portfolio filler.
-              </h2>
-            </div>
-            <Link href="/work" className="inline-flex items-center gap-2 font-bold text-accent hover:text-accent-hover">
-              See all work <ArrowRight size={18} />
-            </Link>
+          <div className="mb-12 max-w-3xl">
+            <p className="mb-3 text-sm font-medium uppercase text-accent">Featured work</p>
+            <h2 className="text-4xl font-light leading-tight text-[#0d253d] md:text-5xl">Business work, not portfolio filler.</h2>
+            <p className="mt-5 text-lg font-light leading-8 text-[#64748d]">
+              The strongest work here is connected to businesses, customers, operations, and launch infrastructure.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
             {featuredWork.map((work, index) => (
               <motion.article
                 key={work.id}
@@ -102,78 +126,62 @@ export default function Home() {
                 whileInView="visible"
                 viewport={{ once: true }}
                 transition={{ duration: 0.45, delay: index * 0.08 }}
-                className="overflow-hidden rounded-lg border border-white/10 bg-white/[0.045]"
+                className="rounded-xl border border-[#e3e8ee] bg-white p-7 shadow-[0_8px_24px_rgba(0,55,112,0.08)]"
               >
-                <div className="border-b border-white/10 bg-[radial-gradient(circle_at_12%_0%,rgba(255,107,53,0.18),transparent_20rem),linear-gradient(145deg,rgba(255,246,232,0.08),rgba(255,255,255,0.02))] p-6">
-                  <div className="flex flex-wrap items-center justify-between gap-3">
-                    <span className="rounded-full border border-white/10 bg-black/20 px-3 py-1 text-xs font-bold uppercase tracking-wider text-white/68">
-                      {work.status}
-                    </span>
-                    <span className="text-xs font-bold uppercase tracking-[0.22em] text-accent">Case study</span>
-                  </div>
-                  <h3 className="mt-10 text-4xl font-heading font-bold text-white md:text-5xl">{work.title}</h3>
-                  <p className="mt-4 max-w-xl text-white/58">{work.visualDetail}</p>
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <span className="rounded-full bg-[#b9b9f9] px-3 py-1 text-xs font-medium uppercase text-[#4434d4]">{work.status}</span>
+                  {work.url ? (
+                    <a href={work.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-sm font-medium text-accent">
+                      Live site <ExternalLink size={14} />
+                    </a>
+                  ) : null}
                 </div>
-
-                <div className="p-6 md:p-7">
-                  <p className="text-lg leading-8 text-white/66">{work.description}</p>
-
-                  <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
-                    {work.highlights.slice(0, 4).map((highlight) => (
-                      <div key={highlight} className="flex gap-3 rounded-lg border border-white/10 bg-black/18 p-4 text-sm leading-6 text-white/66">
-                        <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-accent" />
-                        <span>{highlight}</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="mt-6 flex flex-wrap gap-4">
-                    <Link href={`/work#${work.id}`} className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-accent hover:text-accent-hover">
-                      Read details <ArrowRight size={16} />
-                    </Link>
-                    {work.url ? (
-                      <a href={work.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-white/72 hover:text-accent">
-                        Live site <ExternalLink size={15} />
-                      </a>
-                    ) : null}
-                  </div>
+                <h3 className="mt-8 text-3xl font-light text-[#0d253d]">{work.title}</h3>
+                <p className="mt-4 text-base leading-7 text-[#273951]">{work.description}</p>
+                <div className="mt-7 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                  {work.highlights.slice(0, 4).map((highlight) => (
+                    <div key={highlight} className="flex gap-3 rounded-lg bg-[#f6f9fc] p-3 text-sm text-[#273951]">
+                      <CheckCircle2 size={17} className="mt-0.5 shrink-0 text-accent" />
+                      <span>{highlight}</span>
+                    </div>
+                  ))}
                 </div>
+                <p className="mt-7 rounded-lg bg-[#f5e9d4] p-4 text-sm leading-6 text-[#273951]">{work.learned}</p>
               </motion.article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="border-y border-white/10 bg-white/[0.025] px-6 py-20">
+      <section className="px-6 py-24">
         <div className="container mx-auto grid max-w-7xl grid-cols-1 gap-10 lg:grid-cols-[0.82fr_1.18fr]">
           <div>
-            <p className="mb-3 text-sm font-bold uppercase tracking-[0.24em] text-accent">Tools and approach</p>
-            <h2 className="text-4xl font-heading font-bold text-white md:text-6xl">Vibe coding, but with business context.</h2>
-            <p className="mt-5 max-w-xl text-lg leading-8 text-white/56">
-              I do not want this site to pretend I am a senior engineer. The honest edge is using AI tools, taste, and operational thinking to build useful versions quickly.
+            <p className="mb-3 text-sm font-medium uppercase text-accent">Tools and approach</p>
+            <h2 className="text-4xl font-light leading-tight text-[#0d253d] md:text-5xl">AI tools, taste, and business context.</h2>
+            <p className="mt-5 max-w-xl text-lg font-light leading-8 text-[#64748d]">
+              This is not a senior-engineer cosplay. The honest edge is using modern tools to build useful versions quickly, then learning from real constraints.
             </p>
           </div>
-
           <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
             {technologies.map((tool) => (
-              <div key={tool.name} className="flex min-h-24 flex-col justify-between rounded-lg border border-white/10 bg-white/[0.045] p-4">
+              <div key={tool.name} className="rounded-xl border border-[#e3e8ee] bg-white p-4 shadow-[0_1px_3px_rgba(0,55,112,0.08)]">
                 <tool.icon size={21} className="text-accent" />
-                <span className="text-sm font-bold text-white/72">{tool.name}</span>
+                <p className="mt-6 text-sm font-medium text-[#273951]">{tool.name}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="px-6 py-20 md:py-24">
-        <div className="container mx-auto grid max-w-7xl grid-cols-1 gap-5 lg:grid-cols-3">
+      <section className="bg-[#1c1e54] px-6 py-24 text-white">
+        <div className="container mx-auto grid max-w-7xl grid-cols-1 gap-6 lg:grid-cols-3">
           {skillGroups.map((group) => (
-            <article key={group.title} className="rounded-lg border border-white/10 bg-white/[0.045] p-6">
-              <group.icon size={26} className="text-accent" />
-              <h3 className="mt-5 text-2xl font-bold text-white">{group.title}</h3>
+            <article key={group.title} className="rounded-xl border border-white/10 bg-white/5 p-7">
+              <group.icon size={26} className="text-[#b9b9f9]" />
+              <h3 className="mt-5 text-2xl font-light">{group.title}</h3>
               <div className="mt-5 flex flex-wrap gap-2">
                 {group.items.map((item) => (
-                  <span key={item} className="rounded-md border border-white/10 bg-black/18 px-3 py-1 text-sm font-semibold text-white/62">
+                  <span key={item} className="rounded-full bg-white/10 px-3 py-1 text-sm text-white/75">
                     {item}
                   </span>
                 ))}
@@ -183,45 +191,39 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-y border-white/10 bg-white/[0.025] px-6 py-20">
-        <div className="container mx-auto grid max-w-7xl grid-cols-1 gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+      <section className="bg-[#f6f9fc] px-6 py-24">
+        <div className="container mx-auto grid max-w-7xl grid-cols-1 gap-10 lg:grid-cols-[0.85fr_1.15fr]">
           <div>
-            <p className="mb-3 text-sm font-bold uppercase tracking-[0.24em] text-accent">Projects</p>
-            <h2 className="text-4xl font-heading font-bold text-white md:text-6xl">Experiments, clearly labeled.</h2>
-            <p className="mt-5 max-w-xl text-lg leading-8 text-white/56">
-              These are experiments and learning projects, not inflated startup claims.
-            </p>
-            <Link href="/projects" className="mt-7 inline-flex items-center gap-2 font-bold text-accent hover:text-accent-hover">
-              View projects <ArrowRight size={18} />
-            </Link>
+            <p className="mb-3 text-sm font-medium uppercase text-accent">Projects</p>
+            <h2 className="text-4xl font-light leading-tight text-[#0d253d] md:text-5xl">Experiments, clearly labeled.</h2>
+            <p className="mt-5 text-lg font-light leading-8 text-[#64748d]">Learning projects and prototypes, not inflated startup claims.</p>
           </div>
-
-          <div className="grid grid-cols-1 gap-3">
+          <div className="grid grid-cols-1 gap-4">
             {projects.map((project) => (
-              <article key={project.title} className="rounded-lg border border-white/10 bg-white/[0.045] p-5">
+              <article key={project.title} className="rounded-xl border border-[#e3e8ee] bg-white p-5 shadow-[0_1px_3px_rgba(0,55,112,0.08)]">
                 <div className="flex flex-wrap items-center justify-between gap-3">
-                  <h3 className="text-2xl font-bold text-white">{project.title}</h3>
-                  <span className="rounded-full border border-white/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-white/42">{project.status}</span>
+                  <h3 className="text-2xl font-light text-[#0d253d]">{project.title}</h3>
+                  <span className="rounded-full bg-[#b9b9f9] px-3 py-1 text-xs font-medium uppercase text-[#4434d4]">{project.status}</span>
                 </div>
-                <p className="mt-3 leading-7 text-white/58">{project.description}</p>
+                <p className="mt-3 leading-7 text-[#64748d]">{project.description}</p>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="px-6 py-20 md:py-24">
-        <div className="container mx-auto grid max-w-7xl grid-cols-1 gap-8 rounded-lg border border-white/10 bg-[#f8f3ea] p-6 text-black md:p-10 lg:grid-cols-[1fr_0.8fr] lg:items-end">
+      <section className="px-6 py-24">
+        <div className="container mx-auto grid max-w-7xl grid-cols-1 gap-8 rounded-xl bg-[#f5e9d4] p-8 md:p-10 lg:grid-cols-[1fr_0.85fr] lg:items-end">
           <div>
-            <p className="mb-3 text-sm font-bold uppercase tracking-[0.24em] text-black/45">About</p>
-            <h2 className="max-w-3xl text-4xl font-heading font-bold md:text-6xl">A Class 12 student learning through execution.</h2>
-            <p className="mt-5 max-w-3xl text-lg leading-8 text-black/62">
+            <p className="mb-3 text-sm font-medium uppercase text-accent">About</p>
+            <h2 className="text-4xl font-light leading-tight text-[#0d253d] md:text-5xl">A Class 12 student learning through execution.</h2>
+            <p className="mt-5 max-w-3xl text-lg font-light leading-8 text-[#273951]">
               I am interested in technology, finance, automation, and entrepreneurship. I enjoy turning ideas into usable products and learning through execution.
             </p>
           </div>
           <div className="flex flex-wrap gap-2">
             {interests.map((interest) => (
-              <span key={interest} className="rounded-md bg-black/8 px-3 py-2 text-sm font-bold text-black/62">
+              <span key={interest} className="rounded-full bg-white px-3 py-2 text-sm font-medium text-[#273951] shadow-[0_1px_3px_rgba(0,55,112,0.08)]">
                 {interest}
               </span>
             ))}
@@ -230,17 +232,17 @@ export default function Home() {
       </section>
 
       <section className="px-6 pb-24">
-        <div className="container mx-auto max-w-7xl rounded-lg border border-white/10 bg-white/[0.055] p-6 md:p-10">
+        <div className="container mx-auto max-w-7xl rounded-xl border border-[#e3e8ee] bg-white p-8 shadow-[0_8px_24px_rgba(0,55,112,0.08)] md:p-10">
           <div className="flex flex-col justify-between gap-8 md:flex-row md:items-center">
             <div>
-              <p className="mb-3 text-sm font-bold uppercase tracking-[0.24em] text-accent">Contact</p>
-              <h2 className="text-4xl font-heading font-bold text-white md:text-6xl">Let&apos;s build something useful.</h2>
-              <p className="mt-5 max-w-2xl text-lg leading-8 text-white/58">
+              <p className="mb-3 text-sm font-medium uppercase text-accent">Contact</p>
+              <h2 className="text-4xl font-light leading-tight text-[#0d253d] md:text-5xl">Let&apos;s build something useful.</h2>
+              <p className="mt-5 max-w-2xl text-lg font-light leading-8 text-[#64748d]">
                 I&apos;m always interested in discussing technology, business systems, automation, and practical ideas.
               </p>
             </div>
-            <Link href="/contact" className="inline-flex shrink-0 items-center justify-center gap-2 rounded-lg bg-accent px-6 py-4 font-bold text-black transition-transform hover:-translate-y-0.5 hover:bg-accent-hover">
-              Contact Me <ArrowRight size={18} />
+            <Link href="/contact" className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-accent px-5 py-3 font-medium text-white transition-colors hover:bg-accent-hover">
+              Contact me <ArrowRight size={17} />
             </Link>
           </div>
         </div>
