@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --color-accent: #ff6b35;
-  --color-accent-hover: #ff8555;
+  --color-accent: #d94f1a;
+  --color-accent-hover: #b93f12;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-inter);
@@ -10,19 +10,13 @@
 }
 
 :root {
-  --background: #fafafa;
-  --foreground: #0a0a0a;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #000000;
-    --foreground: #ffffff;
-  }
+  --background: #f8faf7;
+  --foreground: #171612;
 }
 
 body {
   background-color: var(--background);
+  background-image: linear-gradient(180deg, rgba(47, 125, 50, 0.035), transparent 26rem);
   color: var(--foreground);
   font-family: var(--font-sans), sans-serif;
   @apply antialiased selection:bg-accent/30 selection:text-accent;

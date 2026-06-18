@@ -3,7 +3,7 @@ import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import WhatsAppFab from "@/components/WhatsAppFab";
+import ContactFab from "@/components/ContactFab";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -43,7 +43,7 @@ export default function RootLayout({
         <Navbar />
         <main className="flex-grow flex flex-col">{children}</main>
         <Footer />
-        <WhatsAppFab />
+        <ContactFab />
       </body>
     </html>
   );

@@ -71,9 +71,9 @@ export default function Services() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-foreground/5 border border-foreground/10 rounded-3xl p-8 hover:bg-foreground/[0.07] transition-colors flex flex-col h-full"
+              className="bg-foreground/5 border border-foreground/10 rounded-lg p-8 hover:bg-foreground/[0.07] transition-colors flex flex-col h-full"
             >
-              <div className="w-16 h-16 rounded-2xl bg-accent/10 flex items-center justify-center text-accent mb-8">
+              <div className="w-16 h-16 rounded-lg bg-accent/10 flex items-center justify-center text-accent mb-8">
                 <service.icon size={32} />
               </div>
               
@@ -101,9 +101,8 @@ export default function Services() {
            initial={{ opacity: 0, y: 30 }}
            whileInView={{ opacity: 1, y: 0 }}
            viewport={{ once: true }}
-           className="mt-24 p-12 rounded-3xl bg-accent text-white text-center relative overflow-hidden"
+           className="mt-24 p-8 md:p-12 rounded-lg bg-accent text-white text-center relative overflow-hidden"
         >
-          <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
           <h2 className="text-3xl md:text-5xl font-heading font-bold mb-6 relative z-10">Need a custom solution?</h2>
           <p className="text-xl text-white/80 max-w-2xl mx-auto mb-10 relative z-10">
             Every business is unique. I build tailored systems designed specifically for your brand's operational needs and growth goals.

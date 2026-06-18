@@ -2,218 +2,188 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, Code, Database, Globe, Smartphone, Zap } from "lucide-react";
+import { ArrowRight, CheckCircle2, TrendingUp } from "lucide-react";
+import { clientProjects, technologies } from "@/lib/site-content";
 
-const technologies = [
-  { name: "Next.js", icon: Globe },
-  { name: "TypeScript", icon: Code },
-  { name: "Tailwind CSS", icon: Zap },
-  { name: "PostgreSQL", icon: Database },
-  { name: "React Native", icon: Smartphone },
-];
-
-const featuredProjects = [
+const proofPoints = [
   {
-    title: "Pulps & Leaves",
-    status: "Live Project",
-    description: "Premium website development and WhatsApp integration for product showcase and mobile optimization.",
-    tags: ["Next.js", "Tailwind CSS", "WhatsApp API"],
-    color: "from-orange-500 to-amber-500",
+    label: "Pulps & Leaves",
+    value: "₹1.2L+",
+    detail: "sales in under 1 month",
   },
   {
-    title: "Vadi Masala",
-    status: "Pre-Launch Project",
-    description: "Brand website design with a lead capture system tailored for premium FMCG presentation.",
-    tags: ["React", "Framer Motion", "CRM"],
-    color: "from-red-500 to-orange-600",
+    label: "Vadi Masala",
+    value: "150kg",
+    detail: "orders with ₹0 ad spend",
   },
   {
-    title: "GetSync",
-    status: "Product",
-    description: "Comprehensive dashboard UI and financial data management system.",
-    tags: ["TypeScript", "Dashboard", "Analytics"],
-    color: "from-blue-500 to-indigo-600",
-  },
-  {
-    title: "Glint",
-    status: "Product",
-    description: "Innovative product overview with interactive features and seamless user experience.",
-    tags: ["Web App", "UI/UX", "Product"],
-    color: "from-emerald-400 to-teal-500",
+    label: "Focus",
+    value: "Food",
+    detail: "FMCG, D2C, spice, and fresh brands",
   },
 ];
 
 export default function Home() {
   return (
-    <div className="flex flex-col w-full overflow-hidden">
-      {/* HERO SECTION */}
-      <section className="relative min-h-[90vh] flex items-center justify-center pt-24 pb-12 px-6">
-        {/* Abstract Background */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-accent/20 rounded-full blur-[120px] mix-blend-screen opacity-50 animate-pulse" />
-          <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-orange-600/10 rounded-full blur-[150px] mix-blend-screen opacity-30" />
-          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay" />
-        </div>
-
-        <div className="container mx-auto relative z-10 flex flex-col items-center text-center max-w-5xl">
+    <div className="flex w-full flex-col overflow-hidden">
+      <section className="relative border-b border-foreground/10 bg-[linear-gradient(120deg,rgba(47,125,50,0.09),transparent_42%),linear-gradient(0deg,rgba(249,115,22,0.08),transparent_36%)] px-6 pb-20 pt-32 md:pt-40">
+        <div className="container mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-8 backdrop-blur-sm"
+            transition={{ duration: 0.55 }}
           >
-            <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-            <span className="text-sm font-medium text-foreground/80">Available for new projects</span>
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold tracking-tight leading-[1.1] mb-8"
-          >
-            I build <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground to-foreground/50 dark:from-white dark:to-white/50 text-accent">scalable systems</span> for consumer brands.
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg md:text-xl text-foreground/60 max-w-2xl mb-12 leading-relaxed"
-          >
-            Transforming FMCG, D2C, and food brands with premium website development and high-converting automation workflows.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
-          >
-            <Link
-              href="/work"
-              className="px-8 py-4 rounded-xl bg-accent text-white font-medium text-lg hover:bg-accent-hover hover:-translate-y-1 transition-all duration-300 shadow-[0_10px_30px_rgba(255,107,53,0.3)] flex items-center justify-center gap-2"
-            >
-              View My Work <ArrowRight size={20} />
-            </Link>
-            <Link
-              href="/contact"
-              className="px-8 py-4 rounded-xl bg-foreground/5 text-foreground font-medium text-lg border border-foreground/10 hover:bg-foreground/10 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center"
-            >
-              Let's Discuss
-            </Link>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* TRUST SECTION */}
-      <section className="py-24 bg-foreground/[0.02] border-y border-foreground/5 relative">
-        <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-20 text-center divide-y md:divide-y-0 md:divide-x divide-foreground/10">
-            <div className="p-6">
-              <h3 className="text-5xl font-heading font-bold text-accent mb-2">15+</h3>
-              <p className="text-foreground/60 font-medium">Projects Delivered</p>
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-foreground/10 bg-background/80 px-4 py-2 text-sm font-semibold text-foreground/70 backdrop-blur">
+              <span className="h-2 w-2 rounded-full bg-accent" />
+              Proof-led websites for food brands
             </div>
-            <div className="p-6">
-              <h3 className="text-5xl font-heading font-bold text-accent mb-2">3</h3>
-              <p className="text-foreground/60 font-medium">Years Experience</p>
-            </div>
-            <div className="p-6">
-              <h3 className="text-5xl font-heading font-bold text-accent mb-2">10k+</h3>
-              <p className="text-foreground/60 font-medium">Leads Generated</p>
-            </div>
-          </div>
 
-          <div className="text-center max-w-3xl mx-auto">
-            <h2 className="text-sm font-bold uppercase tracking-widest text-foreground/40 mb-8">Technologies & Systems Built With</h2>
-            <div className="flex flex-wrap justify-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-              {technologies.map((tech) => (
-                <div key={tech.name} className="flex flex-col items-center gap-2 group">
-                  <tech.icon size={32} className="group-hover:text-accent transition-colors text-foreground" />
-                  <span className="text-xs font-medium text-foreground">{tech.name}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+            <h1 className="max-w-4xl text-5xl font-heading font-bold leading-[1.02] tracking-tight md:text-7xl lg:text-8xl">
+              Websites that sell before the ads begin.
+            </h1>
 
-      {/* FEATURED WORK SECTION */}
-      <section className="py-32 px-6">
-        <div className="container mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-            <div>
-              <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">Selected Work</h2>
-              <p className="text-xl text-foreground/60 max-w-xl">
-                A showcase of digital experiences and systems designed to convert visitors into customers.
-              </p>
-            </div>
-            <Link href="/work" className="group flex items-center gap-2 text-accent font-medium hover:text-accent-hover transition-colors">
-              View All Projects <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </div>
+            <p className="mt-8 max-w-2xl text-lg leading-8 text-foreground/65 md:text-xl">
+              I build focused digital storefronts and inquiry systems for FMCG, D2C, fruit, spice, and consumer brands that need real orders, not just a pretty homepage.
+            </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {featuredProjects.map((project, index) => (
-              <motion.div
-                key={project.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group relative rounded-3xl overflow-hidden bg-foreground/5 border border-foreground/10"
+            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+              <Link
+                href="/work"
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-foreground px-6 py-4 text-base font-bold text-background transition-transform duration-300 hover:-translate-y-0.5"
               >
-                {/* Project Image Placeholder */}
-                <div className={`w-full h-80 bg-gradient-to-br ${project.color} relative overflow-hidden flex items-center justify-center`}>
-                   <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
-                   <h3 className="text-4xl font-heading font-bold text-white/90 transform group-hover:scale-110 transition-transform duration-500 drop-shadow-lg">
-                     {project.title}
-                   </h3>
+                View Proof <ArrowRight size={19} />
+              </Link>
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center rounded-lg border border-foreground/15 bg-background/70 px-6 py-4 text-base font-bold text-foreground transition-colors hover:bg-foreground/5"
+              >
+                Send Inquiry
+              </Link>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 28 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, delay: 0.12 }}
+            className="rounded-lg border border-foreground/10 bg-background/85 p-4 shadow-2xl shadow-foreground/5 backdrop-blur"
+          >
+            <div className="rounded-lg border border-foreground/10 bg-foreground text-background">
+              <div className="flex items-center justify-between border-b border-background/10 px-5 py-4">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-background/55">Outcome board</p>
+                  <h2 className="mt-1 text-xl font-bold">Client proof</h2>
                 </div>
-                
-                <div className="p-8">
-                  <div className="flex justify-between items-start mb-4">
-                    <h3 className="text-2xl font-bold font-heading">{project.title}</h3>
-                    <span className="px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-medium border border-accent/20">
-                      {project.status}
-                    </span>
+                <TrendingUp className="text-accent" size={26} />
+              </div>
+
+              <div className="grid grid-cols-1 divide-y divide-background/10">
+                {proofPoints.map((point) => (
+                  <div key={point.label} className="grid grid-cols-[1fr_auto] gap-4 px-5 py-5">
+                    <div>
+                      <p className="text-sm font-semibold text-background/55">{point.label}</p>
+                      <p className="mt-1 text-base text-background/75">{point.detail}</p>
+                    </div>
+                    <p className="text-right text-3xl font-heading font-bold text-accent md:text-4xl">{point.value}</p>
                   </div>
-                  
-                  <p className="text-foreground/70 mb-6 line-clamp-2">
-                    {project.description}
-                  </p>
-                  
-                  <div className="flex flex-wrap gap-2 mb-8">
-                    {project.tags.map(tag => (
-                      <span key={tag} className="text-xs font-medium px-3 py-1 bg-foreground/5 rounded-md border border-foreground/10 text-foreground/80">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  
-                  <Link href={`/work/${project.title.toLowerCase().replace(/\s+/g, '-')}`} className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-foreground hover:text-accent transition-colors">
-                    View Case Study <ArrowRight size={16} />
-                  </Link>
-                </div>
-              </motion.div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="border-b border-foreground/10 bg-foreground/[0.025] px-6 py-14">
+        <div className="container mx-auto max-w-7xl">
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-5">
+            {technologies.map((tech) => (
+              <div key={tech.name} className="flex items-center gap-3 rounded-lg border border-foreground/10 bg-background px-4 py-4">
+                <tech.icon size={20} className="shrink-0 text-accent" />
+                <span className="text-sm font-semibold text-foreground/75">{tech.name}</span>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA SECTION */}
-      <section className="py-32 px-6 relative overflow-hidden">
-        <div className="absolute inset-0 bg-accent/5" />
-        <div className="container mx-auto relative z-10 text-center max-w-3xl">
-          <h2 className="text-4xl md:text-6xl font-heading font-bold mb-6">Ready to scale your brand?</h2>
-          <p className="text-xl text-foreground/60 mb-10">
-            Let's build a digital presence that builds trust and a system that generates leads automatically.
-          </p>
+      <section className="px-6 py-24 md:py-28">
+        <div className="container mx-auto max-w-7xl">
+          <div className="mb-12 flex flex-col justify-between gap-5 md:flex-row md:items-end">
+            <div>
+              <p className="mb-3 text-sm font-bold uppercase tracking-[0.22em] text-accent">Selected work</p>
+              <h2 className="text-4xl font-heading font-bold md:text-6xl">Food-brand systems with receipts.</h2>
+            </div>
+            <Link href="/work" className="inline-flex items-center gap-2 font-bold text-accent hover:text-accent-hover">
+              All project details <ArrowRight size={18} />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+            {clientProjects.map((project, index) => (
+              <motion.article
+                key={project.id}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45, delay: index * 0.08 }}
+                className="overflow-hidden rounded-lg border border-foreground/10 bg-foreground/[0.03]"
+              >
+                <div className={`bg-gradient-to-br ${project.color} p-6 text-white`}>
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <span className="rounded-full bg-white/15 px-3 py-1 text-xs font-bold uppercase tracking-wider">
+                      {project.status}
+                    </span>
+                    <span className="text-sm font-semibold text-white/80">{project.type}</span>
+                  </div>
+                  <div className="mt-16">
+                    <p className="text-sm font-bold uppercase tracking-[0.2em] text-white/65">{project.metricLabel}</p>
+                    <h3 className="mt-3 text-6xl font-heading font-bold md:text-7xl">{project.metric}</h3>
+                    <p className="mt-5 max-w-xl text-lg font-medium text-white/88">{project.outcome}</p>
+                  </div>
+                </div>
+
+                <div className="p-6 md:p-8">
+                  <h3 className="text-3xl font-heading font-bold">{project.title}</h3>
+                  <p className="mt-4 text-base leading-7 text-foreground/68">{project.description}</p>
+
+                  <ul className="mt-6 space-y-3">
+                    {project.highlights.map((highlight) => (
+                      <li key={highlight} className="flex gap-3 text-sm leading-6 text-foreground/70">
+                        <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-accent" />
+                        <span>{highlight}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="mt-7 flex flex-wrap gap-2">
+                    {project.tags.map((tag) => (
+                      <span key={tag} className="rounded-md border border-foreground/10 bg-background px-3 py-1 text-xs font-semibold text-foreground/75">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  <Link href={`/work#${project.id}`} className="mt-8 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-foreground hover:text-accent">
+                    Read project notes <ArrowRight size={16} />
+                  </Link>
+                </div>
+              </motion.article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-foreground/10 bg-foreground text-background px-6 py-20">
+        <div className="container mx-auto flex max-w-7xl flex-col justify-between gap-8 md:flex-row md:items-center">
+          <div>
+            <p className="mb-3 text-sm font-bold uppercase tracking-[0.22em] text-accent">Next build</p>
+            <h2 className="max-w-3xl text-4xl font-heading font-bold md:text-6xl">Have a food brand that needs orders without wasting ad budget?</h2>
+          </div>
           <Link
             href="/contact"
-            className="inline-flex px-10 py-5 rounded-xl bg-accent text-white font-bold text-lg hover:bg-accent-hover hover:scale-105 transition-all duration-300 shadow-[0_10px_40px_rgba(255,107,53,0.4)]"
+            className="inline-flex shrink-0 items-center justify-center gap-2 rounded-lg bg-background px-6 py-4 font-bold text-foreground transition-transform duration-300 hover:-translate-y-0.5"
           >
-            Start a Conversation
+            Submit Inquiry <ArrowRight size={18} />
           </Link>
         </div>
       </section>

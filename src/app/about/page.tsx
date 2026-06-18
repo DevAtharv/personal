@@ -78,13 +78,10 @@ export default function About() {
             className="relative"
           >
             {/* Image Placeholder */}
-            <div className="aspect-[4/5] rounded-3xl bg-foreground/5 border border-foreground/10 relative overflow-hidden flex items-center justify-center">
+            <div className="aspect-[4/5] rounded-lg bg-foreground/5 border border-foreground/10 relative overflow-hidden flex items-center justify-center">
               <div className="absolute inset-0 bg-gradient-to-tr from-accent/20 to-transparent" />
               <p className="text-foreground/40 font-heading font-bold text-2xl relative z-10">Atharv Agarwal</p>
             </div>
-            {/* Decorative Elements */}
-            <div className="absolute -bottom-6 -left-6 w-48 h-48 bg-accent/20 rounded-full blur-3xl -z-10" />
-            <div className="absolute -top-6 -right-6 w-48 h-48 bg-blue-500/20 rounded-full blur-3xl -z-10" />
           </motion.div>
         </div>
 
@@ -99,7 +96,7 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-foreground/5 border border-foreground/10 p-6 rounded-2xl"
+                className="bg-foreground/5 border border-foreground/10 p-6 rounded-lg"
               >
                 <skill.icon size={32} className="text-accent mb-6" />
                 <h3 className="text-xl font-bold mb-4">{skill.category}</h3>
@@ -130,7 +127,7 @@ export default function About() {
                   {item.year.substring(2)}
                 </div>
                 
-                <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 rounded-2xl bg-foreground/5 border border-foreground/10 hover:border-accent/30 transition-colors">
+                <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 rounded-lg bg-foreground/5 border border-foreground/10 hover:border-accent/30 transition-colors">
                   <div className="flex items-center justify-between mb-1">
                     <div className="font-bold text-accent">{item.year}</div>
                   </div>
