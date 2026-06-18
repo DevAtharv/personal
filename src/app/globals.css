@@ -10,16 +10,16 @@
 }
 
 :root {
-  --background: #0b0b0a;
+  --background: #08120d;
   --foreground: #f8f3ea;
 }
 
 body {
   background-color: var(--background);
   background-image:
-    radial-gradient(circle at 16% 0%, rgba(255, 107, 53, 0.14), transparent 28rem),
-    radial-gradient(circle at 90% 12%, rgba(245, 165, 36, 0.10), transparent 30rem),
-    linear-gradient(180deg, rgba(255, 246, 232, 0.04), transparent 24rem);
+    linear-gradient(125deg, rgba(12, 44, 29, 0.88), rgba(10, 13, 11, 0.9) 44%, rgba(191, 90, 18, 0.72)),
+    radial-gradient(circle at 16% 0%, rgba(255, 107, 53, 0.16), transparent 28rem),
+    radial-gradient(circle at 82% 10%, rgba(216, 224, 206, 0.12), transparent 30rem);
   color: var(--foreground);
   font-family: var(--font-sans), sans-serif;
   @apply antialiased selection:bg-accent/30 selection:text-accent;

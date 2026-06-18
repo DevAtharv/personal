@@ -1,226 +1,262 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, ExternalLink, Sparkles } from "lucide-react";
-import { featuredWork, heroStats, interests, projects, skillGroups, technologies } from "@/lib/site-content";
+import { ArrowRight, ExternalLink, Mail, Sparkles } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import {
+  contactEmail,
+  featuredWork,
+  githubUrl,
+  heroStats,
+  interests,
+  linkedInUrl,
+  projects,
+  skillGroups,
+  technologies,
+} from "@/lib/site-content";
+
+function BentoCard({
+  children,
+  className = "",
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <motion.article
+      initial={{ opacity: 0, y: 18 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.45 }}
+      className={`overflow-hidden rounded-lg border border-white/12 bg-white/[0.08] shadow-[0_24px_80px_rgba(0,0,0,0.26)] backdrop-blur-xl ${className}`}
+    >
+      {children}
+    </motion.article>
+  );
+}
+
+function ToolBadge({ name, Icon }: { name: string; Icon: LucideIcon }) {
+  return (
+    <div className="flex h-16 items-center gap-3 rounded-lg bg-black/28 px-4 text-white/80 ring-1 ring-white/10">
+      <Icon size={21} className="text-accent" />
+      <span className="text-sm font-bold">{name}</span>
+    </div>
+  );
+}
 
 export default function Home() {
+  const pulps = featuredWork[0];
+  const vadi = featuredWork[1];
+
   return (
-    <div className="w-full overflow-hidden">
-      <section className="relative px-6 pb-24 pt-36 md:pt-44">
-        <div className="absolute inset-x-0 top-0 -z-10 h-[680px] border-b border-white/10 bg-[linear-gradient(110deg,rgba(255,246,232,0.08),transparent_38%),radial-gradient(circle_at_74%_20%,rgba(255,107,53,0.18),transparent_26rem)]" />
-        <div className="container mx-auto grid max-w-7xl grid-cols-1 gap-12 lg:grid-cols-[1.04fr_0.96fr] lg:items-center">
-          <motion.div
-            initial={{ opacity: 0, y: 22 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55 }}
-          >
-            <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-semibold text-white/70 backdrop-blur">
-              <span className="h-2 w-2 rounded-full bg-accent" />
-              Young builder working on real business systems
-            </div>
-            <h1 className="text-5xl font-heading font-bold tracking-tight text-white md:text-7xl lg:text-8xl">
-              Atharv Agarwal
-            </h1>
-            <h2 className="mt-7 max-w-3xl text-2xl font-semibold leading-snug text-white/82 md:text-3xl">
-              Building software, automations, and digital systems for growing businesses.
-            </h2>
-            <p className="mt-7 max-w-2xl text-lg leading-8 text-white/58">
-              I work at the intersection of technology, automation, and business operations. I enjoy vibe coding practical products, streamlining workflows, and helping businesses operate more efficiently through software.
-            </p>
-            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-              <Link href="/work" className="inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-6 py-4 font-bold text-black transition-transform hover:-translate-y-0.5 hover:bg-accent-hover">
-                View My Work <ArrowRight size={18} />
-              </Link>
-              <Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/12 bg-white/[0.04] px-6 py-4 font-bold text-white transition-colors hover:border-accent/40 hover:bg-white/[0.08]">
-                Contact Me <ArrowRight size={18} />
-              </Link>
-            </div>
-          </motion.div>
+    <div className="min-h-screen overflow-hidden px-4 pb-20 pt-28 md:px-6 md:pt-32">
+      <div className="pointer-events-none fixed inset-0 -z-10 bg-[linear-gradient(125deg,#07170f_0%,#183828_38%,#c06816_100%)]" />
+      <div className="pointer-events-none fixed inset-0 -z-10 bg-[linear-gradient(180deg,rgba(0,0,0,0.26),rgba(0,0,0,0.72)),radial-gradient(circle_at_18%_14%,rgba(255,255,255,0.13),transparent_28rem)]" />
 
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.1 }}
-            className="rounded-lg border border-white/10 bg-white/[0.045] p-4 shadow-2xl shadow-black/30 backdrop-blur"
-          >
-            <div className="rounded-lg border border-white/10 bg-black/45 p-5">
-              <div className="flex items-start justify-between gap-4 border-b border-white/10 pb-5">
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-[0.24em] text-accent">Operating log</p>
-                  <h3 className="mt-2 text-2xl font-bold text-white">Real solutions for real problems</h3>
-                </div>
-                <Sparkles className="text-accent" size={24} />
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-4 lg:grid-cols-12">
+        <BentoCard className="min-h-[270px] bg-[#d8e0ce]/72 p-6 text-black lg:col-span-6">
+          <div className="flex h-full flex-col justify-between">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <p className="text-5xl font-heading font-bold tracking-tight md:text-6xl">Hello</p>
+                <h1 className="mt-5 text-xl font-semibold md:text-2xl">
+                  I&apos;m <span className="text-[#e88614]">Atharv Agarwal</span>,
+                </h1>
               </div>
-              <div className="grid grid-cols-1 divide-y divide-white/10">
-                {heroStats.map((stat) => (
-                  <div key={stat.label} className="py-5">
-                    <p className="text-base font-bold text-white">{stat.label}</p>
-                    <p className="mt-2 text-sm leading-6 text-white/54">{stat.detail}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      <section className="border-y border-white/10 bg-white/[0.025] px-6 py-8">
-        <div className="container mx-auto grid max-w-7xl grid-cols-2 gap-3 md:grid-cols-4 lg:grid-cols-8">
-          {technologies.map((tool) => (
-            <div key={tool.name} className="flex min-h-20 flex-col justify-between rounded-lg border border-white/10 bg-white/[0.035] p-3">
-              <tool.icon size={18} className="text-accent" />
-              <span className="text-sm font-semibold text-white/72">{tool.name}</span>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="px-6 py-24" id="featured-work">
-        <div className="container mx-auto max-w-7xl">
-          <div className="mb-12 max-w-3xl">
-            <p className="mb-3 text-sm font-bold uppercase tracking-[0.24em] text-accent">Featured work</p>
-            <h2 className="text-4xl font-heading font-bold tracking-tight text-white md:text-6xl">Business work comes first.</h2>
-            <p className="mt-5 text-lg leading-8 text-white/56">
-              The most important work here is not a demo. It is work connected to businesses, customers, orders, and day-to-day operations.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 gap-6">
-            {featuredWork.map((work, index) => (
-              <motion.article
-                key={work.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.45, delay: index * 0.08 }}
-                className="grid grid-cols-1 overflow-hidden rounded-lg border border-white/10 bg-white/[0.035] lg:grid-cols-[0.82fr_1.18fr]"
+              <Link
+                href="/work"
+                aria-label="View work"
+                className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-black text-white transition-transform hover:-translate-y-0.5"
               >
-                <div className="relative min-h-72 border-b border-white/10 bg-[radial-gradient(circle_at_20%_12%,rgba(255,107,53,0.24),transparent_16rem),linear-gradient(145deg,rgba(255,246,232,0.10),rgba(255,255,255,0.02))] p-6 lg:border-b-0 lg:border-r">
-                  <div className="flex items-center justify-between gap-4">
-                    <span className="rounded-full border border-white/10 bg-black/25 px-3 py-1 text-xs font-bold uppercase tracking-wider text-white/70">
-                      {work.status}
-                    </span>
-                    <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Case study</span>
-                  </div>
-                  <div className="absolute bottom-6 left-6 right-6">
-                    <p className="text-sm font-bold uppercase tracking-[0.22em] text-white/45">{work.visualTitle}</p>
-                    <h3 className="mt-3 text-4xl font-heading font-bold text-white md:text-5xl">{work.title}</h3>
-                    <p className="mt-4 max-w-md text-white/58">{work.visualDetail}</p>
-                  </div>
-                </div>
-
-                <div className="p-6 md:p-8 lg:p-10">
-                  <p className="max-w-3xl text-lg leading-8 text-white/68">{work.description}</p>
-                  <div className="mt-7 grid grid-cols-1 gap-3 md:grid-cols-2">
-                    {work.highlights.map((highlight) => (
-                      <div key={highlight} className="flex gap-3 rounded-lg border border-white/10 bg-black/20 p-4 text-sm text-white/68">
-                        <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-accent" />
-                        <span>{highlight}</span>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="mt-7 rounded-lg border border-white/10 bg-black/25 p-5">
-                    <p className="text-sm font-bold uppercase tracking-[0.22em] text-white/38">What I learned</p>
-                    <p className="mt-3 leading-7 text-white/64">{work.learned}</p>
-                  </div>
-                  <div className="mt-7 flex flex-wrap gap-4">
-                    <Link href={`/work#${work.id}`} className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-accent hover:text-accent-hover">
-                      Read more <ArrowRight size={16} />
-                    </Link>
-                    {work.url ? (
-                      <a href={work.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-white hover:text-accent">
-                        Visit live site <ExternalLink size={15} />
-                      </a>
-                    ) : null}
-                  </div>
-                </div>
-              </motion.article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-y border-white/10 bg-white/[0.025] px-6 py-24">
-        <div className="container mx-auto grid max-w-7xl grid-cols-1 gap-12 lg:grid-cols-[0.82fr_1.18fr]">
-          <div>
-            <p className="mb-3 text-sm font-bold uppercase tracking-[0.24em] text-accent">Projects</p>
-            <h2 className="text-4xl font-heading font-bold text-white md:text-6xl">Experiments, not inflated startups.</h2>
-            <p className="mt-5 text-lg leading-8 text-white/56">
-              These are learning projects and product experiments. They are presented honestly as explorations, prototypes, and workflow ideas.
+                <ArrowRight size={22} className="-rotate-45" />
+              </Link>
+            </div>
+            <p className="mt-8 max-w-xl text-base font-medium leading-7 text-black/62 md:text-lg">
+              Building software, automations, and digital systems for growing businesses through vibe coding, AI tools, and business execution.
             </p>
-            <Link href="/projects" className="mt-7 inline-flex items-center gap-2 font-bold text-accent hover:text-accent-hover">
-              View projects <ArrowRight size={18} />
+          </div>
+        </BentoCard>
+
+        <BentoCard className="min-h-[270px] bg-[#f8f3ea] p-5 text-black lg:col-span-3">
+          <div className="flex h-full flex-col justify-between">
+            <div>
+              <p className="text-sm font-bold uppercase tracking-[0.18em] text-black/40">Live business</p>
+              <h2 className="mt-3 text-3xl font-heading font-bold">{pulps.title}</h2>
+              <p className="mt-4 text-sm leading-6 text-black/58">{pulps.visualDetail}</p>
+            </div>
+            <a
+              href={pulps.url || "/work"}
+              target={pulps.url ? "_blank" : undefined}
+              rel={pulps.url ? "noopener noreferrer" : undefined}
+              className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-[#c85a19]"
+            >
+              Visit live site <ExternalLink size={15} />
+            </a>
+          </div>
+        </BentoCard>
+
+        <BentoCard className="min-h-[270px] bg-black/78 p-5 text-white lg:col-span-3">
+          <div className="flex h-full flex-col justify-between">
+            <div>
+              <p className="text-sm font-bold uppercase tracking-[0.18em] text-accent">Portfolio</p>
+              <h2 className="mt-3 text-3xl font-heading font-bold">Real solutions for real problems.</h2>
+            </div>
+            <div className="grid grid-cols-2 gap-2">
+              {heroStats.map((stat) => (
+                <div key={stat.label} className="rounded-lg bg-white/[0.08] p-3">
+                  <p className="text-xs font-bold leading-5 text-white/72">{stat.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </BentoCard>
+
+        <BentoCard className="min-h-[230px] bg-[#ffbd2e] p-0 text-black lg:col-span-3">
+          <div className="flex h-full flex-col items-center justify-end">
+            <div className="mt-8 grid h-32 w-32 place-items-center rounded-full bg-black text-6xl font-heading font-bold text-[#ffbd2e] shadow-2xl">
+              A
+            </div>
+            <div className="mt-5 w-full bg-black/10 p-5 text-center">
+              <p className="text-lg font-bold">Class 12 builder</p>
+              <p className="mt-1 text-sm font-medium text-black/60">Technology, finance, automation</p>
+            </div>
+          </div>
+        </BentoCard>
+
+        <BentoCard className="min-h-[230px] bg-[#d8e0ce]/72 p-6 text-black lg:col-span-4">
+          <p className="text-sm font-bold uppercase tracking-[0.18em] text-black/38">About me</p>
+          <h2 className="mt-3 text-3xl font-heading font-bold">I learn by building usable things.</h2>
+          <p className="mt-5 text-base leading-7 text-black/62">
+            I work with real businesses to understand operational problems, then use vibe coding and AI-assisted tools to create practical systems.
+          </p>
+        </BentoCard>
+
+        <BentoCard className="min-h-[230px] bg-[#ece9df] p-6 text-black lg:col-span-3">
+          <p className="text-sm font-bold uppercase tracking-[0.18em] text-black/38">In progress</p>
+          <h2 className="mt-3 text-3xl font-heading font-bold">{vadi.title}</h2>
+          <p className="mt-5 text-base leading-7 text-black/62">{vadi.description}</p>
+        </BentoCard>
+
+        <BentoCard className="min-h-[230px] bg-[#d88a35]/82 p-6 text-black lg:col-span-2">
+          <div className="flex h-full flex-col justify-between">
+            <h2 className="text-3xl font-heading font-bold">Work</h2>
+            <p className="text-lg font-medium leading-7 text-black/68">Business systems, websites, workflows, launch infrastructure.</p>
+            <Link href="/work" className="grid h-14 w-14 place-items-center rounded-full bg-black text-white">
+              <ArrowRight size={24} className="-rotate-45" />
             </Link>
           </div>
-          <div className="grid grid-cols-1 gap-4">
-            {projects.map((project) => (
-              <article key={project.title} className="rounded-lg border border-white/10 bg-black/20 p-5">
-                <div className="flex flex-wrap items-center justify-between gap-3">
-                  <h3 className="text-2xl font-bold text-white">{project.title}</h3>
-                  <span className="rounded-full border border-white/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-white/45">{project.status}</span>
+        </BentoCard>
+
+        <BentoCard className="bg-[#d8e0ce]/70 p-6 text-black lg:col-span-5">
+          <h2 className="text-2xl font-heading font-bold md:text-3xl">Featured work</h2>
+          <div className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-2">
+            {featuredWork.map((work) => (
+              <div key={work.id} className="rounded-lg bg-black/[0.08] p-4">
+                <div className="flex items-center justify-between gap-3">
+                  <p className="text-lg font-bold">{work.title}</p>
+                  <span className="rounded-full bg-black px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-white">
+                    {work.status}
+                  </span>
                 </div>
-                <p className="mt-3 leading-7 text-white/58">{project.description}</p>
-              </article>
+                <p className="mt-3 text-sm leading-6 text-black/60">{work.visualDetail}</p>
+              </div>
             ))}
           </div>
-        </div>
-      </section>
+        </BentoCard>
 
-      <section className="px-6 py-24">
-        <div className="container mx-auto grid max-w-7xl grid-cols-1 gap-6 lg:grid-cols-3">
-          {skillGroups.map((group) => (
-            <article key={group.title} className="rounded-lg border border-white/10 bg-white/[0.035] p-6">
-              <group.icon size={26} className="text-accent" />
-              <h3 className="mt-5 text-2xl font-bold text-white">{group.title}</h3>
-              <div className="mt-5 flex flex-wrap gap-2">
-                {group.items.map((item) => (
-                  <span key={item} className="rounded-md border border-white/10 bg-black/22 px-3 py-1 text-sm font-semibold text-white/62">
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="border-t border-white/10 px-6 py-24">
-        <div className="container mx-auto grid max-w-7xl grid-cols-1 gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-end">
-          <div>
-            <p className="mb-3 text-sm font-bold uppercase tracking-[0.24em] text-accent">About</p>
-            <h2 className="text-4xl font-heading font-bold text-white md:text-6xl">A Class 12 student learning through execution.</h2>
-            <p className="mt-6 max-w-3xl text-lg leading-8 text-white/58">
-              I am interested in technology, finance, automation, and entrepreneurship. Over the last few years I have focused on building practical projects and working with real businesses to understand how technology can solve operational challenges.
-            </p>
+        <BentoCard className="bg-black/72 p-6 text-white lg:col-span-3">
+          <h2 className="text-2xl font-heading font-bold md:text-3xl">Tools I use</h2>
+          <div className="mt-5 grid grid-cols-2 gap-3">
+            {technologies.slice(0, 8).map((tool) => (
+              <ToolBadge key={tool.name} name={tool.name} Icon={tool.icon} />
+            ))}
           </div>
-          <div className="flex flex-wrap gap-2">
+        </BentoCard>
+
+        <BentoCard className="bg-[#f45b8e] p-6 text-black lg:col-span-2">
+          <div className="flex h-full min-h-56 flex-col justify-between">
+            <Sparkles size={28} />
+            <div>
+              <p className="text-sm font-bold uppercase tracking-[0.18em] text-black/45">Experiments</p>
+              <h2 className="mt-3 text-3xl font-heading font-bold">Projects</h2>
+            </div>
+            <Link href="/projects" className="grid h-14 w-14 place-items-center rounded-full bg-black text-white">
+              <ArrowRight size={24} className="-rotate-45" />
+            </Link>
+          </div>
+        </BentoCard>
+
+        <BentoCard className="bg-[#d8e0ce]/70 p-6 text-black lg:col-span-2">
+          <h2 className="text-2xl font-heading font-bold">Interests</h2>
+          <div className="mt-5 flex flex-wrap gap-2">
             {interests.map((interest) => (
-              <span key={interest} className="rounded-md border border-white/10 bg-white/[0.035] px-3 py-2 text-sm font-semibold text-white/64">
+              <span key={interest} className="rounded-md bg-black/10 px-3 py-2 text-sm font-bold text-black/68">
                 {interest}
               </span>
             ))}
           </div>
-        </div>
-      </section>
+        </BentoCard>
 
-      <section className="px-6 pb-24">
-        <div className="container mx-auto max-w-7xl rounded-lg border border-white/10 bg-[#f8f3ea] px-6 py-12 text-black md:px-10 md:py-16">
-          <div className="flex flex-col justify-between gap-8 md:flex-row md:items-center">
-            <div>
-              <p className="mb-3 text-sm font-bold uppercase tracking-[0.24em] text-black/45">Contact</p>
-              <h2 className="text-4xl font-heading font-bold md:text-6xl">Let&apos;s build something useful.</h2>
-              <p className="mt-5 max-w-2xl text-lg leading-8 text-black/62">
-                I am always interested in discussing technology, business systems, automation, and new ideas.
-              </p>
-            </div>
-            <Link href="/contact" className="inline-flex shrink-0 items-center justify-center gap-2 rounded-lg bg-accent px-6 py-4 font-bold text-black transition-transform hover:-translate-y-0.5 hover:bg-accent-hover">
-              Contact Me <ArrowRight size={18} />
-            </Link>
+        <BentoCard className="bg-black/72 p-6 text-white lg:col-span-5">
+          <h2 className="text-2xl font-heading font-bold md:text-3xl">How I build</h2>
+          <div className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-3">
+            {skillGroups.map((group) => (
+              <div key={group.title} className="rounded-lg bg-white/[0.08] p-4">
+                <group.icon size={22} className="text-accent" />
+                <p className="mt-3 font-bold">{group.title}</p>
+              </div>
+            ))}
           </div>
-        </div>
-      </section>
+        </BentoCard>
+
+        <BentoCard className="bg-[#ece9df] p-6 text-black lg:col-span-4">
+          <h2 className="text-2xl font-heading font-bold md:text-3xl">Let&apos;s build something useful</h2>
+          <p className="mt-4 max-w-xl text-base leading-7 text-black/62">
+            I&apos;m interested in technology, business systems, automation, and practical product ideas.
+          </p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Link href="/contact" className="inline-flex items-center gap-2 rounded-lg bg-black px-5 py-3 font-bold text-white">
+              Contact Me <ArrowRight size={17} />
+            </Link>
+            <a href={`mailto:${contactEmail}`} className="inline-flex items-center gap-2 rounded-lg bg-black/10 px-5 py-3 font-bold text-black">
+              <Mail size={17} /> Email
+            </a>
+          </div>
+        </BentoCard>
+
+        <BentoCard className="bg-[#d88a35]/82 p-4 text-black lg:col-span-3">
+          <div className="grid grid-cols-3 gap-3">
+            {[
+              { label: "LinkedIn", href: linkedInUrl },
+              { label: "GitHub", href: githubUrl },
+              { label: "Email", href: `mailto:${contactEmail}` },
+            ].map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                target={link.href.startsWith("http") ? "_blank" : undefined}
+                rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                className="grid aspect-square place-items-center rounded-lg bg-black/18 text-center text-xs font-black uppercase tracking-wider transition-transform hover:-translate-y-0.5"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+        </BentoCard>
+
+        <BentoCard className="bg-[#d8e0ce]/70 p-6 text-black lg:col-span-5">
+          <h2 className="text-2xl font-heading font-bold md:text-3xl">Project notes</h2>
+          <div className="mt-5 grid grid-cols-1 gap-3 md:grid-cols-3">
+            {projects.map((project) => (
+              <div key={project.title} className="rounded-lg bg-black/[0.08] p-4">
+                <p className="font-bold">{project.title}</p>
+                <p className="mt-2 text-sm leading-6 text-black/58">{project.status}</p>
+              </div>
+            ))}
+          </div>
+        </BentoCard>
+      </div>
     </div>
   );
 }
