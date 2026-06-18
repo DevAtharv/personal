@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --color-accent: #d94f1a;
-  --color-accent-hover: #b93f12;
+  --color-accent: #8bffbd;
+  --color-accent-hover: #5de89d;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-inter);
@@ -10,13 +10,16 @@
 }
 
 :root {
-  --background: #f8faf7;
-  --foreground: #171612;
+  --background: #050608;
+  --foreground: #f7f8f4;
 }
 
 body {
   background-color: var(--background);
-  background-image: linear-gradient(180deg, rgba(47, 125, 50, 0.035), transparent 26rem);
+  background-image:
+    radial-gradient(circle at 15% 0%, rgba(139, 255, 189, 0.11), transparent 28rem),
+    radial-gradient(circle at 90% 12%, rgba(91, 141, 239, 0.11), transparent 30rem),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 24rem);
   color: var(--foreground);
   font-family: var(--font-sans), sans-serif;
   @apply antialiased selection:bg-accent/30 selection:text-accent;

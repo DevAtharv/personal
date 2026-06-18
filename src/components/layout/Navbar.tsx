@@ -6,14 +6,7 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import clsx from "clsx";
-
-const navLinks = [
-  { name: "Home", path: "/" },
-  { name: "Work", path: "/work" },
-  { name: "Services", path: "/services" },
-  { name: "About", path: "/about" },
-  { name: "Contact", path: "/contact" },
-];
+import { navLinks } from "@/lib/site-content";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -33,7 +26,7 @@ export default function Navbar() {
       className={clsx(
         "fixed top-0 left-0 w-full z-50 transition-all duration-300",
         isScrolled
-          ? "bg-background/85 backdrop-blur-md border-b border-foreground/10 py-4"
+          ? "bg-background/80 backdrop-blur-xl border-b border-white/10 py-4"
           : "bg-transparent py-6"
       )}
     >
@@ -65,7 +58,7 @@ export default function Navbar() {
           ))}
           <Link
             href="/contact"
-            className="px-5 py-2.5 rounded-full bg-foreground text-background font-medium text-sm hover:bg-accent hover:text-white transition-all duration-300 shadow-[0_0_0_0_rgba(255,107,53,0)] hover:shadow-[0_0_20px_rgba(255,107,53,0.3)]"
+            className="px-5 py-2.5 rounded-lg bg-white text-black font-bold text-sm hover:bg-accent transition-all duration-300"
           >
             Let's Talk
           </Link>
@@ -89,7 +82,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-full left-0 w-full bg-background border-b border-foreground/10 shadow-2xl md:hidden"
+            className="absolute top-full left-0 w-full bg-background border-b border-white/10 shadow-2xl md:hidden"
           >
             <nav className="flex flex-col py-6 px-6 gap-6">
               {navLinks.map((link) => (
@@ -108,7 +101,7 @@ export default function Navbar() {
               <Link
                 href="/contact"
                 onClick={() => setMobileMenuOpen(false)}
-                className="mt-4 px-6 py-3 rounded-xl bg-accent text-white font-medium text-center hover:bg-accent-hover transition-colors"
+                className="mt-4 px-6 py-3 rounded-lg bg-white text-black font-bold text-center hover:bg-accent transition-colors"
               >
                 Let's Talk
               </Link>

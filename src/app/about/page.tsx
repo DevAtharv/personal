@@ -1,144 +1,75 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
-import { Terminal, Code2, Cpu, Rocket } from "lucide-react";
-
-const skills = [
-  {
-    category: "Frontend Development",
-    icon: Code2,
-    items: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "React Native"]
-  },
-  {
-    category: "Backend & Systems",
-    icon: Terminal,
-    items: ["Node.js", "PostgreSQL", "API Integrations", "Supabase", "Firebase"]
-  },
-  {
-    category: "Automation & AI",
-    icon: Cpu,
-    items: ["WhatsApp API", "Zapier", "Make", "OpenAI Integrations", "Custom Workflows"]
-  },
-  {
-    category: "Product & Growth",
-    icon: Rocket,
-    items: ["UI/UX Design", "SEO Optimization", "Lead Generation", "Analytics Setup"]
-  }
-];
-
-const timeline = [
-  {
-    year: "Present",
-    title: "Freelance Developer & Automation Expert",
-    description: "Building scalable web solutions and WhatsApp automation systems for D2C and consumer brands."
-  },
-  {
-    year: "2023",
-    title: "Frontend Developer",
-    description: "Developed enterprise dashboards and high-performance React applications."
-  },
-  {
-    year: "2022",
-    title: "Began Journey",
-    description: "Started learning web development and building small projects for local businesses."
-  }
-];
+import { interests, skillGroups } from "@/lib/site-content";
 
 export default function About() {
   return (
-    <div className="pt-32 pb-24 px-6 min-h-screen">
-      <div className="container mx-auto max-w-6xl">
-        {/* Intro Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-32">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h1 className="text-5xl md:text-7xl font-heading font-bold mb-6">Hello, I'm Atharv.</h1>
-            <h2 className="text-2xl text-accent font-medium mb-6">Developer & Automation Engineer</h2>
-            <div className="space-y-6 text-foreground/70 text-lg leading-relaxed">
+    <div className="min-h-screen px-6 pb-24 pt-32">
+      <div className="container mx-auto max-w-7xl">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="grid grid-cols-1 gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-start"
+        >
+          <div>
+            <p className="mb-4 text-sm font-bold uppercase tracking-[0.24em] text-accent">About me</p>
+            <h1 className="text-5xl font-heading font-bold leading-[1.02] text-white md:text-7xl">Learning by building useful things.</h1>
+            <div className="mt-8 space-y-6 text-lg leading-8 text-white/62">
               <p>
-                I specialize in building premium digital experiences that function as lead-generation machines. While many developers just build websites, I build complete business systems.
+                I&apos;m a Class 12 student interested in technology, finance, automation, and entrepreneurship.
               </p>
               <p>
-                My focus is primarily on FMCG, D2C, food, spice, tea, and consumer brands. I understand that for these businesses, a website needs to do more than just look good—it needs to convert visitors into loyal customers.
+                Over the last few years I&apos;ve focused on building practical projects and working with real businesses to understand how technology can solve operational challenges.
               </p>
               <p>
-                By combining modern tech stacks like Next.js with automation tools like WhatsApp APIs, I help businesses streamline their operations and scale efficiently.
+                I use vibe coding and AI-assisted tools to turn ideas into usable versions quickly, then keep improving them through feedback, operations, and real-world constraints.
               </p>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative"
-          >
-            {/* Image Placeholder */}
-            <div className="aspect-[4/5] rounded-lg bg-foreground/5 border border-foreground/10 relative overflow-hidden flex items-center justify-center">
-              <div className="absolute inset-0 bg-gradient-to-tr from-accent/20 to-transparent" />
-              <p className="text-foreground/40 font-heading font-bold text-2xl relative z-10">Atharv Agarwal</p>
+          <div className="rounded-lg border border-white/10 bg-white/[0.035] p-6">
+            <p className="text-sm font-bold uppercase tracking-[0.24em] text-white/38">Currently interested in</p>
+            <div className="mt-5 flex flex-wrap gap-2">
+              {interests.map((interest) => (
+                <span key={interest} className="rounded-md border border-white/10 bg-black/22 px-3 py-2 text-sm font-semibold text-white/66">
+                  {interest}
+                </span>
+              ))}
             </div>
-          </motion.div>
-        </div>
-
-        {/* Skills Section */}
-        <div className="mb-32">
-          <h2 className="text-4xl font-heading font-bold mb-12 text-center">My Tech Stack</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {skills.map((skill, index) => (
-              <motion.div
-                key={skill.category}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-foreground/5 border border-foreground/10 p-6 rounded-lg"
-              >
-                <skill.icon size={32} className="text-accent mb-6" />
-                <h3 className="text-xl font-bold mb-4">{skill.category}</h3>
-                <ul className="space-y-2">
-                  {skill.items.map(item => (
-                    <li key={item} className="text-foreground/70 font-medium">{item}</li>
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
           </div>
+        </motion.div>
+
+        <div className="mt-20 grid grid-cols-1 gap-6 lg:grid-cols-3">
+          {skillGroups.map((group, index) => (
+            <motion.article
+              key={group.title}
+              initial={{ opacity: 0, y: 22 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45, delay: index * 0.08 }}
+              className="rounded-lg border border-white/10 bg-white/[0.035] p-6"
+            >
+              <group.icon size={26} className="text-accent" />
+              <h2 className="mt-5 text-2xl font-bold text-white">{group.title}</h2>
+              <div className="mt-5 flex flex-wrap gap-2">
+                {group.items.map((item) => (
+                  <span key={item} className="rounded-md border border-white/10 bg-black/22 px-3 py-1 text-sm font-semibold text-white/62">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </motion.article>
+          ))}
         </div>
 
-        {/* Timeline Section */}
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-4xl font-heading font-bold mb-12 text-center">My Journey</h2>
-          <div className="space-y-12 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-foreground/10 before:to-transparent">
-            {timeline.map((item, index) => (
-              <motion.div
-                key={item.year}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active"
-              >
-                <div className="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-foreground/5 shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow shadow-foreground/5 text-accent font-bold text-sm">
-                  {item.year.substring(2)}
-                </div>
-                
-                <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 rounded-lg bg-foreground/5 border border-foreground/10 hover:border-accent/30 transition-colors">
-                  <div className="flex items-center justify-between mb-1">
-                    <div className="font-bold text-accent">{item.year}</div>
-                  </div>
-                  <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                  <p className="text-foreground/70">{item.description}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+        <div className="mt-20 rounded-lg border border-white/10 bg-white/[0.035] p-6 md:p-8">
+          <p className="text-sm font-bold uppercase tracking-[0.24em] text-accent">Core message</p>
+          <h2 className="mt-4 text-3xl font-heading font-bold text-white md:text-5xl">
+            Atharv builds real solutions for real problems.
+          </h2>
         </div>
-
       </div>
     </div>
   );

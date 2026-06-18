@@ -1,119 +1,68 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { CheckCircle2, Globe, MessageSquare, Workflow } from "lucide-react";
 import Link from "next/link";
-
-const services = [
-  {
-    id: "website-development",
-    title: "Website Development",
-    icon: Globe,
-    description: "High-performance, beautifully designed websites that serve as the digital storefront for your brand. Built for speed, SEO, and conversion.",
-    features: [
-      "Custom Website Design",
-      "Mobile Responsive Architecture",
-      "Technical SEO Optimization",
-      "Fast Performance & Loading",
-      "Premium SaaS Aesthetic"
-    ]
-  },
-  {
-    id: "whatsapp-automation",
-    title: "WhatsApp Automation",
-    icon: MessageSquare,
-    description: "Automated messaging workflows that capture leads, answer inquiries, and drive sales 24/7 without manual intervention.",
-    features: [
-      "Customer Inquiry Handling",
-      "Automated Lead Capture",
-      "Smart Auto-Responses",
-      "Business Logic Integration",
-      "D2C Order Updates"
-    ]
-  },
-  {
-    id: "business-systems",
-    title: "Business Systems",
-    icon: Workflow,
-    description: "Custom internal tools and integrations that connect your forms, CRM, and databases to streamline operations.",
-    features: [
-      "Custom Form Solutions",
-      "CRM Setup & Integration",
-      "Google Sheets Automation",
-      "Process & Workflow Automation",
-      "Data Syncing across Apps"
-    ]
-  }
-];
+import { ArrowRight } from "lucide-react";
+import { skillGroups, technologies } from "@/lib/site-content";
 
 export default function Services() {
   return (
-    <div className="pt-32 pb-24 px-6 min-h-screen relative">
-      <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-accent/5 to-transparent pointer-events-none" />
-      
-      <div className="container mx-auto relative z-10">
+    <div className="min-h-screen px-6 pb-24 pt-32">
+      <div className="container mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="max-w-3xl mb-20 text-center mx-auto"
+          className="mb-14 max-w-4xl"
         >
-          <h1 className="text-5xl md:text-7xl font-heading font-bold mb-6">Services</h1>
-          <p className="text-xl text-foreground/60 leading-relaxed">
-            End-to-end solutions combining premium design and robust engineering to scale your brand's digital presence.
+          <p className="mb-4 text-sm font-bold uppercase tracking-[0.24em] text-accent">How I build</p>
+          <h1 className="text-5xl font-heading font-bold leading-[1.02] text-white md:text-7xl">Vibe coding, tools, and business context.</h1>
+          <p className="mt-6 max-w-3xl text-lg leading-8 text-white/58 md:text-xl">
+            I use AI-assisted tools, strong taste, and practical business understanding to move from an idea to a usable system quickly.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <motion.div
-              key={service.id}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-foreground/5 border border-foreground/10 rounded-lg p-8 hover:bg-foreground/[0.07] transition-colors flex flex-col h-full"
-            >
-              <div className="w-16 h-16 rounded-lg bg-accent/10 flex items-center justify-center text-accent mb-8">
-                <service.icon size={32} />
-              </div>
-              
-              <h2 className="text-3xl font-heading font-bold mb-4">{service.title}</h2>
-              <p className="text-foreground/70 mb-8 flex-grow text-lg">
-                {service.description}
-              </p>
-              
-              <div className="mb-8">
-                <h3 className="text-sm font-bold uppercase tracking-wider text-foreground/50 mb-4">What's Included</h3>
-                <ul className="space-y-3">
-                  {service.features.map(feature => (
-                    <li key={feature} className="flex items-start gap-3 text-foreground/80 font-medium">
-                      <CheckCircle2 size={20} className="text-accent shrink-0 mt-0.5" />
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </motion.div>
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-4 lg:grid-cols-8">
+          {technologies.map((tool) => (
+            <div key={tool.name} className="flex min-h-24 flex-col justify-between rounded-lg border border-white/10 bg-white/[0.035] p-3">
+              <tool.icon size={19} className="text-accent" />
+              <span className="text-sm font-semibold text-white/72">{tool.name}</span>
+            </div>
           ))}
         </div>
 
-        <motion.div
-           initial={{ opacity: 0, y: 30 }}
-           whileInView={{ opacity: 1, y: 0 }}
-           viewport={{ once: true }}
-           className="mt-24 p-8 md:p-12 rounded-lg bg-accent text-white text-center relative overflow-hidden"
-        >
-          <h2 className="text-3xl md:text-5xl font-heading font-bold mb-6 relative z-10">Need a custom solution?</h2>
-          <p className="text-xl text-white/80 max-w-2xl mx-auto mb-10 relative z-10">
-            Every business is unique. I build tailored systems designed specifically for your brand's operational needs and growth goals.
+        <div className="mt-16 grid grid-cols-1 gap-6 lg:grid-cols-3">
+          {skillGroups.map((group, index) => (
+            <motion.article
+              key={group.title}
+              initial={{ opacity: 0, y: 22 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45, delay: index * 0.08 }}
+              className="rounded-lg border border-white/10 bg-white/[0.035] p-6"
+            >
+              <group.icon size={26} className="text-accent" />
+              <h2 className="mt-5 text-2xl font-bold text-white">{group.title}</h2>
+              <div className="mt-5 flex flex-wrap gap-2">
+                {group.items.map((item) => (
+                  <span key={item} className="rounded-md border border-white/10 bg-black/22 px-3 py-1 text-sm font-semibold text-white/62">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </motion.article>
+          ))}
+        </div>
+
+        <div className="mt-16 rounded-lg border border-white/10 bg-white px-6 py-10 text-black md:px-8">
+          <h2 className="text-3xl font-heading font-bold">Want to discuss a useful system?</h2>
+          <p className="mt-4 max-w-2xl text-black/62">
+            I&apos;m interested in business systems, automation, workflow design, and practical product ideas.
           </p>
-          <Link
-            href="/contact"
-            className="inline-block px-8 py-4 rounded-xl bg-white text-accent font-bold text-lg hover:bg-gray-100 transition-colors shadow-xl relative z-10"
-          >
-            Get a Custom Quote
+          <Link href="/contact" className="mt-6 inline-flex items-center gap-2 rounded-lg bg-black px-5 py-3 font-bold text-white">
+            Contact Me <ArrowRight size={16} />
           </Link>
-        </motion.div>
+        </div>
       </div>
     </div>
   );

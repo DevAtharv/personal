@@ -16,19 +16,19 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Atharv Agarwal | Premium Website Development & Automation",
-  description: "Specializing in high-converting websites and business automation for FMCG, D2C, food, spice, tea, and consumer brands.",
+  title: "Atharv Agarwal | Vibe Coding, Automation & Business Systems",
+  description: "Atharv Agarwal builds practical software, automations, and digital systems for real business problems using AI-assisted tools and execution.",
   openGraph: {
-    title: "Atharv Agarwal | Premium Website Development & Automation",
-    description: "Specializing in high-converting websites and business automation for FMCG, D2C, food, spice, tea, and consumer brands.",
+    title: "Atharv Agarwal | Vibe Coding, Automation & Business Systems",
+    description: "Building real solutions for real business problems through vibe coding, automation, and practical execution.",
     url: "https://atharvagarwal.in",
     siteName: "Atharv Agarwal",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Atharv Agarwal | Premium Website Development & Automation",
-    description: "Specializing in high-converting websites and business automation for FMCG, D2C, food, spice, tea, and consumer brands.",
+    title: "Atharv Agarwal | Vibe Coding, Automation & Business Systems",
+    description: "Building real solutions for real business problems through vibe coding, automation, and practical execution.",
   },
 };
 

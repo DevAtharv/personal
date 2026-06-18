@@ -2,8 +2,8 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
-import { clientProjects } from "@/lib/site-content";
+import { ArrowRight, CheckCircle2, ExternalLink } from "lucide-react";
+import { featuredWork } from "@/lib/site-content";
 
 export default function Work() {
   return (
@@ -15,80 +15,71 @@ export default function Work() {
           transition={{ duration: 0.5 }}
           className="mb-14 max-w-4xl"
         >
-          <p className="mb-4 text-sm font-bold uppercase tracking-[0.22em] text-accent">Selected work</p>
-          <h1 className="text-5xl font-heading font-bold leading-[1.02] md:text-7xl">Proof from food and FMCG builds.</h1>
-          <p className="mt-6 max-w-3xl text-lg leading-8 text-foreground/65 md:text-xl">
-            One live commerce storefront and one pre-launch spice brand system, both built around clear presentation, buyer trust, and measurable demand without heavy marketing spend.
+          <p className="mb-4 text-sm font-bold uppercase tracking-[0.24em] text-accent">Work</p>
+          <h1 className="text-5xl font-heading font-bold leading-[1.02] text-white md:text-7xl">Real businesses, real operating problems.</h1>
+          <p className="mt-6 max-w-3xl text-lg leading-8 text-white/58 md:text-xl">
+            This section is intentionally the most important part of the site. It shows the work connected to businesses, customers, ordering flows, and launch infrastructure.
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 gap-8">
-          {clientProjects.map((project, index) => (
+          {featuredWork.map((work, index) => (
             <motion.section
-              id={project.id}
-              key={project.id}
+              id={work.id}
+              key={work.id}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.08 }}
-              className="scroll-mt-28 overflow-hidden rounded-lg border border-foreground/10 bg-foreground/[0.03]"
+              className="scroll-mt-28 overflow-hidden rounded-lg border border-white/10 bg-white/[0.035]"
             >
-              <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr]">
-                <div className={`flex min-h-80 flex-col justify-between bg-gradient-to-br ${project.color} p-6 text-white md:p-8`}>
-                  <div className="flex flex-wrap items-center gap-3">
-                    <span className="rounded-full bg-white/15 px-3 py-1 text-xs font-bold uppercase tracking-wider">{project.status}</span>
-                    <span className="text-sm font-semibold text-white/78">{project.type}</span>
+              <div className="grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr]">
+                <div className="min-h-80 border-b border-white/10 bg-[radial-gradient(circle_at_30%_18%,rgba(139,255,189,0.22),transparent_17rem),linear-gradient(145deg,rgba(255,255,255,0.10),rgba(255,255,255,0.02))] p-6 lg:border-b-0 lg:border-r md:p-8">
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <span className="rounded-full border border-white/10 bg-black/25 px-3 py-1 text-xs font-bold uppercase tracking-wider text-white/70">{work.status}</span>
+                    <span className="text-xs font-bold uppercase tracking-[0.22em] text-accent">Featured</span>
                   </div>
-
-                  <div>
-                    <p className="text-sm font-bold uppercase tracking-[0.22em] text-white/65">{project.metricLabel}</p>
-                    <h2 className="mt-3 text-7xl font-heading font-bold md:text-8xl">{project.metric}</h2>
-                    <p className="mt-5 max-w-lg text-xl font-semibold leading-8 text-white/90">{project.outcome}</p>
+                  <div className="mt-24">
+                    <p className="text-sm font-bold uppercase tracking-[0.22em] text-white/40">{work.visualTitle}</p>
+                    <h2 className="mt-3 text-5xl font-heading font-bold text-white md:text-7xl">{work.title}</h2>
+                    <p className="mt-5 max-w-lg text-lg leading-8 text-white/58">{work.visualDetail}</p>
                   </div>
                 </div>
 
                 <div className="p-6 md:p-8 lg:p-10">
-                  <div className="flex flex-col justify-between gap-5 md:flex-row md:items-start">
-                    <div>
-                      <h2 className="text-4xl font-heading font-bold md:text-5xl">{project.title}</h2>
-                      <p className="mt-3 text-sm font-bold uppercase tracking-[0.18em] text-foreground/45">{project.type}</p>
+                  <p className="max-w-3xl text-xl leading-9 text-white/68">{work.description}</p>
+
+                  <div className="mt-9">
+                    <h3 className="text-sm font-bold uppercase tracking-[0.24em] text-white/38">
+                      {work.title === "Vadi Masala" ? "Responsibilities" : "Highlights"}
+                    </h3>
+                    <div className="mt-4 grid grid-cols-1 gap-3 md:grid-cols-2">
+                      {work.highlights.map((highlight) => (
+                        <div key={highlight} className="flex gap-3 rounded-lg border border-white/10 bg-black/22 p-4 text-sm leading-6 text-white/68">
+                          <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-accent" />
+                          <span>{highlight}</span>
+                        </div>
+                      ))}
                     </div>
-                    {project.url ? (
-                      <a
-                        href={project.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-foreground px-5 py-3 text-sm font-bold text-background transition-transform duration-300 hover:-translate-y-0.5 md:w-auto"
-                      >
-                        Visit Live Site <ArrowRight size={16} />
+                  </div>
+
+                  <div className="mt-8 rounded-lg border border-white/10 bg-black/25 p-5">
+                    <h3 className="text-sm font-bold uppercase tracking-[0.24em] text-white/38">
+                      {work.title === "Vadi Masala" ? "Focus" : "What I learned"}
+                    </h3>
+                    <p className="mt-3 leading-7 text-white/64">{work.learned}</p>
+                  </div>
+
+                  <div className="mt-8 flex flex-wrap gap-4">
+                    {work.url ? (
+                      <a href={work.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-lg bg-white px-5 py-3 text-sm font-bold text-black transition-transform hover:-translate-y-0.5">
+                        Visit Live Site <ExternalLink size={15} />
                       </a>
                     ) : (
-                      <Link
-                        href="/contact"
-                        className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-foreground px-5 py-3 text-sm font-bold text-background transition-transform duration-300 hover:-translate-y-0.5 md:w-auto"
-                      >
-                        Discuss Pre-launch <ArrowRight size={16} />
+                      <Link href="/contact" className="inline-flex items-center gap-2 rounded-lg bg-white px-5 py-3 text-sm font-bold text-black transition-transform hover:-translate-y-0.5">
+                        Discuss Launch Systems <ArrowRight size={16} />
                       </Link>
                     )}
-                  </div>
-
-                  <p className="mt-7 max-w-3xl text-lg leading-8 text-foreground/68">{project.description}</p>
-
-                  <div className="mt-8 grid grid-cols-1 gap-3 md:grid-cols-3">
-                    {project.highlights.map((highlight) => (
-                      <div key={highlight} className="rounded-lg border border-foreground/10 bg-background p-4">
-                        <CheckCircle2 size={20} className="mb-3 text-accent" />
-                        <p className="text-sm leading-6 text-foreground/70">{highlight}</p>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="mt-8 flex flex-wrap gap-2">
-                    {project.tags.map((tag) => (
-                      <span key={tag} className="rounded-md border border-foreground/10 bg-background px-3 py-1 text-xs font-semibold text-foreground/75">
-                        {tag}
-                      </span>
-                    ))}
                   </div>
                 </div>
               </div>

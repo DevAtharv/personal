@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Mail } from "lucide-react";
-import { contactEmail, githubUrl, linkedInUrl } from "@/lib/site-content";
+import { contactEmail, githubUrl, linkedInUrl, navLinks } from "@/lib/site-content";
 
 function GitHubMark() {
   return (
@@ -27,7 +27,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="border-t border-foreground/10 bg-background py-10">
+    <footer className="border-t border-white/10 bg-background py-10">
       <div className="container mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-[1.3fr_0.7fr_0.7fr]">
           <div>
@@ -35,7 +35,7 @@ export default function Footer() {
               atharv<span className="text-accent">.</span>
             </Link>
             <p className="mt-4 max-w-md text-foreground/60">
-              Building focused websites and inquiry systems for food, FMCG, D2C, spice, and consumer brands.
+              Vibe coding practical software, automations, and digital systems for real business problems.
             </p>
             <a href={`mailto:${contactEmail}`} className="mt-5 inline-flex font-semibold text-accent hover:text-accent-hover">
               {contactEmail}
@@ -45,10 +45,9 @@ export default function Footer() {
           <div>
             <h4 className="mb-4 font-semibold">Navigation</h4>
             <ul className="space-y-3 text-foreground/60">
-              <li><Link href="/work" className="hover:text-accent transition-colors">Work</Link></li>
-              <li><Link href="/services" className="hover:text-accent transition-colors">Services</Link></li>
-              <li><Link href="/about" className="hover:text-accent transition-colors">About</Link></li>
-              <li><Link href="/contact" className="hover:text-accent transition-colors">Contact</Link></li>
+              {navLinks.map((link) => (
+                <li key={link.path}><Link href={link.path} className="hover:text-accent transition-colors">{link.name}</Link></li>
+              ))}
             </ul>
           </div>
 
@@ -62,7 +61,7 @@ export default function Footer() {
                   target={social.href.startsWith("http") ? "_blank" : undefined}
                   rel={social.href.startsWith("http") ? "noopener noreferrer" : undefined}
                   aria-label={social.label}
-                  className="flex h-10 w-10 items-center justify-center rounded-lg border border-foreground/10 bg-foreground/5 text-foreground/70 transition-all hover:border-accent hover:bg-accent hover:text-white"
+                  className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-white/[0.035] text-foreground/70 transition-all hover:border-accent hover:bg-accent hover:text-black"
                 >
                   {social.icon}
                 </a>
@@ -71,9 +70,9 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col justify-between gap-4 border-t border-foreground/10 pt-6 text-sm text-foreground/45 md:flex-row md:items-center">
+        <div className="mt-10 flex flex-col justify-between gap-4 border-t border-white/10 pt-6 text-sm text-foreground/45 md:flex-row md:items-center">
           <p>&copy; {currentYear} Atharv Agarwal. All rights reserved.</p>
-          <p>Built for measurable brand outcomes.</p>
+          <p>Real solutions for real problems.</p>
         </div>
       </div>
     </footer>
