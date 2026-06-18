@@ -19,7 +19,7 @@ export default function ContactFab() {
       aria-label="Email Atharv"
     >
       <Mail size={24} />
-      <span className="absolute right-full mr-3 hidden whitespace-nowrap rounded-full border border-[#e3e8ee] bg-white px-3 py-2 text-sm font-medium text-[#0d253d] shadow-[0_8px_24px_rgba(0,55,112,0.12)] md:block">
+      <span className="absolute right-full mr-3 hidden whitespace-nowrap rounded-full bg-white px-3 py-2 text-sm font-medium text-[#0d253d] shadow-[0_12px_34px_rgba(13,37,61,0.08)] ring-1 ring-[#edf2f7] md:block">
         Email me
       </span>
     </motion.a>

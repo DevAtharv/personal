@@ -32,10 +32,10 @@ export default function Work() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.08 }}
-              className="scroll-mt-28 overflow-hidden rounded-xl border border-[#e3e8ee] bg-white shadow-[0_8px_24px_rgba(0,55,112,0.08)]"
+              className="scroll-mt-28 overflow-hidden rounded-xl bg-white shadow-[0_16px_42px_rgba(13,37,61,0.065)] ring-1 ring-[#edf2f7]"
             >
               <div className="grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr]">
-                <div className="min-h-80 border-b border-[#e3e8ee] bg-[radial-gradient(circle_at_22%_10%,rgba(185,185,249,0.55),transparent_16rem),radial-gradient(circle_at_92%_0%,rgba(245,233,212,0.9),transparent_15rem),linear-gradient(145deg,#f6f9fc,#ffffff)] p-6 lg:border-b-0 lg:border-r md:p-8">
+                <div className="min-h-80 border-b border-[#edf2f7] bg-[radial-gradient(circle_at_22%_10%,rgba(185,185,249,0.55),transparent_16rem),radial-gradient(circle_at_92%_0%,rgba(245,233,212,0.9),transparent_15rem),linear-gradient(145deg,#f6f9fc,#ffffff)] p-6 lg:border-b-0 lg:border-r lg:border-[#edf2f7] md:p-8">
                   <div className="flex flex-wrap items-center justify-between gap-3">
                     <span className="rounded-full bg-[#b9b9f9] px-3 py-1 text-xs font-medium uppercase text-[#4434d4]">{work.status}</span>
                     <span className="text-xs font-medium uppercase text-accent">Featured</span>

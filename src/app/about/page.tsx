@@ -30,7 +30,7 @@ export default function About() {
             </div>
           </div>
 
-          <div className="rounded-xl border border-[#e3e8ee] bg-white p-6 shadow-[0_8px_24px_rgba(0,55,112,0.08)]">
+          <div className="rounded-xl bg-white p-6 shadow-[0_16px_42px_rgba(13,37,61,0.065)] ring-1 ring-[#edf2f7]">
             <p className="text-sm font-medium uppercase text-[#64748d]">Currently interested in</p>
             <div className="mt-5 flex flex-wrap gap-2">
               {interests.map((interest) => (
@@ -50,7 +50,7 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.45, delay: index * 0.08 }}
-              className="rounded-xl border border-[#e3e8ee] bg-white p-6 shadow-[0_1px_3px_rgba(0,55,112,0.08)]"
+              className="rounded-xl bg-white p-6 shadow-[0_12px_34px_rgba(13,37,61,0.06)] ring-1 ring-[#edf2f7]"
             >
               <group.icon size={26} className="text-accent" />
               <h2 className="mt-5 text-2xl font-light text-[#0d253d]">{group.title}</h2>
