@@ -2,10 +2,18 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { CheckCircle2, Linkedin, Mail, MapPin } from "lucide-react";
+import { CheckCircle2, Mail, MapPin } from "lucide-react";
 import { contactEmail, linkedInUrl } from "@/lib/site-content";
 
 type FormStatus = "idle" | "submitting" | "success";
+
+function LinkedInMark() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M19 3A2 2 0 0 1 21 5v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14ZM8.34 18v-7.47H5.86V18h2.48ZM7.1 9.51c.86 0 1.4-.57 1.4-1.28-.02-.73-.54-1.28-1.38-1.28-.84 0-1.39.55-1.39 1.28 0 .71.53 1.28 1.35 1.28h.02ZM18.24 18v-4.28c0-2.29-1.22-3.35-2.85-3.35-1.31 0-1.9.72-2.23 1.23v-1.07h-2.48c.03.7 0 7.47 0 7.47h2.48v-4.17c0-.22.02-.45.08-.61.18-.45.58-.91 1.25-.91.88 0 1.24.68 1.24 1.67V18h2.51Z" />
+    </svg>
+  );
+}
 
 export default function Contact() {
   const [formState, setFormState] = useState<{
@@ -89,7 +97,7 @@ export default function Contact() {
 
                 <a href={linkedInUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-foreground/80 transition-colors hover:text-accent">
                   <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-accent/10 text-accent">
-                    <Linkedin size={20} />
+                    <LinkedInMark />
                   </span>
                   <span>
                     <span className="block text-sm text-foreground/50">LinkedIn</span>
