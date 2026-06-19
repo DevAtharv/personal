@@ -16,9 +16,9 @@ export default function Work() {
           className="max-w-4xl"
         >
           <p className="mb-5 text-sm font-medium uppercase text-accent">Work</p>
-          <h1 className="text-5xl font-light leading-[1.03] md:text-7xl">Real businesses, real operating problems.</h1>
+          <h1 className="text-5xl font-light leading-[1.03] md:text-7xl">Software systems for real business operations.</h1>
           <p className="mt-7 max-w-3xl text-lg font-light leading-8 text-[#4c5562] md:text-xl">
-            The work here is connected to customers, ordering flows, launch preparation, and the boring operational gaps that software can quietly fix.
+            Each project is framed by the business problem, the system built, and the operational impact. Pulps & Leaves is the primary proof because it is live and connected to real orders.
           </p>
         </motion.div>
 
@@ -54,10 +54,21 @@ export default function Work() {
                 <div className="self-center">
                   <p className="max-w-3xl text-xl font-light leading-9 text-[#27303a]">{work.description}</p>
 
-                  <div className="mt-9">
-                    <h3 className="text-sm font-medium uppercase text-[#1463ff]">
-                      {work.title === "Vadi Masala" ? "Responsibilities" : "Highlights"}
-                    </h3>
+                  <div className="mt-9 grid gap-3">
+                    {[
+                      ["Problem", work.problem],
+                      ["Solution built", work.solution],
+                      ["Business impact", work.impact],
+                    ].map(([label, value]) => (
+                      <div key={label} className="rounded-lg bg-[#f5f7fb] p-4">
+                        <h3 className="text-sm font-medium uppercase text-[#1463ff]">{label}</h3>
+                        <p className="mt-3 text-sm leading-6 text-[#4c5562]">{value}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mt-8">
+                    <h3 className="text-sm font-medium uppercase text-[#1463ff]">Systems built</h3>
                     <div className="mt-4 grid gap-3 md:grid-cols-2">
                       {work.highlights.map((highlight) => (
                         <div key={highlight} className="flex gap-3 rounded-lg bg-[#f5f7fb] p-4 text-sm leading-6 text-[#4c5562]">
@@ -69,9 +80,19 @@ export default function Work() {
                   </div>
 
                   <div className="mt-8 rounded-lg bg-[#fff2ed] p-5">
-                    <h3 className="text-sm font-medium uppercase text-[#ff6b4a]">
-                      {work.title === "Vadi Masala" ? "Focus" : "What I learned"}
-                    </h3>
+                    <h3 className="text-sm font-medium uppercase text-[#ff6b4a]">Proof points</h3>
+                    <div className="mt-3 grid gap-2">
+                      {work.proofPoints.map((point) => (
+                        <div key={point} className="flex gap-2 text-sm leading-6 text-[#4c5562]">
+                          <CheckCircle2 size={16} className="mt-1 shrink-0 text-[#ff6b4a]" />
+                          <span>{point}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="mt-8 rounded-lg bg-[#f5f7fb] p-5">
+                    <h3 className="text-sm font-medium uppercase text-[#1463ff]">What this taught me</h3>
                     <p className="mt-3 leading-7 text-[#4c5562]">{work.learned}</p>
                   </div>
 
@@ -82,7 +103,7 @@ export default function Work() {
                       </a>
                     ) : (
                       <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-accent px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-accent-hover">
-                        Discuss launch systems <ArrowRight size={16} />
+                        Discuss a launch system <ArrowRight size={16} />
                       </Link>
                     )}
                   </div>

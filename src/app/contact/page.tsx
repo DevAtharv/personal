@@ -40,9 +40,9 @@ export default function Contact() {
     const phone = String(formData.get("phone") || "").trim();
     const message = String(formData.get("message") || "").trim();
 
-    const subject = `Website inquiry from ${name}${company ? ` at ${company}` : ""}`;
+    const subject = `Business system inquiry from ${name}${company ? ` at ${company}` : ""}`;
     const body = [
-      "New website inquiry",
+      "New business system inquiry",
       "",
       `Name: ${name}`,
       `Brand / Company: ${company || "Not shared"}`,
@@ -50,7 +50,7 @@ export default function Contact() {
       `LinkedIn / Social: ${social}`,
       `Phone / WhatsApp: ${phone || "Not shared"}`,
       "",
-      "Project details:",
+      "Business workflow / system needed:",
       message,
     ].join("\n");
 
@@ -71,10 +71,10 @@ export default function Contact() {
           transition={{ duration: 0.5 }}
           className="mx-auto mb-14 max-w-3xl text-center"
         >
-          <p className="mb-5 text-sm font-medium uppercase text-accent">Contact</p>
-          <h1 className="text-5xl font-light leading-[1.03] md:text-7xl">Let&apos;s build something useful.</h1>
+          <p className="mb-5 text-sm font-medium uppercase text-accent">Work with me</p>
+          <h1 className="text-5xl font-light leading-[1.03] md:text-7xl">Build a system for your business.</h1>
           <p className="mt-7 text-lg font-light leading-8 text-[#4c5562]">
-            I&apos;m always interested in discussing technology, business systems, automation, and new ideas.
+            Send the business context, the workflow that is slowing you down, and what you want improved.
           </p>
         </motion.div>
 
@@ -123,7 +123,7 @@ export default function Contact() {
             <div className="rounded-lg bg-[#fff2ed] p-6 text-[#4c5562]">
               <p className="text-sm font-medium uppercase text-[#ff6b4a]">Best fit</p>
               <p className="mt-3 text-lg font-light">
-                Technology, business systems, automation, and practical product ideas.
+                Business websites, order workflows, customer communication, Google Sheets operations, and automation.
               </p>
             </div>
           </motion.aside>
@@ -180,7 +180,7 @@ export default function Contact() {
 
                   <div className="space-y-2">
                     <label htmlFor="message" className="text-sm font-medium text-[#27303a]">Message *</label>
-                    <textarea required name="message" id="message" rows={6} className={`${inputClass} resize-none`} placeholder="Tell me about the idea, system, workflow, or business problem." />
+                    <textarea required name="message" id="message" rows={6} className={`${inputClass} resize-none`} placeholder="Tell me what is broken, what you want built, and what outcome matters." />
                   </div>
 
                   <button
@@ -188,7 +188,7 @@ export default function Contact() {
                     disabled={formState.status === "submitting"}
                     className="w-full rounded-full bg-accent py-4 text-lg font-medium text-white transition-colors duration-300 hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-70"
                   >
-                    {formState.status === "submitting" ? "Preparing..." : "Submit Inquiry"}
+                    {formState.status === "submitting" ? "Preparing..." : "Discuss a project"}
                   </button>
                 </div>
               )}

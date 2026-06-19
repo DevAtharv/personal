@@ -5,8 +5,8 @@ import { Mail } from "lucide-react";
 import { contactEmail } from "@/lib/site-content";
 
 export default function ContactFab() {
-  const subject = "Website inquiry";
-  const body = "Hi Atharv,\n\nI want to discuss an idea, workflow, automation, or business system.\n\nMy email:\nMy LinkedIn/social profile:\nDetails:";
+  const subject = "Build a system for my business";
+  const body = "Hi Atharv,\n\nI want to discuss a business workflow, website, order system, customer communication setup, or automation.\n\nMy email:\nMy LinkedIn/social profile:\nBusiness context:\nWhat I want improved:";
   const mailUrl = `mailto:${contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
   return (

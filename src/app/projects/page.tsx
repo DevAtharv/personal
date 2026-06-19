@@ -14,9 +14,9 @@ export default function Projects() {
           className="max-w-4xl"
         >
           <p className="mb-5 text-sm font-medium uppercase text-accent">Projects</p>
-          <h1 className="text-5xl font-light leading-[1.03] md:text-7xl">Experiments and product ideas.</h1>
+          <h1 className="text-5xl font-light leading-[1.03] md:text-7xl">Experiments, separate from client work.</h1>
           <p className="mt-7 max-w-3xl text-lg font-light leading-8 text-[#4c5562] md:text-xl">
-            Learning projects and prototypes, presented honestly as experiments instead of inflated startup claims.
+            These projects show learning and product thinking. The main proof of business execution is in the Work section.
           </p>
         </motion.div>
 
@@ -34,7 +34,18 @@ export default function Projects() {
                 <h2 className="mt-6 text-4xl font-light">{project.title}</h2>
               </div>
               <div>
-                <p className="text-lg font-light leading-8 text-[#4c5562]">{project.description}</p>
+                <div className="grid gap-3">
+                  {[
+                    ["Problem", project.problem],
+                    ["Solution", project.solution],
+                    ["Learning impact", project.impact],
+                  ].map(([label, value]) => (
+                    <div key={label}>
+                      <p className="text-xs font-medium uppercase text-[#1463ff]">{label}</p>
+                      <p className="mt-1 text-sm leading-6 text-[#4c5562]">{value}</p>
+                    </div>
+                  ))}
+                </div>
                 <div className="mt-6 flex flex-wrap gap-2">
                   {project.tech.map((item) => (
                     <span key={item} className="rounded-full bg-white px-3 py-1 text-sm font-medium text-[#27303a]">

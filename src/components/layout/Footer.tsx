@@ -35,7 +35,7 @@ export default function Footer() {
               atharv<span className="text-accent">.</span>
             </Link>
             <p className="mt-4 max-w-md text-white/58">
-              Vibe coding practical software, automations, and digital systems for real business problems.
+              Software and automation systems for small businesses that need clearer operations, customer communication, and order workflows.
             </p>
             <a href={`mailto:${contactEmail}`} className="mt-5 inline-flex font-medium text-accent hover:text-accent-hover">
               {contactEmail}

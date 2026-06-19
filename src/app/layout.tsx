@@ -16,19 +16,19 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Atharv Agarwal | Vibe Coding, Automation & Business Systems",
-  description: "Atharv Agarwal builds practical software, automations, and digital systems for real business problems using AI-assisted tools and execution.",
+  title: "Atharv Agarwal | Software & Automation Systems for Small Businesses",
+  description: "Atharv Agarwal builds software and automation systems that help small businesses improve operations, customer communication, and order workflows.",
   openGraph: {
-    title: "Atharv Agarwal | Vibe Coding, Automation & Business Systems",
-    description: "Building real solutions for real business problems through vibe coding, automation, and practical execution.",
+    title: "Atharv Agarwal | Software & Automation Systems for Small Businesses",
+    description: "Building real software and automation systems that help businesses operate better.",
     url: "https://atharvagarwal.in",
     siteName: "Atharv Agarwal",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Atharv Agarwal | Vibe Coding, Automation & Business Systems",
-    description: "Building real solutions for real business problems through vibe coding, automation, and practical execution.",
+    title: "Atharv Agarwal | Software & Automation Systems",
+    description: "Building practical systems for business operations, customer workflows, and automation.",
   },
 };
 

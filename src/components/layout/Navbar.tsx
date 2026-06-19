@@ -52,7 +52,7 @@ export default function Navbar() {
             href="/contact"
             className="rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-accent-hover"
           >
-            Let's Talk
+            Work with me
           </Link>
         </nav>
 
@@ -95,7 +95,7 @@ export default function Navbar() {
                 onClick={() => setMobileMenuOpen(false)}
                 className="mt-4 px-6 py-3 rounded-full bg-accent text-white font-medium text-center hover:bg-accent-hover transition-colors"
               >
-                Let's Talk
+                Work with me
               </Link>
             </nav>
           </motion.div>

@@ -3,7 +3,16 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, ExternalLink, Sparkles } from "lucide-react";
-import { featuredWork, heroStats, interests, projects, skillGroups, technologies } from "@/lib/site-content";
+import {
+  capabilityGroups,
+  developmentStack,
+  featuredWork,
+  heroStats,
+  interests,
+  positioning,
+  projects,
+  proofOfWork,
+} from "@/lib/site-content";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 18 },
@@ -11,37 +20,35 @@ const fadeUp = {
 };
 
 function BuilderVisual() {
+  const primaryWork = featuredWork[0];
+
   return (
-    <div className="relative min-h-[440px] overflow-hidden rounded-lg bg-[#111318] p-5 text-white shadow-[0_32px_100px_rgba(17,19,24,0.22)]">
+    <div className="relative min-h-[460px] overflow-hidden rounded-lg bg-[#111318] p-5 text-white shadow-[0_32px_100px_rgba(17,19,24,0.22)]">
       <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-[#15b8a6]/35 blur-3xl" />
       <div className="absolute -bottom-16 left-8 h-56 w-56 rounded-full bg-[#ff6b4a]/28 blur-3xl" />
 
       <div className="relative flex items-center justify-between">
-        <p className="text-sm text-white/58">builder.os</p>
-        <span className="rounded-full bg-white px-3 py-1 text-xs font-medium text-[#111318]">live work</span>
+        <p className="text-sm text-white/58">business.systems</p>
+        <span className="rounded-full bg-white px-3 py-1 text-xs font-medium text-[#111318]">proof first</span>
       </div>
 
-      <div className="relative mt-16">
+      <div className="relative mt-14">
         <p className="max-w-sm text-4xl font-light leading-tight">
-          Systems that make business operations easier to run.
+          Software systems that make operations easier to run.
         </p>
 
-        <div className="mt-10 grid gap-3">
-          {featuredWork.map((work) => (
-            <div key={work.id} className="grid gap-4 rounded-lg bg-white/[0.08] p-4 sm:grid-cols-[1fr_auto] sm:items-center">
-              <div>
-                <p className="text-lg font-medium">{work.title}</p>
-                <p className="mt-1 text-sm leading-6 text-white/58">{work.visualDetail}</p>
-              </div>
-              <span className="w-fit rounded-full bg-[#15b8a6] px-3 py-1 text-xs font-medium text-[#071714]">
-                {work.status}
-              </span>
-            </div>
-          ))}
+        <div className="mt-10 rounded-lg bg-white/[0.08] p-4">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <p className="text-lg font-medium">{primaryWork.title}</p>
+            <span className="rounded-full bg-[#15b8a6] px-3 py-1 text-xs font-medium text-[#071714]">
+              {primaryWork.status}
+            </span>
+          </div>
+          <p className="mt-3 text-sm leading-6 text-white/58">{primaryWork.visualDetail}</p>
         </div>
 
         <div className="mt-8 grid grid-cols-3 gap-2">
-          {["Website", "Automation", "Launch"].map((item, index) => (
+          {["Problem", "System", "Impact"].map((item, index) => (
             <div key={item} className="rounded-lg bg-white px-3 py-3 text-[#111318]">
               <p className="text-xs text-[#606873]">0{index + 1}</p>
               <p className="mt-4 text-sm font-medium">{item}</p>
@@ -49,6 +56,15 @@ function BuilderVisual() {
           ))}
         </div>
       </div>
+    </div>
+  );
+}
+
+function CaseStudyBlock({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-lg bg-white p-4">
+      <p className="text-xs font-medium uppercase text-[#1463ff]">{label}</p>
+      <p className="mt-3 text-sm leading-6 text-[#4c5562]">{value}</p>
     </div>
   );
 }
@@ -64,25 +80,24 @@ export default function Home() {
             <div className="mb-7 flex flex-wrap items-center gap-3">
               <span className="rounded-full bg-[#111318] px-4 py-2 text-sm font-medium text-white">Atharv Agarwal</span>
               <span className="rounded-full bg-white px-4 py-2 text-sm font-medium text-[#606873] shadow-[0_12px_34px_rgba(17,19,24,0.06)]">
-                Vibe coding real systems
+                {positioning.short}
               </span>
             </div>
 
             <h1 className="max-w-5xl text-5xl font-light leading-[1.02] text-[#111318] md:text-7xl">
-              I build useful software and automations for growing businesses.
+              {positioning.headline}
             </h1>
 
             <p className="mt-7 max-w-2xl text-lg font-light leading-8 text-[#4c5562]">
-              I use AI tools, product taste, and business context to move from messy operations to usable websites,
-              workflows, and launch systems.
+              {positioning.subheadline}
             </p>
 
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <Link href="/work" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#1463ff] px-5 py-3 font-medium text-white transition-colors hover:bg-[#0f4ec7]">
-                View work <ArrowRight size={17} />
+              <Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#1463ff] px-5 py-3 font-medium text-white transition-colors hover:bg-[#0f4ec7]">
+                Work with me <ArrowRight size={17} />
               </Link>
-              <Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-5 py-3 font-medium text-[#111318] shadow-[0_12px_34px_rgba(17,19,24,0.07)] transition-colors hover:bg-[#eef3f8]">
-                Contact me
+              <Link href="/work" className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-5 py-3 font-medium text-[#111318] shadow-[0_12px_34px_rgba(17,19,24,0.07)] transition-colors hover:bg-[#eef3f8]">
+                See proof of work
               </Link>
             </div>
           </motion.div>
@@ -104,15 +119,38 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="work" className="bg-white px-6 py-24">
+      <section className="bg-white px-6 py-24">
+        <div className="container mx-auto max-w-7xl">
+          <div className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
+            <div>
+              <p className="mb-4 text-sm font-medium uppercase text-[#1463ff]">Proof of work</p>
+              <h2 className="text-4xl font-light leading-tight md:text-6xl">Real systems built for business operations.</h2>
+            </div>
+            <p className="max-w-2xl text-lg font-light leading-8 text-[#4c5562]">
+              Proof here means shipped work, operational systems, customer workflows, and business context. The strongest proof is Pulps & Leaves because it is live and connected to real orders.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            {proofOfWork.map((proof) => (
+              <article key={proof.label} className="rounded-lg bg-[#f5f7fb] p-5">
+                <p className="text-sm font-medium text-[#111318]">{proof.label}</p>
+                <p className="mt-3 text-sm leading-6 text-[#606873]">{proof.detail}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="work" className="px-6 py-24">
         <div className="container mx-auto max-w-7xl">
           <div className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
             <div>
               <p className="mb-4 text-sm font-medium uppercase text-[#1463ff]">Featured work</p>
-              <h2 className="text-4xl font-light leading-tight md:text-6xl">Real businesses, not portfolio filler.</h2>
+              <h2 className="text-4xl font-light leading-tight md:text-6xl">Problem, system, impact.</h2>
             </div>
             <p className="max-w-2xl text-lg font-light leading-8 text-[#4c5562]">
-              The strongest work here is connected to customers, operations, ordering flows, communication, and launch infrastructure.
+              Each project is framed by what was broken, what was built, and what changed for the business.
             </p>
           </div>
 
@@ -125,7 +163,7 @@ export default function Home() {
                 whileInView="visible"
                 viewport={{ once: true }}
                 transition={{ duration: 0.45, delay: index * 0.08 }}
-                className="grid gap-8 rounded-lg bg-[#f5f7fb] p-6 shadow-[0_24px_70px_rgba(17,19,24,0.06)] md:p-8 lg:grid-cols-[0.9fr_1.1fr]"
+                className="grid gap-8 rounded-lg bg-white p-6 shadow-[0_24px_70px_rgba(17,19,24,0.07)] md:p-8 lg:grid-cols-[0.9fr_1.1fr]"
               >
                 <div className="flex min-h-72 flex-col justify-between rounded-lg bg-[#111318] p-6 text-white">
                   <div className="flex items-center justify-between gap-4">
@@ -145,15 +183,19 @@ export default function Home() {
 
                 <div className="self-center">
                   <p className="text-xl font-light leading-9 text-[#27303a]">{work.description}</p>
-                  <div className="mt-7 grid gap-3 sm:grid-cols-2">
-                    {work.highlights.slice(0, 4).map((highlight) => (
-                      <div key={highlight} className="flex items-start gap-3 rounded-lg bg-white p-4">
-                        <CheckCircle2 size={18} className="mt-1 shrink-0 text-[#15b8a6]" />
-                        <span className="text-sm leading-6 text-[#4c5562]">{highlight}</span>
+                  <div className="mt-7 grid gap-3">
+                    <CaseStudyBlock label="Problem" value={work.problem} />
+                    <CaseStudyBlock label="Solution built" value={work.solution} />
+                    <CaseStudyBlock label="Business impact" value={work.impact} />
+                  </div>
+                  <div className="mt-7 grid gap-2 sm:grid-cols-2">
+                    {work.proofPoints.map((point) => (
+                      <div key={point} className="flex items-start gap-2 text-sm leading-6 text-[#4c5562]">
+                        <CheckCircle2 size={16} className="mt-1 shrink-0 text-[#15b8a6]" />
+                        <span>{point}</span>
                       </div>
                     ))}
                   </div>
-                  <p className="mt-7 rounded-lg bg-[#fff2ed] p-4 text-sm leading-6 text-[#4c5562]">{work.learned}</p>
                 </div>
               </motion.article>
             ))}
@@ -161,22 +203,25 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-6 py-24">
+      <section className="bg-white px-6 py-24">
         <div className="container mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.8fr_1.2fr]">
           <div>
-            <p className="mb-4 text-sm font-medium uppercase text-[#1463ff]">Tools and approach</p>
-            <h2 className="text-4xl font-light leading-tight md:text-5xl">AI tools, taste, and fast execution.</h2>
+            <p className="mb-4 text-sm font-medium uppercase text-[#1463ff]">How I build</p>
+            <h2 className="text-4xl font-light leading-tight md:text-5xl">
+              AI-assisted product development stack for rapid building and deployment.
+            </h2>
             <p className="mt-5 max-w-xl text-lg font-light leading-8 text-[#4c5562]">
-              I do not pretend to have a traditional senior-engineer stack. I use modern AI tools to build useful versions quickly and learn from real constraints.
+              The tools are secondary. The goal is to understand a business workflow, build a usable system, connect the operations, and improve it with real feedback.
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
-            {technologies.map((tool) => (
-              <div key={tool.name} className="rounded-lg bg-white p-4 shadow-[0_18px_46px_rgba(17,19,24,0.06)]">
-                <tool.icon size={21} className="text-[#1463ff]" />
-                <p className="mt-7 text-sm font-medium text-[#27303a]">{tool.name}</p>
-              </div>
+          <div className="grid gap-3 md:grid-cols-2">
+            {developmentStack.map((step) => (
+              <article key={step.name} className="rounded-lg bg-[#f5f7fb] p-5">
+                <step.icon size={22} className="text-[#1463ff]" />
+                <h3 className="mt-5 text-xl font-light">{step.name}</h3>
+                <p className="mt-3 text-sm leading-6 text-[#606873]">{step.detail}</p>
+              </article>
             ))}
           </div>
         </div>
@@ -190,7 +235,7 @@ export default function Home() {
               <h2 className="text-4xl font-light leading-tight md:text-5xl">Built around practical business systems.</h2>
             </div>
             <div className="grid gap-4">
-              {skillGroups.map((group) => (
+              {capabilityGroups.map((group) => (
                 <article key={group.title} className="rounded-lg bg-white/[0.07] p-5">
                   <div className="flex items-center gap-3">
                     <group.icon size={22} className="text-[#15b8a6]" />
@@ -214,8 +259,8 @@ export default function Home() {
         <div className="container mx-auto max-w-7xl">
           <div className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr]">
             <div>
-              <p className="mb-4 text-sm font-medium uppercase text-[#1463ff]">Projects</p>
-              <h2 className="text-4xl font-light leading-tight md:text-5xl">Experiments, clearly labeled.</h2>
+              <p className="mb-4 text-sm font-medium uppercase text-[#1463ff]">Experiments</p>
+              <h2 className="text-4xl font-light leading-tight md:text-5xl">Side projects, kept in the right place.</h2>
             </div>
             <div className="grid gap-3">
               {projects.map((project) => (
@@ -225,7 +270,7 @@ export default function Home() {
                     <h3 className="mt-5 text-2xl font-light">{project.title}</h3>
                   </div>
                   <div>
-                    <p className="leading-7 text-[#4c5562]">{project.description}</p>
+                    <p className="leading-7 text-[#4c5562]">{project.impact}</p>
                     <div className="mt-4 flex flex-wrap gap-2">
                       {project.tech.map((item) => (
                         <span key={item} className="rounded-full bg-white px-3 py-1 text-sm font-medium text-[#27303a]">
@@ -245,9 +290,9 @@ export default function Home() {
         <div className="container mx-auto grid max-w-7xl gap-8 rounded-lg bg-[#111318] p-8 text-white shadow-[0_30px_90px_rgba(17,19,24,0.18)] md:p-10 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
             <p className="mb-4 text-sm font-medium uppercase text-[#15b8a6]">About</p>
-            <h2 className="text-4xl font-light leading-tight md:text-5xl">A Class 12 student learning through execution.</h2>
+            <h2 className="text-4xl font-light leading-tight md:text-5xl">A young builder learning through real business work.</h2>
             <p className="mt-6 max-w-3xl text-lg font-light leading-8 text-white/66">
-              I am interested in technology, finance, automation, and entrepreneurship. I enjoy turning ideas into usable products and learning through real work.
+              I am a Class 12 student focused on building software, automation, and digital systems for small businesses. I learn by shipping useful systems, working with real operational problems, and improving what businesses actually use.
             </p>
           </div>
           <div className="flex content-end flex-wrap gap-2 self-end">
@@ -266,15 +311,15 @@ export default function Home() {
             <div>
               <div className="mb-4 flex items-center gap-2 text-[#1463ff]">
                 <Sparkles size={18} />
-                <p className="text-sm font-medium uppercase">Contact</p>
+                <p className="text-sm font-medium uppercase">Work with me</p>
               </div>
-              <h2 className="text-4xl font-light leading-tight md:text-5xl">Let&apos;s build something useful.</h2>
+              <h2 className="text-4xl font-light leading-tight md:text-5xl">Build a system for your business.</h2>
               <p className="mt-5 max-w-2xl text-lg font-light leading-8 text-[#4c5562]">
-                I&apos;m always interested in discussing technology, business systems, automation, and practical ideas.
+                If your business needs a website, workflow, ordering system, customer communication setup, or automation, send the context and I will reply with next steps.
               </p>
             </div>
             <Link href="/contact" className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-[#1463ff] px-5 py-3 font-medium text-white transition-colors hover:bg-[#0f4ec7]">
-              Contact me <ArrowRight size={17} />
+              Discuss a project <ArrowRight size={17} />
             </Link>
           </div>
         </div>
