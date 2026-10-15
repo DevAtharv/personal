@@ -59,7 +59,7 @@ export default function Home() {
                 <p className="mt-3 max-w-sm font-heading text-3xl leading-tight sm:text-4xl">Software, automation, and the operational details in between.</p>
               </div>
             </div>
-            <div className="absolute -bottom-5 -left-3 max-w-[230px] rounded-2xl bg-[#f05d45] p-5 text-white shadow-[0_22px_50px_rgba(62,45,35,0.22)] sm:-left-8">
+            <div className="mt-5 ml-auto max-w-[230px] rounded-2xl bg-[#f05d45] p-5 text-white shadow-[0_22px_50px_rgba(62,45,35,0.22)]">
               <p className="font-heading text-3xl leading-none">01</p>
               <p className="mt-4 text-sm leading-5 text-white/82">Build useful systems, then make them easier to run.</p>
             </div>
