@@ -27,17 +27,17 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-[#111318] py-14 text-white">
-      <div className="container mx-auto px-6 md:px-12">
+    <footer className="bg-[#1c221d] py-14 text-white">
+      <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-[1.3fr_0.7fr_0.7fr]">
           <div>
-            <Link href="/" className="inline-block font-heading text-2xl font-semibold text-white">
-              atharv<span className="text-accent">.</span>
+            <Link href="/" className="inline-block font-heading text-2xl font-semibold tracking-[-0.05em] text-white">
+              atharv<span className="text-[#f6c443]">.</span>
             </Link>
             <p className="mt-4 max-w-md text-white/58">
               Software and automation systems for small businesses that need clearer operations, customer communication, and order workflows.
             </p>
-            <a href={`mailto:${contactEmail}`} className="mt-5 inline-flex font-medium text-accent hover:text-accent-hover">
+            <a href={`mailto:${contactEmail}`} className="mt-5 inline-flex font-medium text-[#f6c443] transition-colors hover:text-white">
               {contactEmail}
             </a>
           </div>
@@ -46,7 +46,7 @@ export default function Footer() {
             <h4 className="mb-4 font-semibold text-white">Navigation</h4>
             <ul className="space-y-3 text-white/58">
               {navLinks.map((link) => (
-                <li key={link.path}><Link href={link.path} className="hover:text-accent transition-colors">{link.name}</Link></li>
+                <li key={link.path}><Link href={link.path} className="transition-colors hover:text-[#f6c443]">{link.name}</Link></li>
               ))}
             </ul>
           </div>
@@ -55,14 +55,7 @@ export default function Footer() {
             <h4 className="mb-4 font-semibold text-white">Connect</h4>
             <div className="flex gap-3">
               {socialLinks.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target={social.href.startsWith("http") ? "_blank" : undefined}
-                  rel={social.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                  aria-label={social.label}
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white/68 transition-all hover:bg-accent hover:text-white"
-                >
+                <a key={social.label} href={social.href} target={social.href.startsWith("http") ? "_blank" : undefined} rel={social.href.startsWith("http") ? "noopener noreferrer" : undefined} aria-label={social.label} className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white/68 transition-all hover:bg-[#f05d45] hover:text-white">
                   {social.icon}
                 </a>
               ))}
@@ -70,7 +63,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col justify-between gap-4 pt-6 text-sm text-white/42 md:flex-row md:items-center">
+        <div className="mt-10 flex flex-col justify-between gap-4 border-t border-white/12 pt-6 text-sm text-white/42 md:flex-row md:items-center">
           <p>&copy; {currentYear} Atharv Agarwal. All rights reserved.</p>
           <p>Real solutions for real problems.</p>
         </div>
