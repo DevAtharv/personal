@@ -2,324 +2,197 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, ExternalLink, Sparkles } from "lucide-react";
-import {
-  capabilityGroups,
-  developmentStack,
-  featuredWork,
-  heroStats,
-  interests,
-  positioning,
-  projects,
-  proofOfWork,
-} from "@/lib/site-content";
+import { ArrowUpRight, ExternalLink } from "lucide-react";
+import { featuredWork, positioning, projects } from "@/lib/site-content";
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 18 },
+const rise = {
+  hidden: { opacity: 0, y: 22 },
   visible: { opacity: 1, y: 0 },
 };
 
-function BuilderVisual() {
-  const primaryWork = featuredWork[0];
+const portraitImage =
+  "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=85";
+const mangoImage =
+  "https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&w=1400&q=85";
+const spiceImage =
+  "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=1400&q=85";
 
-  return (
-    <div className="relative min-h-[460px] overflow-hidden rounded-lg bg-[#111318] p-5 text-white shadow-[0_32px_100px_rgba(17,19,24,0.22)]">
-      <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-[#15b8a6]/35 blur-3xl" />
-      <div className="absolute -bottom-16 left-8 h-56 w-56 rounded-full bg-[#ff6b4a]/28 blur-3xl" />
-
-      <div className="relative flex items-center justify-between">
-        <p className="text-sm text-white/58">business.systems</p>
-        <span className="rounded-full bg-white px-3 py-1 text-xs font-medium text-[#111318]">proof first</span>
-      </div>
-
-      <div className="relative mt-14">
-        <p className="max-w-sm text-4xl font-light leading-tight">
-          Software systems that make operations easier to run.
-        </p>
-
-        <div className="mt-10 rounded-lg bg-white/[0.08] p-4">
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <p className="text-lg font-medium">{primaryWork.title}</p>
-            <span className="rounded-full bg-[#15b8a6] px-3 py-1 text-xs font-medium text-[#071714]">
-              {primaryWork.status}
-            </span>
-          </div>
-          <p className="mt-3 text-sm leading-6 text-white/58">{primaryWork.visualDetail}</p>
-        </div>
-
-        <div className="mt-8 grid grid-cols-3 gap-2">
-          {["Problem", "System", "Impact"].map((item, index) => (
-            <div key={item} className="rounded-lg bg-white px-3 py-3 text-[#111318]">
-              <p className="text-xs text-[#606873]">0{index + 1}</p>
-              <p className="mt-4 text-sm font-medium">{item}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function CaseStudyBlock({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="rounded-lg bg-white p-4">
-      <p className="text-xs font-medium uppercase text-[#1463ff]">{label}</p>
-      <p className="mt-3 text-sm leading-6 text-[#4c5562]">{value}</p>
-    </div>
-  );
+function Eyebrow({ children }: { children: string }) {
+  return <p className="mb-5 text-xs font-semibold uppercase tracking-[0.18em] text-[#f05d45]">{children}</p>;
 }
 
 export default function Home() {
+  const primaryWork = featuredWork[0];
+  const secondaryWork = featuredWork[1];
+
   return (
-    <div className="overflow-hidden bg-[#f5f7fb] text-[#111318]">
-      <section className="relative isolate px-6 pb-16 pt-32 md:pb-24 md:pt-40">
-        <div className="absolute inset-x-0 top-0 -z-10 h-[640px] bg-[radial-gradient(circle_at_10%_10%,rgba(20,99,255,0.14),transparent_18rem),radial-gradient(circle_at_48%_4%,rgba(21,184,166,0.18),transparent_22rem),radial-gradient(circle_at_86%_12%,rgba(255,107,74,0.16),transparent_20rem),linear-gradient(180deg,#ffffff,#f5f7fb)]" />
-
-        <div className="container mx-auto grid max-w-7xl grid-cols-1 gap-12 lg:grid-cols-[0.96fr_1.04fr] lg:items-center">
-          <motion.div variants={fadeUp} initial="hidden" animate="visible" transition={{ duration: 0.55 }}>
-            <div className="mb-7 flex flex-wrap items-center gap-3">
-              <span className="rounded-full bg-[#111318] px-4 py-2 text-sm font-medium text-white">Atharv Agarwal</span>
-              <span className="rounded-full bg-white px-4 py-2 text-sm font-medium text-[#606873] shadow-[0_12px_34px_rgba(17,19,24,0.06)]">
-                {positioning.short}
-              </span>
+    <div className="bg-[#f5f0e8] text-[#1c221d]">
+      <section className="hero-grid relative overflow-hidden px-5 pb-16 pt-28 sm:px-8 md:pb-24 md:pt-36 lg:px-12">
+        <div className="mx-auto grid max-w-[1440px] gap-10 lg:grid-cols-[1.12fr_0.88fr] lg:items-end">
+          <motion.div variants={rise} initial="hidden" animate="visible" transition={{ duration: 0.7 }}>
+            <div className="mb-9 flex items-center gap-3 text-sm font-medium text-[#5c665c]">
+              <span className="inline-block h-2 w-2 rounded-full bg-[#f05d45]" />
+              Available for select business builds
             </div>
-
-            <h1 className="max-w-5xl text-5xl font-light leading-[1.02] text-[#111318] md:text-7xl">
-              {positioning.headline}
+            <h1 className="max-w-4xl font-heading text-[clamp(3.55rem,8.3vw,8.6rem)] font-medium leading-[0.88] tracking-[-0.055em] text-[#1c221d]">
+              Systems for businesses that want to move.
             </h1>
-
-            <p className="mt-7 max-w-2xl text-lg font-light leading-8 text-[#4c5562]">
+            <p className="mt-8 max-w-xl text-lg leading-8 text-[#515c52] md:text-xl">
               {positioning.subheadline}
             </p>
-
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#1463ff] px-5 py-3 font-medium text-white transition-colors hover:bg-[#0f4ec7]">
-                Work with me <ArrowRight size={17} />
+            <div className="mt-10 flex flex-wrap gap-3">
+              <Link href="/work" className="inline-flex items-center gap-3 rounded-full bg-[#1c221d] px-6 py-3.5 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5">
+                See selected work <ArrowUpRight size={18} />
               </Link>
-              <Link href="/work" className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-5 py-3 font-medium text-[#111318] shadow-[0_12px_34px_rgba(17,19,24,0.07)] transition-colors hover:bg-[#eef3f8]">
-                See proof of work
+              <Link href="/contact" className="inline-flex items-center gap-3 rounded-full border border-[#1c221d]/20 px-6 py-3.5 text-sm font-semibold text-[#1c221d] transition-colors hover:border-[#1c221d] hover:bg-white/50">
+                Start a project
               </Link>
             </div>
           </motion.div>
 
-          <motion.div variants={fadeUp} initial="hidden" animate="visible" transition={{ duration: 0.55, delay: 0.12 }}>
-            <BuilderVisual />
-          </motion.div>
-        </div>
-      </section>
-
-      <section className="px-6 pb-20">
-        <div className="container mx-auto grid max-w-7xl grid-cols-1 gap-4 md:grid-cols-4">
-          {heroStats.map((stat) => (
-            <article key={stat.label} className="rounded-lg bg-white p-5 shadow-[0_18px_46px_rgba(17,19,24,0.06)]">
-              <p className="text-sm font-medium text-[#111318]">{stat.label}</p>
-              <p className="mt-2 text-sm leading-6 text-[#606873]">{stat.detail}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="bg-white px-6 py-24">
-        <div className="container mx-auto max-w-7xl">
-          <div className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
-            <div>
-              <p className="mb-4 text-sm font-medium uppercase text-[#1463ff]">Proof of work</p>
-              <h2 className="text-4xl font-light leading-tight md:text-6xl">Real systems built for business operations.</h2>
-            </div>
-            <p className="max-w-2xl text-lg font-light leading-8 text-[#4c5562]">
-              Proof here means shipped work, operational systems, customer workflows, and business context. The strongest proof is Pulps & Leaves because it is live and connected to real orders.
-            </p>
-          </div>
-
-          <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {proofOfWork.map((proof) => (
-              <article key={proof.label} className="rounded-lg bg-[#f5f7fb] p-5">
-                <p className="text-sm font-medium text-[#111318]">{proof.label}</p>
-                <p className="mt-3 text-sm leading-6 text-[#606873]">{proof.detail}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="work" className="px-6 py-24">
-        <div className="container mx-auto max-w-7xl">
-          <div className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
-            <div>
-              <p className="mb-4 text-sm font-medium uppercase text-[#1463ff]">Featured work</p>
-              <h2 className="text-4xl font-light leading-tight md:text-6xl">Problem, system, impact.</h2>
-            </div>
-            <p className="max-w-2xl text-lg font-light leading-8 text-[#4c5562]">
-              Each project is framed by what was broken, what was built, and what changed for the business.
-            </p>
-          </div>
-
-          <div className="mt-14 grid gap-6">
-            {featuredWork.map((work, index) => (
-              <motion.article
-                key={work.id}
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                transition={{ duration: 0.45, delay: index * 0.08 }}
-                className="grid gap-8 rounded-lg bg-white p-6 shadow-[0_24px_70px_rgba(17,19,24,0.07)] md:p-8 lg:grid-cols-[0.9fr_1.1fr]"
-              >
-                <div className="flex min-h-72 flex-col justify-between rounded-lg bg-[#111318] p-6 text-white">
-                  <div className="flex items-center justify-between gap-4">
-                    <span className="rounded-full bg-white px-3 py-1 text-xs font-medium text-[#111318]">{work.status}</span>
-                    {work.url ? (
-                      <a href={work.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-sm text-white/70 hover:text-white">
-                        Live <ExternalLink size={14} />
-                      </a>
-                    ) : null}
-                  </div>
-                  <div>
-                    <p className="text-sm uppercase text-white/42">{work.visualTitle}</p>
-                    <h3 className="mt-3 text-4xl font-light md:text-5xl">{work.title}</h3>
-                    <p className="mt-4 leading-7 text-white/60">{work.visualDetail}</p>
-                  </div>
-                </div>
-
-                <div className="self-center">
-                  <p className="text-xl font-light leading-9 text-[#27303a]">{work.description}</p>
-                  <div className="mt-7 grid gap-3">
-                    <CaseStudyBlock label="Problem" value={work.problem} />
-                    <CaseStudyBlock label="Solution built" value={work.solution} />
-                    <CaseStudyBlock label="Business impact" value={work.impact} />
-                  </div>
-                  <div className="mt-7 grid gap-2 sm:grid-cols-2">
-                    {work.proofPoints.map((point) => (
-                      <div key={point} className="flex items-start gap-2 text-sm leading-6 text-[#4c5562]">
-                        <CheckCircle2 size={16} className="mt-1 shrink-0 text-[#15b8a6]" />
-                        <span>{point}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </motion.article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-white px-6 py-24">
-        <div className="container mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.8fr_1.2fr]">
-          <div>
-            <p className="mb-4 text-sm font-medium uppercase text-[#1463ff]">How I build</p>
-            <h2 className="text-4xl font-light leading-tight md:text-5xl">
-              AI-assisted product development stack for rapid building and deployment.
-            </h2>
-            <p className="mt-5 max-w-xl text-lg font-light leading-8 text-[#4c5562]">
-              The tools are secondary. The goal is to understand a business workflow, build a usable system, connect the operations, and improve it with real feedback.
-            </p>
-          </div>
-
-          <div className="grid gap-3 md:grid-cols-2">
-            {developmentStack.map((step) => (
-              <article key={step.name} className="rounded-lg bg-[#f5f7fb] p-5">
-                <step.icon size={22} className="text-[#1463ff]" />
-                <h3 className="mt-5 text-xl font-light">{step.name}</h3>
-                <p className="mt-3 text-sm leading-6 text-[#606873]">{step.detail}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[#111318] px-6 py-24 text-white">
-        <div className="container mx-auto max-w-7xl">
-          <div className="grid gap-10 lg:grid-cols-[0.86fr_1.14fr]">
-            <div>
-              <p className="mb-4 text-sm font-medium uppercase text-[#15b8a6]">Capability map</p>
-              <h2 className="text-4xl font-light leading-tight md:text-5xl">Built around practical business systems.</h2>
-            </div>
-            <div className="grid gap-4">
-              {capabilityGroups.map((group) => (
-                <article key={group.title} className="rounded-lg bg-white/[0.07] p-5">
-                  <div className="flex items-center gap-3">
-                    <group.icon size={22} className="text-[#15b8a6]" />
-                    <h3 className="text-xl font-light">{group.title}</h3>
-                  </div>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {group.items.map((item) => (
-                      <span key={item} className="rounded-full bg-white/10 px-3 py-1 text-sm text-white/72">
-                        {item}
-                      </span>
-                    ))}
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="projects" className="bg-white px-6 py-24">
-        <div className="container mx-auto max-w-7xl">
-          <div className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr]">
-            <div>
-              <p className="mb-4 text-sm font-medium uppercase text-[#1463ff]">Experiments</p>
-              <h2 className="text-4xl font-light leading-tight md:text-5xl">Side projects, kept in the right place.</h2>
-            </div>
-            <div className="grid gap-3">
-              {projects.map((project) => (
-                <article key={project.title} className="grid gap-4 rounded-lg bg-[#f5f7fb] p-5 md:grid-cols-[0.42fr_1fr]">
-                  <div>
-                    <span className="rounded-full bg-white px-3 py-1 text-xs font-medium text-[#606873]">{project.status}</span>
-                    <h3 className="mt-5 text-2xl font-light">{project.title}</h3>
-                  </div>
-                  <div>
-                    <p className="leading-7 text-[#4c5562]">{project.impact}</p>
-                    <div className="mt-4 flex flex-wrap gap-2">
-                      {project.tech.map((item) => (
-                        <span key={item} className="rounded-full bg-white px-3 py-1 text-sm font-medium text-[#27303a]">
-                          {item}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="about" className="px-6 py-24">
-        <div className="container mx-auto grid max-w-7xl gap-8 rounded-lg bg-[#111318] p-8 text-white shadow-[0_30px_90px_rgba(17,19,24,0.18)] md:p-10 lg:grid-cols-[1.05fr_0.95fr]">
-          <div>
-            <p className="mb-4 text-sm font-medium uppercase text-[#15b8a6]">About</p>
-            <h2 className="text-4xl font-light leading-tight md:text-5xl">A young builder learning through real business work.</h2>
-            <p className="mt-6 max-w-3xl text-lg font-light leading-8 text-white/66">
-              I am a Class 12 student focused on building software, automation, and digital systems for small businesses. I learn by shipping useful systems, working with real operational problems, and improving what businesses actually use.
-            </p>
-          </div>
-          <div className="flex content-end flex-wrap gap-2 self-end">
-            {interests.map((interest) => (
-              <span key={interest} className="rounded-full bg-white/10 px-3 py-2 text-sm text-white/74">
-                {interest}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="px-6 pb-24">
-        <div className="container mx-auto max-w-7xl rounded-lg bg-white p-8 shadow-[0_24px_70px_rgba(17,19,24,0.08)] md:p-10">
-          <div className="flex flex-col justify-between gap-8 md:flex-row md:items-center">
-            <div>
-              <div className="mb-4 flex items-center gap-2 text-[#1463ff]">
-                <Sparkles size={18} />
-                <p className="text-sm font-medium uppercase">Work with me</p>
+          <motion.div variants={rise} initial="hidden" animate="visible" transition={{ duration: 0.7, delay: 0.12 }} className="relative mx-auto w-full max-w-[570px] lg:mr-0">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-[1.5rem] bg-[#d9e1cf]">
+              <img src={portraitImage} alt="A collaborative business workspace" className="h-full w-full object-cover grayscale-[20%]" />
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_45%,rgba(28,34,29,0.55))]" />
+              <div className="absolute bottom-0 left-0 right-0 p-6 text-white sm:p-8">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/72">Atharv Agarwal</p>
+                <p className="mt-3 max-w-sm font-heading text-3xl leading-tight sm:text-4xl">Software, automation, and the operational details in between.</p>
               </div>
-              <h2 className="text-4xl font-light leading-tight md:text-5xl">Build a system for your business.</h2>
-              <p className="mt-5 max-w-2xl text-lg font-light leading-8 text-[#4c5562]">
-                If your business needs a website, workflow, ordering system, customer communication setup, or automation, send the context and I will reply with next steps.
-              </p>
             </div>
-            <Link href="/contact" className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-[#1463ff] px-5 py-3 font-medium text-white transition-colors hover:bg-[#0f4ec7]">
-              Discuss a project <ArrowRight size={17} />
+            <div className="absolute -bottom-5 -left-3 max-w-[230px] rounded-2xl bg-[#f05d45] p-5 text-white shadow-[0_22px_50px_rgba(62,45,35,0.22)] sm:-left-8">
+              <p className="font-heading text-3xl leading-none">01</p>
+              <p className="mt-4 text-sm leading-5 text-white/82">Build useful systems, then make them easier to run.</p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="border-y border-[#1c221d]/12 bg-[#1c221d] px-5 py-5 text-[#f5f0e8] sm:px-8 lg:px-12">
+        <div className="mx-auto flex max-w-[1440px] items-center gap-8 overflow-hidden whitespace-nowrap text-[clamp(1.45rem,2.8vw,2.4rem)] font-medium tracking-[-0.035em]">
+          <span>Websites</span><span className="text-[#f6c443]">*</span><span>Order workflows</span><span className="text-[#f6c443]">*</span><span>Customer communication</span><span className="text-[#f6c443]">*</span><span>Automation</span><span className="text-[#f6c443]">*</span><span>Launch systems</span>
+        </div>
+      </section>
+
+      <section className="px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
+        <div className="mx-auto max-w-[1440px]">
+          <div className="grid gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:items-end">
+            <div>
+              <Eyebrow>Selected work</Eyebrow>
+              <h2 className="font-heading text-5xl font-medium leading-[0.92] tracking-[-0.05em] md:text-7xl">Work with a real-world pulse.</h2>
+            </div>
+            <p className="max-w-2xl text-lg leading-8 text-[#515c52] md:text-xl">
+              The work is anchored in operating problems: getting orders under control, keeping customers informed, and creating digital systems a small team can actually use.
+            </p>
+          </div>
+
+          <article className="mt-16 grid overflow-hidden rounded-[1.5rem] bg-[#20372d] text-white lg:grid-cols-[1.05fr_0.95fr]">
+            <div className="relative min-h-[430px] overflow-hidden">
+              <img src={mangoImage} alt="Fresh mangoes for Pulps and Leaves" className="h-full w-full object-cover" />
+              <div className="absolute inset-0 bg-[linear-gradient(130deg,rgba(20,38,29,0.34),rgba(20,38,29,0.06))]" />
+              <div className="absolute left-6 top-6 rounded-full bg-[#f5f0e8] px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#20372d]">Live business project</div>
+            </div>
+            <div className="flex flex-col justify-between p-7 sm:p-10">
+              <div>
+                <p className="text-sm font-medium text-[#f6c443]">{primaryWork.title}</p>
+                <h3 className="mt-4 font-heading text-5xl font-medium leading-[0.92] tracking-[-0.05em] sm:text-6xl">Make the business flow.</h3>
+                <p className="mt-7 max-w-xl text-base leading-7 text-white/72">{primaryWork.description}</p>
+              </div>
+              <div className="mt-10 grid gap-6 border-t border-white/18 pt-6 sm:grid-cols-2">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/48">Built</p>
+                  <p className="mt-3 text-sm leading-6 text-white/78">Website, order flow, WhatsApp customer updates, and Sheets-based operations.</p>
+                </div>
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/48">Business context</p>
+                  <p className="mt-3 text-sm leading-6 text-white/78">Live for real orders; supported 150kg order handling and Rs 1.2 lakh sales in under one month.</p>
+                </div>
+              </div>
+              <a href={primaryWork.url ?? "/work"} target="_blank" rel="noreferrer" className="mt-8 inline-flex w-fit items-center gap-2 border-b border-[#f6c443] pb-1 text-sm font-semibold text-[#f6c443]">
+                Visit live project <ExternalLink size={15} />
+              </a>
+            </div>
+          </article>
+
+          <article className="mt-5 grid overflow-hidden rounded-[1.5rem] bg-[#dd7e50] text-[#211c16] lg:grid-cols-[0.95fr_1.05fr]">
+            <div className="flex flex-col justify-between p-7 sm:p-10 lg:order-2">
+              <div>
+                <p className="text-sm font-semibold text-[#5b2614]">{secondaryWork.status}</p>
+                <h3 className="mt-4 font-heading text-5xl font-medium leading-[0.92] tracking-[-0.05em] sm:text-6xl">Launch with the foundation in place.</h3>
+                <p className="mt-7 max-w-xl text-base leading-7 text-[#35291f]/78">{secondaryWork.description}</p>
+              </div>
+              <div className="mt-10 border-t border-[#211c16]/18 pt-6">
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#5b2614]">In progress</p>
+                <p className="mt-3 max-w-lg text-sm leading-6 text-[#35291f]/80">Website direction, e-commerce setup, product presentation, and a customer experience designed before launch day.</p>
+              </div>
+            </div>
+            <div className="relative min-h-[360px] overflow-hidden lg:order-1">
+              <img src={spiceImage} alt="Spices for the Vadi Masala launch project" className="h-full w-full object-cover" />
+              <div className="absolute inset-0 bg-[#cf5d36]/20 mix-blend-multiply" />
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section className="bg-[#dce7d3] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
+        <div className="mx-auto grid max-w-[1440px] gap-14 lg:grid-cols-[0.76fr_1.24fr]">
+          <div>
+            <Eyebrow>What I help with</Eyebrow>
+            <h2 className="font-heading text-5xl font-medium leading-[0.92] tracking-[-0.05em] md:text-7xl">Useful, not just impressive.</h2>
+            <p className="mt-7 max-w-md text-lg leading-8 text-[#465346]">I use AI-assisted development to make practical systems feel lighter for the people who run them every day.</p>
+          </div>
+          <div className="grid gap-px overflow-hidden rounded-[1.5rem] border border-[#1c221d]/15 bg-[#1c221d]/15 sm:grid-cols-2">
+            {[
+              ["01", "Customer journeys", "From the first click to the post-order update, make every step easier to understand."],
+              ["02", "Order operations", "Simple tracking and visibility so the team can spend less time searching for information."],
+              ["03", "Business websites", "A clear, credible home for the business that helps people take the next step."],
+              ["04", "Automation", "Reduce repetitive follow-up with practical workflows across WhatsApp, Sheets, and internal tools."],
+            ].map(([number, title, copy]) => (
+              <article key={number} className="bg-[#dce7d3] p-7 sm:p-9">
+                <p className="text-sm font-semibold text-[#f05d45]">{number}</p>
+                <h3 className="mt-12 font-heading text-3xl font-medium tracking-[-0.04em]">{title}</h3>
+                <p className="mt-4 max-w-sm text-sm leading-6 text-[#536052]">{copy}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
+        <div className="mx-auto max-w-[1440px]">
+          <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
+            <div>
+              <Eyebrow>Experiments</Eyebrow>
+              <h2 className="font-heading text-5xl font-medium leading-[0.92] tracking-[-0.05em] md:text-7xl">Curiosity, kept practical.</h2>
+            </div>
+            <Link href="/projects" className="inline-flex items-center gap-2 text-sm font-semibold text-[#1c221d] underline decoration-[#f05d45] decoration-2 underline-offset-8">
+              See all experiments <ArrowUpRight size={17} />
+            </Link>
+          </div>
+          <div className="mt-14 grid gap-5 md:grid-cols-3">
+            {projects.map((project, index) => (
+              <article key={project.title} className="group rounded-[1.5rem] border border-[#1c221d]/14 bg-white/40 p-6 transition-transform duration-300 hover:-translate-y-1 sm:p-7">
+                <p className="text-sm font-semibold text-[#f05d45]">0{index + 1}</p>
+                <h3 className="mt-16 font-heading text-4xl font-medium tracking-[-0.05em]">{project.title}</h3>
+                <p className="mt-5 text-sm leading-6 text-[#566156]">{project.description}</p>
+                <div className="mt-8 flex flex-wrap gap-2">
+                  {project.tech.map((tech) => <span key={tech} className="rounded-full border border-[#1c221d]/12 px-3 py-1 text-xs font-semibold text-[#556055]">{tech}</span>)}
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#f6c443] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
+        <div className="mx-auto grid max-w-[1440px] gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+          <div>
+            <Eyebrow>Let&apos;s build</Eyebrow>
+            <h2 className="max-w-4xl font-heading text-[clamp(3.8rem,8vw,8rem)] font-medium leading-[0.86] tracking-[-0.06em]">Have a messy workflow?</h2>
+          </div>
+          <div className="lg:pb-2">
+            <p className="max-w-xl text-lg leading-8 text-[#3c3318]">Tell me what your business is trying to get done. We can start with the part that is slow, unclear, or still being done by hand.</p>
+            <Link href="/contact" className="mt-8 inline-flex items-center gap-3 rounded-full bg-[#1c221d] px-6 py-3.5 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5">
+              Discuss a project <ArrowUpRight size={18} />
             </Link>
           </div>
         </div>
